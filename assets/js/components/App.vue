@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="center">My Application rouget sall fatigue </h2>
+    <h2 class="center">My Application rouget sall</h2>
     <div v-text="message"></div>
     {{ message }}
     <ul>
