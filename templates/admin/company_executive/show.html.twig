@@ -1,0 +1,109 @@
+
+{% extends 'admin.html.twig' %}
+
+{% block title %}Dirigaent{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Dirigaent</h1>
+        <div class="btn-toolbar align-items-center mb-2 mb-md-0">
+            <a class="btn btn-sm btn-outline-dark" href="{{ path('company_executive_index') }}">Retour</a>
+            <a href="{{ path('company_executive_edit', {'id': company_executive.id}) }}" class="btn btn-sm btn-outline-dark ml-1">Éditer</a>
+            {{ include('admin/company_executive/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% block body %}
+    <h1>CompanyExecutive</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ company_executive.id }}</td>
+            </tr>
+            <tr>
+                <th>Executive_title</th>
+                <td>{{ company_executive.executiveTitle }}</td>
+            </tr>
+            <tr>
+                <th>Executive_firstname</th>
+                <td>{{ company_executive.executiveFirstname }}</td>
+            </tr>
+            <tr>
+                <th>Executive_lastname</th>
+                <td>{{ company_executive.executiveLastname }}</td>
+            </tr>
+            <tr>
+                <th>Executive_birthdate</th>
+                <td>{{ company_executive.executiveBirthdate ? company_executive.executiveBirthdate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Executive_birth_city</th>
+                <td>{{ company_executive.executiveBirthCity }}</td>
+            </tr>
+            <tr>
+                <th>Executive_nationality</th>
+                <td>{{ company_executive.executiveNationality }}</td>
+            </tr>
+            <tr>
+                <th>Executive_address</th>
+                <td>{{ company_executive.executiveAddress }}</td>
+            </tr>
+            <tr>
+                <th>Executive_zipcode</th>
+                <td>{{ company_executive.executiveZipcode }}</td>
+            </tr>
+            <tr>
+                <th>Executive_city</th>
+                <td>{{ company_executive.executiveCity }}</td>
+            </tr>
+            <tr>
+                <th>Executive_mother_firstname_and_maiden_name</th>
+                <td>{{ company_executive.executiveMotherFirstnameAndMaidenName }}</td>
+            </tr>
+            <tr>
+                <th>Executive_father_name</th>
+                <td>{{ company_executive.executiveFatherName }}</td>
+            </tr>
+            <tr>
+                <th>Executive_email</th>
+                <td>{{ company_executive.executiveEmail }}</td>
+            </tr>
+            <tr>
+                <th>Executive_company_name</th>
+                <td>{{ company_executive.executiveCompanyName }}</td>
+            </tr>
+            <tr>
+                <th>Executive_company_rcs_number</th>
+                <td>{{ company_executive.executiveCompanyRcsNumber }}</td>
+            </tr>
+            <tr>
+                <th>Executive_company_headquarters_address</th>
+                <td>{{ company_executive.executiveCompanyHeadquartersAddress }}</td>
+            </tr>
+            <tr>
+                <th>Executive_company_zipcode</th>
+                <td>{{ company_executive.executiveCompanyZipcode }}</td>
+            </tr>
+            <tr>
+                <th>Executive_company_city</th>
+                <td>{{ company_executive.executiveCompanyCity }}</td>
+            </tr>
+            <tr>
+                <th>Executive_company_rcs</th>
+                <td>{{ company_executive.executiveCompanyRcs }}</td>
+            </tr>
+            <tr>
+                <th>Executive_company_representative_name</th>
+                <td>{{ company_executive.executiveCompanyRepresentativeName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('company_executive_index') }}">back to list</a>
+
+    <a href="{{ path('company_executive_edit', {'id': company_executive.id}) }}">edit</a>
+
+    {{ include('company_executive/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CompanyStatus{% endblock %}
+
+{% block body %}
+    <h1>CompanyStatus</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ company_status.id }}</td>
+            </tr>
+            <tr>
+                <th>Head_office_type</th>
+                <td>{{ company_status.headOfficeType }}</td>
+            </tr>
+            <tr>
+                <th>Domiciliation_company_name</th>
+                <td>{{ company_status.domiciliationCompanyName }}</td>
+            </tr>
+            <tr>
+                <th>Domiciliation_company_siren</th>
+                <td>{{ company_status.domiciliationCompanySiren }}</td>
+            </tr>
+            <tr>
+                <th>Company_purpose</th>
+                <td>{{ company_status.companyPurpose }}</td>
+            </tr>
+            <tr>
+                <th>Social_capital_type</th>
+                <td>{{ company_status.socialCapitalType }}</td>
+            </tr>
+            <tr>
+                <th>Social_capital_amount</th>
+                <td>{{ company_status.socialCapitalAmount }}</td>
+            </tr>
+            <tr>
+                <th>Social_capital_min</th>
+                <td>{{ company_status.socialCapitalMin }}</td>
+            </tr>
+            <tr>
+                <th>Social_capital_max</th>
+                <td>{{ company_status.socialCapitalMax }}</td>
+            </tr>
+            <tr>
+                <th>Capital_release_rate</th>
+                <td>{{ company_status.capitalReleaseRate }}</td>
+            </tr>
+            <tr>
+                <th>Capital_released_amount</th>
+                <td>{{ company_status.capitalReleasedAmount }}</td>
+            </tr>
+            <tr>
+                <th>Capital_deposit_date</th>
+                <td>{{ company_status.capitalDepositDate ? company_status.capitalDepositDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Capital_deposit_type</th>
+                <td>{{ company_status.capitalDepositType }}</td>
+            </tr>
+            <tr>
+                <th>Deposit_bank_name</th>
+                <td>{{ company_status.depositBankName }}</td>
+            </tr>
+            <tr>
+                <th>Deposit_bank_address</th>
+                <td>{{ company_status.depositBankAddress }}</td>
+            </tr>
+            <tr>
+                <th>Deposit_bank_zipcode</th>
+                <td>{{ company_status.depositBankZipcode }}</td>
+            </tr>
+            <tr>
+                <th>Deposit_bank_city</th>
+                <td>{{ company_status.depositBankCity }}</td>
+            </tr>
+            <tr>
+                <th>Notary_study_name</th>
+                <td>{{ company_status.notaryStudyName }}</td>
+            </tr>
+            <tr>
+                <th>Notary_study_address</th>
+                <td>{{ company_status.notaryStudyAddress }}</td>
+            </tr>
+            <tr>
+                <th>Notary_study_zipcode</th>
+                <td>{{ company_status.notaryStudyZipcode }}</td>
+            </tr>
+            <tr>
+                <th>Notary_study_city</th>
+                <td>{{ company_status.notaryStudyCity }}</td>
+            </tr>
+            <tr>
+                <th>Normal_company_exercice_closure_date</th>
+                <td>{{ company_status.normalCompanyExerciceClosureDate }}</td>
+            </tr>
+            <tr>
+                <th>First_company_exercice_closure_data</th>
+                <td>{{ company_status.firstCompanyExerciceClosureData }}</td>
+            </tr>
+            <tr>
+                <th>Business_acronym</th>
+                <td>{{ company_status.businessAcronym }}</td>
+            </tr>
+            <tr>
+                <th>Business_commercial_name</th>
+                <td>{{ company_status.businessCommercialName }}</td>
+            </tr>
+            <tr>
+                <th>Business_domain_name</th>
+                <td>{{ company_status.businessDomainName }}</td>
+            </tr>
+            <tr>
+                <th>Business_sign</th>
+                <td>{{ company_status.businessSign }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('company_status_index') }}">back to list</a>
+
+    <a href="{{ path('company_status_edit', {'id': company_status.id}) }}">edit</a>
+
+    {{ include('company_status/_delete_form.html.twig') }}
+{% endblock %}

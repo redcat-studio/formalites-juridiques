@@ -1,0 +1,51 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Company Identity{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Entreprise</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="{{ path('company_identity_new') }}" class="btn btn-sm btn-outline-dark">Nouvel Entreprise</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Head_office_address</th>
+                <th>Zipcode</th>
+                <th>City</th>
+                <th>Rcs_city</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company_identity in company_identities %}
+            <tr>
+                <td>{{ company_identity.id }}</td>
+                <td>{{ company_identity.type }}</td>
+                <td>{{ company_identity.name }}</td>
+                <td>{{ company_identity.headOfficeAddress }}</td>
+                <td>{{ company_identity.zipcode }}</td>
+                <td>{{ company_identity.city }}</td>
+                <td>{{ company_identity.rcsCity }}</td>
+                <td>{{ company_identity.phone }}</td>
+                <td>{{ company_identity.email }}</td>
+                <td>
+                    <a href="{{ path('company_identity_show', {'id': company_identity.id}) }}">Voir</a>
+                    <a href="{{ path('company_identity_edit', {'id': company_identity.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

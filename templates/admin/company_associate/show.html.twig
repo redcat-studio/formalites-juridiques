@@ -1,0 +1,142 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}CompanyAssociate{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Associe</h1>
+        <div class="btn-toolbar align-items-center mb-2 mb-md-0">
+            <a class="btn btn-sm btn-outline-dark" href="{{ path('company_associate_index') }}">Retour</a>
+            <a href="{{ path('company_associate_edit', {'id': company_associate.id}) }}" class="btn btn-sm btn-outline-dark ml-1">Éditer</a>
+            {{ include('admin/company_associate/_delete_form.html.twig') }}
+        </div>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ company_associate.id }}</td>
+            </tr>
+            <tr>
+                <th>Associate_type</th>
+                <td>{{ company_associate.associateType }}</td>
+            </tr>
+            <tr>
+                <th>Individual_genre</th>
+                <td>{{ company_associate.individualGenre }}</td>
+            </tr>
+            <tr>
+                <th>Individual_firstname</th>
+                <td>{{ company_associate.individualFirstname }}</td>
+            </tr>
+            <tr>
+                <th>Individual_lastname</th>
+                <td>{{ company_associate.individualLastname }}</td>
+            </tr>
+            <tr>
+                <th>Individual_birthdate</th>
+                <td>{{ company_associate.individualBirthdate ? company_associate.individualBirthdate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Individual_birth_city</th>
+                <td>{{ company_associate.individualBirthCity }}</td>
+            </tr>
+            <tr>
+                <th>Individual_nationality</th>
+                <td>{{ company_associate.individualNationality }}</td>
+            </tr>
+            <tr>
+                <th>Individual_address</th>
+                <td>{{ company_associate.individualAddress }}</td>
+            </tr>
+            <tr>
+                <th>Individual_zipcode</th>
+                <td>{{ company_associate.individualZipcode }}</td>
+            </tr>
+            <tr>
+                <th>Individual_city</th>
+                <td>{{ company_associate.individualCity }}</td>
+            </tr>
+            <tr>
+                <th>Individual_is_married_under_community_of_property</th>
+                <td>{{ company_associate.individualIsMarriedUnderCommunityOfProperty ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Individual_did_contributed_cash</th>
+                <td>{{ company_associate.individualDidContributedCash ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Individual_did_contributed_in_kind</th>
+                <td>{{ company_associate.individualDidContributedInKind ? company_associate.individualDidContributedInKind|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Legal_company_name</th>
+                <td>{{ company_associate.legalCompanyName }}</td>
+            </tr>
+            <tr>
+                <th>Legal_company_rcs_number</th>
+                <td>{{ company_associate.legalCompanyRcsNumber }}</td>
+            </tr>
+            <tr>
+                <th>Legal_company_headquarters_address</th>
+                <td>{{ company_associate.legalCompanyHeadquartersAddress }}</td>
+            </tr>
+            <tr>
+                <th>Legal_company_zipcode</th>
+                <td>{{ company_associate.legalCompanyZipcode }}</td>
+            </tr>
+            <tr>
+                <th>Legal_company_city</th>
+                <td>{{ company_associate.legalCompanyCity }}</td>
+            </tr>
+            <tr>
+                <th>Legal_company_city_of_registry</th>
+                <td>{{ company_associate.legalCompanyCityOfRegistry }}</td>
+            </tr>
+            <tr>
+                <th>Legal_company_social_capital</th>
+                <td>{{ company_associate.legalCompanySocialCapital }}</td>
+            </tr>
+            <tr>
+                <th>Legal_company_social_form</th>
+                <td>{{ company_associate.legalCompanySocialForm }}</td>
+            </tr>
+            <tr>
+                <th>Legal_representative_firstname</th>
+                <td>{{ company_associate.legalRepresentativeFirstname }}</td>
+            </tr>
+            <tr>
+                <th>Legal_representative_lastname</th>
+                <td>{{ company_associate.legalRepresentativeLastname }}</td>
+            </tr>
+            <tr>
+                <th>Legal_representative_genre</th>
+                <td>{{ company_associate.legalRepresentativeGenre }}</td>
+            </tr>
+            <tr>
+                <th>Legal_representative_role</th>
+                <td>{{ company_associate.legalRepresentativeRole }}</td>
+            </tr>
+            <tr>
+                <th>Subject_to_what_income_tax</th>
+                <td>{{ company_associate.subjectToWhatIncomeTax }}</td>
+            </tr>
+            <tr>
+                <th>Subject_to_what_real_tax</th>
+                <td>{{ company_associate.subjectToWhatRealTax }}</td>
+            </tr>
+            <tr>
+                <th>Vat_system</th>
+                <td>{{ company_associate.vatSystem }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('company_associate_index') }}">back to list</a>
+
+    <a href="{{ path('company_associate_edit', {'id': company_associate.id}) }}">edit</a>
+
+    {{ include('company_associate/_delete_form.html.twig') }}
+{% endblock %}
