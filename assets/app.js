@@ -10,6 +10,7 @@
 
 import Vue from 'vue';
 import App from './js/components/App';
+import '/node_modules/skeleton-scss/scss/skeleton.scss';
 import './css/app.scss';
 
 /**
