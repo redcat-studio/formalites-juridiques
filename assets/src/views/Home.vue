@@ -1,12 +1,16 @@
 <template>
   <div class="page home">
-    <h1>Formalités Juridiques : Accueil</h1>
+    <Hero></Hero>
   </div>
 </template>
 
 <script>
+import Hero from '../components/Home/Hero'
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    Hero
+  }
 }
 </script>
 
