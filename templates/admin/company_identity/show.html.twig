@@ -1,0 +1,610 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}CompanyIdentity{% endblock %}
+
+{% block body %}
+    
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Entreprise</h1>
+        <div class="btn-toolbar align-items-center mb-2 mb-md-0">
+            <a class="btn btn-sm btn-outline-dark" href="{{ path('company_identity_index') }}">Retour</a>
+            <a href="{{ path('company_identity_edit', {'id': company_identity.id}) }}" class="btn btn-sm btn-outline-dark ml-1">Éditer</a>
+            {{ include('admin/company_identity/_delete_form.html.twig') }}
+        </div>
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ company_identity.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ company_identity.type }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ company_identity.name }}</td>
+            </tr>
+            <tr>
+                <th>Head_office_address</th>
+                <td>{{ company_identity.headOfficeAddress }}</td>
+            </tr>
+            <tr>
+                <th>Zipcode</th>
+                <td>{{ company_identity.zipcode }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ company_identity.city }}</td>
+            </tr>
+            <tr>
+                <th>Rcs_city</th>
+                <td>{{ company_identity.rcsCity }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ company_identity.phone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ company_identity.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Élement Statutaires</h2>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ company_status.id }}</td>
+            </tr>
+            {% if company_status.headOfficeType %}
+                <tr>
+                    <th>Le siège social sera installé </th>
+                    <td>{{ company_status.headOfficeType }}</td>
+                </tr>
+            {% endif %}
+
+
+
+            {% if company_status.domiciliationCompanyName %}
+               <tr>
+                <th>Nom de la société de Domiciliation</th>
+                <td>{{ company_status.domiciliationCompanyName }}</td>
+               </tr>
+            {% endif %}
+
+
+            {% if company_status.domiciliationCompanySiren %}
+                <tr>
+                    <th>Numéro SIREN de la société de domiciliation</th>
+                    <td>{{ company_status.domiciliationCompanySiren }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_status.companyPurpose %}
+                 <tr>
+                    <th>Objet social</th>
+                    <td>{{ company_status.companyPurpose }}</td>
+                 </tr>
+            {% endif %}
+            
+
+
+
+             {% if company_status.socialCapitalType %}
+                 <tr>
+                    <th>Capital fixe ou variable</th>
+                    <td>{{ company_status.socialCapitalType }}</td>
+                </tr>
+            {% endif %}
+
+
+             {% if company_status.socialCapitalAmount %}
+                <tr>
+                    <th>Quel est le montant du capital social</th>
+                    <td>{{ company_status.socialCapitalAmount }}</td>
+                </tr>
+            {% endif %}
+           
+           {% if company_status.socialCapitalMin %}
+                <tr>
+                    <th>Capital Minimum</th>
+                    <td>{{ company_status.socialCapitalMin }}</td>
+                </tr>
+            {% endif %}
+            
+           
+           {% if company_status.socialCapitalMax %}
+                <tr>
+                    <th>Capital Maximum</th>
+                    <td>{{ company_status.socialCapitalMax }}</td>
+                </tr>
+            {% endif %}
+           
+
+           {% if company_status.capitalReleaseRate %}
+                <tr>
+                    <th>Taux de libération du capital à la constitution</th>
+                    <td>{{ company_status.capitalReleaseRate }}</td>
+                </tr>
+            {% endif %}
+
+            
+            {% if company_status.capitalReleasedAmount %}
+                <tr>
+                    <th>Quel est le montant libéré à la constitution </th>
+                    <td>{{ company_status.capitalReleasedAmount }}</td>
+                </tr>
+            {% endif %}
+            {% if company_status.capitalDepositDate  %}
+                <tr>
+                    <th>Date du dépôt du capital social</th>
+                    <td>{{ company_status.capitalDepositDate ? company_status.capitalDepositDate|date('Y-m-d H:i:s') : '' }}</td>
+               </tr>
+            {% endif %}
+            {% if company_status.capitalDepositType %}
+                <tr>
+                    <th>Le capital social sera déposé</th>
+                    <td>{{ company_status.capitalDepositType }}</td>
+                </tr>
+            {% endif %}
+            
+            {% if company_status.depositBankName  %}
+                <tr>
+                <th>Nom de la banque</th>
+                <td>{{ company_status.depositBankName }}</td>
+                </tr>
+            {% endif %}
+           
+            {% if company_status.depositBankAddress %}
+                <tr>
+                    <th>adresse de la banque</th>
+                    <td>{{ company_status.depositBankAddress }}</td>
+                </tr>
+            {% endif %}
+           
+            {% if company_status.depositBankZipcode %}
+                <tr>
+                    <th>code poste de la banque</th>
+                    <td>{{ company_status.depositBankZipcode }}</td>
+                </tr>
+            {% endif %}
+           
+            {% if company_status.depositBankCity %}
+                <tr>
+                    <th>Ville de la banque</th>
+                    <td>{{ company_status.depositBankCity }}</td>
+                </tr>
+            {% endif %}
+            
+            {% if company_status.notaryStudyName %}
+                <tr>
+                    <th>Nom de l'etude notaire</th>
+                    <td>{{ company_status.notaryStudyName }}</td>
+                </tr>
+            {% endif %}
+           
+            {% if company_status.notaryStudyAddress %}
+                <tr>
+                    <th>adresse de l'étude notariale</th>
+                    <td>{{ company_status.notaryStudyAddress }}</td>
+                </tr>
+            {% endif %}
+            
+            {% if company_status.notaryStudyZipcode  %}
+                <tr>
+                    <th>code postal de l'étude notariale</th>
+                    <td>{{ company_status.notaryStudyZipcode }}</td>
+                </tr>
+            {% endif %}
+           
+            {% if company_status.notaryStudyCity %}
+                <tr>
+                    <th>Ville de l'étude notariale</th>
+                    <td>{{ company_status.notaryStudyCity }}</td>
+               </tr>
+            {% endif %}
+            
+            {% if company_status.normalCompanyExerciceClosureDate %}
+                 <tr>
+                    <th>Date de clôture d'un exercice social normal</th>
+                    <td>{{ company_status.normalCompanyExerciceClosureDate }}</td>
+                 </tr>
+            {% endif %}
+           
+            {% if company_status.firstCompanyExerciceClosureData  %}
+                <tr>
+                    <th>First_company_exercice_closure_data</th>
+                    <td>{{ company_status.firstCompanyExerciceClosureData }}</td>
+                </tr>
+            {% endif %}
+           
+            {% if company_status.businessAcronym %}
+                <tr>
+                    <th>Business_acronym</th>
+                    <td>{{ company_status.businessAcronym }}</td>
+                </tr>
+            {% endif %}
+            
+            {% if company_status.businessCommercialName %}
+                <tr>
+                    <th>Business_commercial_name</th>
+                    <td>{{ company_status.businessCommercialName }}</td>
+                </tr>
+            {% endif %}
+          
+            {% if company_status.businessDomainName  %}
+                 <tr>
+                    <th>Business_domain_name</th>
+                    <td>{{ company_status.businessDomainName }}</td>
+                 </tr>
+            {% endif %}
+           
+            {% if company_status.businessSign %}
+                <tr>
+                    <th>Business_sign</th>
+                    <td>{{ company_status.businessSign }}</td>
+                </tr>
+            {% endif %}
+            
+        </tbody>
+    </table>
+    <h1>Les Associes</h1>
+    <table class="table" >
+     
+        <tbody>
+        {% set j = 1  %}
+        {% for company_associate in company_identity.companyAssociates %}
+               <tr>
+                    <td>Associe {{ j }} </td>
+                    
+                     <td>
+                        <a href="{{ path('company_associate_edit', {'id': company_associate.id}) }}" class="btn btn-sm btn-outline-dark ml-1">Éditer</a>
+                    </td>
+                </tr>
+                {%  set j = j + 1  %}
+            {% if company_associate.associateType %}
+                <tr>
+                    <th>Associate_type</th>
+                    <td>{{ company_associate.associateType }}</td>
+                </tr>
+            {% endif %}
+             {% if  company_associate.individualGenre %}
+                <tr>
+                    <th>genre</th>
+                    <td>{{  company_associate.individualGenre }}</td>
+                </tr>
+            {% endif %}
+             {% if company_associate.individualFirstname %}
+                <tr>
+                    <th>Prenom</th>
+                    <td>{{ company_associate.individualFirstname }}</td>
+                </tr>
+            {% endif %}
+            
+             {% if company_associate.individualLastname %}
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ company_associate.individualLastname }}</td>
+                </tr>
+            {% endif %}
+             {% if company_associate.individualBirthdate %}
+                <tr>
+                    <th>Date de naissance de L'Associe</th>
+                    <td>{{  company_associate.individualBirthdate ? company_associate.individualBirthdate|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+            {% endif %}
+
+              {% if company_associate.individualBirthCity %}
+                <tr>
+                    <th>ville de naissance</th>
+                    <td>{{ company_associate.individualBirthCity }}</td>
+                </tr>
+            {% endif %}
+
+              {% if company_associate.individualNationality %}
+                <tr>
+                    <th>nationalité</th>
+                    <td>{{ company_associate.individualNationality }}</td>
+                </tr>
+            {% endif %}
+
+              {% if company_associate.individualAddress %}
+                <tr>
+                    <th>adresse l'Associe</th>
+                    <td>{{ company_associate.individualAddress }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_associate.individualZipcode %}
+                <tr>
+                    <th>code postal</th>
+                    <td>{{ company_associate.individualZipcode }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_associate.individualCity %}
+                <tr>
+                    <th>Ville</th>
+                    <td>{{ company_associate.individualCity }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_associate.individualIsMarriedUnderCommunityOfProperty %}
+                <tr>
+                    <th>Est ce que l'Associe est marie sous la communauté des biens</th>
+                    <td>{{ company_associate.individualIsMarriedUnderCommunityOfProperty ? 'Yes' : 'No' }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_associate.individualDidContributedCash %}
+                <tr>
+                    <th>Cet Associe a effectue un apport en numéraire</th>
+                    <td>{{ company_associate.individualDidContributedCash ? 'Yes' : 'No' }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.individualDidContributedInKind %}
+                <tr>
+                    <th>Cet associé a effectué un apport en nature</th>
+                    <td>{{ company_associate.individualDidContributedInKind ? company_associate.individualDidContributedInKind|join(', ') : '' }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalCompanyName %}
+                <tr>
+                    <th>Nom de la société</th>
+                    <td>{{ company_associate.legalCompanyName }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalCompanyRcsNumber %}
+                <tr>
+                    <th>Numéro RCS</th>
+                    <td>{{ company_associate.legalCompanyRcsNumber }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalCompanyHeadquartersAddress %}
+                <tr>
+                    <th>company_headquarters_addressAdresse du siège social</th>
+                    <td>{{ company_associate.legalCompanyHeadquartersAddress }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalCompanyZipcode %}
+                <tr>
+                    <th>Code Postal</th>
+                    <td>{{ company_associate.legalCompanyZipcode }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_associate.legalCompanyCity %}
+                <tr>
+                    <th>Ville</th>
+                    <td>{{ company_associate.legalCompanyCity }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalCompanyCityOfRegistry %}
+                <tr>
+                    <th>Ville du Greffe</th>
+                    <td>{{ company_associate.legalCompanyCityOfRegistry }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalCompanySocialCapital %}
+                <tr>
+                    <th>Capital social</th>
+                    <td>{{ company_associate.legalCompanySocialCapital }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalCompanySocialForm %}
+                <tr>
+                    <th>Forme social</th>
+                    <td>{{ company_associate.legalCompanySocialForm }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalRepresentativeFirstname %}
+                <tr>
+                    <th>Prenom Représentant</th>
+                    <td>{{ company_associate.legalRepresentativeFirstname }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalRepresentativeLastname %}
+                <tr>
+                    <th>nom Représentant</th>
+                    <td>{{ company_associate.legalRepresentativeLastname }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalRepresentativeGenre %}
+                <tr>
+                    <th>genre Représentant</th>
+                    <td>{{ company_associate.legalRepresentativeGenre }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.legalRepresentativeRole %}
+                <tr>
+                    <th>role Représentant</th>
+                    <td>{{ company_associate.legalRepresentativeRole }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.subjectToWhatIncomeTax %}
+                <tr>
+                    <th>La société est assujettie à L'impôt sur :</th>
+                    <td>{{ company_associate.subjectToWhatIncomeTax }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.subjectToWhatRealTax %}
+                <tr>
+                    <th>La société est assujettie à L'impôt</th>
+                    <td>{{ company_associate.subjectToWhatRealTax }}</td>
+                </tr>
+            {% endif %}
+            {% if company_associate.vatSystem  %}
+                <tr>
+                    <th>Régime de TVA</th>
+                    <td>{{ company_associate.vatSystem  }}</td>
+                </tr>
+            {% endif %}
+
+                
+        {% else %}
+            <tr>
+                <td colspan="30">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<br>
+<br>
+
+ <h1>Les Dirigaent</h1>
+     <table class="table">
+       
+        <tbody>
+         {% set j = 1  %}
+        {% for company_executive in company_identity.companyExecutives %}
+                <tr>
+                    <td>Dirigaent {{ j }} </td>
+                    
+                   <td>
+                    <a href="{{ path('company_executive_edit', {'id': company_executive.id}) }}" class="btn btn-sm btn-outline-dark ml-1">Éditer</a>
+                </td>
+                     {% set j = j + 1  %}
+                </tr>
+             {% if company_executive.executiveTitle  %}
+                <tr>
+                    <th>title</th>
+                    <td>{{ company_executive.executiveTitle  }}</td>
+                </tr>
+            {% endif %}
+            {% if company_executive.executiveFirstname  %}
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ company_executive.executiveFirstname  }}</td>
+                </tr>
+            {% endif %}
+            {% if company_executive.executiveLastname  %}
+                <tr>
+                    <th>Prenom</th>
+                    <td>{{ company_executive.executiveLastname  }}</td>
+                </tr>
+            {% endif %}
+            {% if company_executive.executiveBirthdate  %}
+                <tr>
+                    <th>Date de naissance </th>
+                    <td>{{ company_executive.executiveBirthdate ? company_executive.executiveBirthdate|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+            {% endif %}
+            {% if company_executive.executiveBirthCity %}
+                <tr>
+                    <th>Ville de naissance</th>
+                    <td>{{ company_executive.executiveBirthCity }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_executive.executiveNationality  %}
+                <tr>
+                    <th>nationalité</th>
+                    <td>{{ company_executive.executiveNationality  }}</td>
+                </tr>
+            {% endif %}
+
+            {% if  company_executive.executiveAddress %}
+                <tr>
+                    <th>adresse</th>
+                    <td>{{  company_executive.executiveAddress }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_executive.executiveZipcode  %}
+                <tr>
+                    <th>code postal</th>
+                    <td>{{ company_executive.executiveZipcode  }}</td>
+                </tr>
+            {% endif %}
+
+             {% if company_executive.executiveCity  %}
+                <tr>
+                    <th>Ville</th>
+                    <td>{{ company_executive.executiveCity  }}</td>
+                </tr>
+            {% endif %}
+
+             {% if company_executive.executiveMotherFirstnameAndMaidenName  %}
+                <tr>
+                    <th>Prénom et nom de jeune fille de la mère</th>
+                    <td>{{ company_executive.executiveMotherFirstnameAndMaidenName  }}</td>
+                </tr>
+            {% endif %}
+
+             {% if company_executive.executiveFatherName  %}
+                <tr>
+                    <th>Prénom et nom du père</th>
+                    <td>{{ company_executive.executiveFatherName  }}</td>
+                </tr>
+            {% endif %}
+
+             {% if company_executive.executiveEmail  %}
+                <tr>
+                    <th>Adresse e-mail du gérant</th>
+                    <td>{{ company_executive.executiveEmail  }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_executive.executiveCompanyName  %}
+                <tr>
+                    <th>Nom de la société</th>
+                    <td>{{ company_executive.executiveCompanyName  }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_executive.executiveCompanyRcsNumber  %}
+                <tr>
+                    <th>Numéro RCS</th>
+                    <td>{{ company_executive.executiveCompanyRcsNumber  }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_executive.executiveCompanyHeadquartersAddress  %}
+                <tr>
+                    <th>Adresse du siège social</th>
+                    <td>{{ company_executive.executiveCompanyHeadquartersAddress  }}</td>
+                </tr>
+            {% endif %}
+
+
+            {% if company_executive.executiveCompanyZipcode  %}
+                <tr>
+                    <th>Code Postal  siège social</th>
+                    <td>{{ company_executive.executiveCompanyZipcode  }}</td>
+                </tr>
+            {% endif %}
+
+
+            {% if company_executive.executiveCompanyCity  %}
+                <tr>
+                    <th>Ville siège social</th>
+                    <td>{{ company_executive.executiveCompanyCity  }}</td>
+                </tr>
+            {% endif %}
+
+
+            {% if company_executive.executiveCompanyRcs  %}
+                <tr>
+                    <th>Immatriculée au Registre du Commerce et des Sociétés du</th>
+                    <td>{{ company_executive.executiveCompanyRcs  }}</td>
+                </tr>
+            {% endif %}
+
+            {% if company_executive.executiveCompanyRepresentativeName  %}
+                <tr>
+                    <th>Représentant légal de la société</th>
+                    <td>{{ company_executive.executiveCompanyRepresentativeName  }}</td>
+                </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="21">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

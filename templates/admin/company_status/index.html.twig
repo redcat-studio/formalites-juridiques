@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CompanyStatus index{% endblock %}
+
+{% block body %}
+    <h1>CompanyStatus index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Head_office_type</th>
+                <th>Domiciliation_company_name</th>
+                <th>Domiciliation_company_siren</th>
+                <th>Company_purpose</th>
+                <th>Social_capital_type</th>
+                <th>Social_capital_amount</th>
+                <th>Social_capital_min</th>
+                <th>Social_capital_max</th>
+                <th>Capital_release_rate</th>
+                <th>Capital_released_amount</th>
+                <th>Capital_deposit_date</th>
+                <th>Capital_deposit_type</th>
+                <th>Deposit_bank_name</th>
+                <th>Deposit_bank_address</th>
+                <th>Deposit_bank_zipcode</th>
+                <th>Deposit_bank_city</th>
+                <th>Notary_study_name</th>
+                <th>Notary_study_address</th>
+                <th>Notary_study_zipcode</th>
+                <th>Notary_study_city</th>
+                <th>Normal_company_exercice_closure_date</th>
+                <th>First_company_exercice_closure_data</th>
+                <th>Business_acronym</th>
+                <th>Business_commercial_name</th>
+                <th>Business_domain_name</th>
+                <th>Business_sign</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company_status in company_statuses %}
+            <tr>
+                <td>{{ company_status.id }}</td>
+                <td>{{ company_status.headOfficeType }}</td>
+                <td>{{ company_status.domiciliationCompanyName }}</td>
+                <td>{{ company_status.domiciliationCompanySiren }}</td>
+                <td>{{ company_status.companyPurpose }}</td>
+                <td>{{ company_status.socialCapitalType }}</td>
+                <td>{{ company_status.socialCapitalAmount }}</td>
+                <td>{{ company_status.socialCapitalMin }}</td>
+                <td>{{ company_status.socialCapitalMax }}</td>
+                <td>{{ company_status.capitalReleaseRate }}</td>
+                <td>{{ company_status.capitalReleasedAmount }}</td>
+                <td>{{ company_status.capitalDepositDate ? company_status.capitalDepositDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ company_status.capitalDepositType }}</td>
+                <td>{{ company_status.depositBankName }}</td>
+                <td>{{ company_status.depositBankAddress }}</td>
+                <td>{{ company_status.depositBankZipcode }}</td>
+                <td>{{ company_status.depositBankCity }}</td>
+                <td>{{ company_status.notaryStudyName }}</td>
+                <td>{{ company_status.notaryStudyAddress }}</td>
+                <td>{{ company_status.notaryStudyZipcode }}</td>
+                <td>{{ company_status.notaryStudyCity }}</td>
+                <td>{{ company_status.normalCompanyExerciceClosureDate }}</td>
+                <td>{{ company_status.firstCompanyExerciceClosureData }}</td>
+                <td>{{ company_status.businessAcronym }}</td>
+                <td>{{ company_status.businessCommercialName }}</td>
+                <td>{{ company_status.businessDomainName }}</td>
+                <td>{{ company_status.businessSign }}</td>
+                <td>
+                    <a href="{{ path('company_status_show', {'id': company_status.id}) }}">show</a>
+                    <a href="{{ path('company_status_edit', {'id': company_status.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="28">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('company_status_new') }}">Create new</a>
+{% endblock %}

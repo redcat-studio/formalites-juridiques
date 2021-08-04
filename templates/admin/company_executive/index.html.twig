@@ -1,0 +1,40 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}CompanyExecutive{% endblock %}
+
+{% block body %}
+  
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Dirigaent</h1>
+      
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>title</th>
+                <th>firstname</th>
+                <th>lastname</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company_executive in company_executives %}
+            <tr>
+                <td>{{ company_executive.id }}</td>
+                <td>{{ company_executive.executiveTitle }}</td>
+                <td>{{ company_executive.executiveFirstname }}</td>
+                <td>{{ company_executive.executiveLastname }}</td>
+                <td>
+                    <a href="{{ path('company_executive_show', {'id': company_executive.id}) }}">show</a>
+                    <a href="{{ path('company_executive_edit', {'id': company_executive.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="21">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}CompanyAssociate{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Associe</h1>
+      
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Associate_type</th>
+                <th>genre</th>
+                <th>firstname</th>
+                <th>lastname</th>
+                <th>company_name</th>
+                <th>company_rcs_number</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company_associate in company_associates %}
+            <tr>
+                <td>{{ company_associate.id }}</td>
+                <td>{{ company_associate.associateType }}</td>
+                <td>{{ company_associate.individualGenre }}</td>
+                <td>{{ company_associate.individualFirstname }}</td>
+                <td>{{ company_associate.individualLastname }}</td>
+                <td>{{ company_associate.legalCompanyName }}</td>
+                <td>{{ company_associate.legalCompanyRcsNumber }}</td>
+                <td>
+                    <a href="{{ path('company_associate_show', {'id': company_associate.id}) }}">Voir</a>
+                    <a href="{{ path('company_associate_edit', {'id': company_associate.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="30">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
