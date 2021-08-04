@@ -6,13 +6,12 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './css/app.css';
+// import './css/app.scss';
 
-// start the Stimulus application
-import './bootstrap';
 import Vue from 'vue';
-
 import App from './js/components/App';
+import '/node_modules/skeleton-scss/scss/skeleton.scss';
+import './css/app.scss';
 
 /**
 * Create a fresh Vue Application instance
