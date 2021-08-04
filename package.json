@@ -21,6 +21,8 @@
         "skeleton-scss": "^2.0.4",
         "vue": "^2.6.14",
         "vue-loader": "^15.9.6",
-        "vue-template-compiler": "^2.6.14"
+        "vue-router": "^3.5.2",
+        "vue-template-compiler": "^2.6.14",
+        "vuex": "^3.6.2"
     }
 }
