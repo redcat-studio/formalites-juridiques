@@ -23,27 +23,27 @@
                 <td>{{ company_identity.type }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Nom de la société</th>
                 <td>{{ company_identity.name }}</td>
             </tr>
             <tr>
-                <th>Head_office_address</th>
+                <th>Adresse du siège social</th>
                 <td>{{ company_identity.headOfficeAddress }}</td>
             </tr>
             <tr>
-                <th>Zipcode</th>
+                <th>code postal</th>
                 <td>{{ company_identity.zipcode }}</td>
             </tr>
             <tr>
-                <th>City</th>
+                <th>Ville</th>
                 <td>{{ company_identity.city }}</td>
             </tr>
             <tr>
-                <th>Rcs_city</th>
+                <th>La société sera inscrite au RCS</th>
                 <td>{{ company_identity.rcsCity }}</td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Telephone</th>
                 <td>{{ company_identity.phone }}</td>
             </tr>
             <tr>
@@ -365,7 +365,7 @@
             {% endif %}
             {% if company_associate.legalCompanyHeadquartersAddress %}
                 <tr>
-                    <th>company_headquarters_addressAdresse du siège social</th>
+                    <th>Adresse du siège social</th>
                     <td>{{ company_associate.legalCompanyHeadquartersAddress }}</td>
                 </tr>
             {% endif %}
@@ -454,14 +454,14 @@
 <br>
 <br>
 
- <h1>Les Dirigaent</h1>
+ <h1>Les Dirigeants</h1>
      <table class="table">
        
         <tbody>
          {% set j = 1  %}
         {% for company_executive in company_identity.companyExecutives %}
                 <tr>
-                    <td>Dirigaent {{ j }} </td>
+                    <td>Dirigeant {{ j }} </td>
                     
                    <td>
                     <a href="{{ path('company_executive_edit', {'id': company_executive.id}) }}" class="btn btn-sm btn-outline-dark ml-1">Éditer</a>

@@ -1,4 +1,80 @@
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+   <div class="form-group">
+        {{ form_row(form.executive_title) }}
+    </div>
+<div {% if company_executive.executiveCompanyName  != null %} style="display:none"  {% endif %}>
+    
+     <div class="form-group">
+        {{ form_row(form.executive_firstname) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.executive_lastname) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.executive_birthdate) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.executive_birth_city) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.executive_nationality) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.executive_address) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.executive_zipcode) }}
+    </div>
+
+
+    <div class="form-group">
+        {{ form_row(form.executive_city) }}
+    </div>
+
+
+    <div class="form-group">
+        {{ form_row(form.executive_mother_firstname_and_maiden_name) }}
+    </div>
+
+
+    <div class="form-group">
+        {{ form_row(form.executive_father_name) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.executive_email) }}
+    </div>
+    
+</div>
+
+<div {% if company_executive.executiveCompanyName == null %} style="display:none"  {% endif %}>
+    <div class="form-group">
+        {{ form_row(form.executive_company_name) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.executive_company_rcs_number) }}
+    </div>
+
+     <div class="form-group">
+        {{ form_row(form.executive_company_headquarters_address) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.executive_company_zipcode) }}
+    </div>
+
+     <div class="form-group">
+        {{ form_row(form.executive_company_city) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.executive_company_rcs) }}
+    </div>
+
+     <div class="form-group">
+        {{ form_row(form.executive_company_representative_name) }}
+    </div>
+
+</div>
+<button class="btn btn-sm btn-primary">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}
