@@ -1,6 +1,7 @@
 // Settings
 @import 'colors';
 @import 'fonts';
+@import 'typography';
 
 // Skeleton
 @import "/node_modules/normalize-scss/sass/normalize/import-now"; // import normalize-scss
@@ -15,3 +16,8 @@
 // Components
 @import 'buttons';
 @import 'components/home-hero';
+@import 'components/home-howworks';
+@import 'components/create-company-form';
+
+// Views
+@import 'views/create-company';

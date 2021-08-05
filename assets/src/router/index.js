@@ -11,6 +11,13 @@ const routes = [
       default: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
     }
   },
+  {
+    path: '/creer-mon-entreprise',
+    name: 'create-company',
+    components: {
+      default: () => import(/* webpackChunkName: "create-company" */ '../views/CreateCompany.vue')
+    }
+  }
 ]
 
 const router = new VueRouter({

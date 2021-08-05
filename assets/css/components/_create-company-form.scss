@@ -1,0 +1,28 @@
+.create-company-form {
+  background: $beige;
+  padding: 5vw;
+
+  &-title, &-subtitle {
+    text-align: center;
+    color: $deepblue;
+  }
+
+  &-title span {
+    color: $orange;
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.5rem;
+  }
+
+  .button {
+    font-size: 1.8rem;
+  }
+
+  .button-with-icon svg{
+    fill: $beige;
+  }
+}
