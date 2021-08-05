@@ -9,7 +9,6 @@ import router from './src/router'
 /**
  * Import styles
   */
-import '/node_modules/skeleton-scss/scss/skeleton.scss';
 import './css/app.scss';
 
 /**

@@ -1,0 +1,14 @@
+// Settings
+@import 'colors';
+@import 'fonts';
+
+// Skeleton
+@import '/node_modules/skeleton-scss/scss/skeleton.scss';
+
+
+// Layout
+@import 'layout/navbar';
+
+// Components
+@import 'buttons';
+@import 'components/home-hero';

@@ -1,0 +1,18 @@
+.button {
+  height: auto;
+  margin-bottom: 0;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  text-transform: none;
+
+  &.button-primary {
+    color: $beige;
+    padding: .6rem 1.2rem;
+    font-weight: bold;
+    line-height: initial;
+
+    &:hover {
+      color: $beige;
+    }
+  }
+}
