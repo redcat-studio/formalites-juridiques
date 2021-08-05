@@ -6,7 +6,7 @@
         <router-link :to="{name: 'home'}" class="navbar-link">Accueil</router-link>
         <router-link :to="{name: 'home'}" class="navbar-link">Services</router-link>
         <router-link :to="{name: 'home'}" class="navbar-link">Contact</router-link>
-        <router-link :to="{name: 'home'}" class="navbar-link button button-primary">Je crée mon entreprise</router-link>
+        <router-link :to="{name: 'home'}" class="navbar-link button button-small button-primary">Je crée mon entreprise</router-link>
       </nav>
     </div>
   </header>
