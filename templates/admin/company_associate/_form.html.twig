@@ -1,4 +1,104 @@
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+  
+<div {% if company_associate.associateType != "physique"%} style="display:none"  {% endif %}>
+     <div class="form-group">
+        {{ form_row(form.associate_type) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.individual_genre) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.individual_firstname) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.individual_lastname) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.individual_birthdate) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.individual_birth_city) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.individual_nationality) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.individual_address) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.individual_zipcode) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.individual_city) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.individual_is_married_under_community_of_property) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.individual_did_contributed_cash) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.individual_did_contributed_in_kind) }}
+    </div>
+</div>
+
+<div {% if company_associate.associateType == "physique"%} style="display:none"  {% endif %}>
+    <div class="form-group">
+        {{ form_row(form.legal_company_name) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.legal_company_rcs_number) }}
+    </div>
+
+     <div class="form-group">
+        {{ form_row(form.legal_company_headquarters_address) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.legal_company_zipcode) }}
+    </div>
+
+     <div class="form-group">
+        {{ form_row(form.legal_company_city) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.legal_company_city_of_registry) }}
+    </div>
+
+     <div class="form-group">
+        {{ form_row(form.legal_company_social_capital) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.legal_company_social_form) }}
+    </div>
+
+     <div class="form-group">
+        {{ form_row(form.legal_representative_firstname) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.legal_representative_lastname) }}
+    </div>
+     <div class="form-group">
+        {{ form_row(form.legal_representative_genre) }}
+    </div>
+
+     <div class="form-group">
+        {{ form_row(form.legal_representative_role) }}
+    </div>
+</div>
+
+     <div class="form-group">
+        {{ form_row(form.subject_to_what_income_tax) }}
+    </div>
+
+     <div class="form-group">
+        {{ form_row(form.subject_to_what_real_tax) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.vat_system) }}
+    </div>
+    <button class="btn btn-sm btn-primary">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

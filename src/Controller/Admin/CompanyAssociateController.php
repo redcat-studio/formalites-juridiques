@@ -64,6 +64,7 @@ class CompanyAssociateController extends AbstractController
     public function edit(Request $request, CompanyAssociate $companyAssociate): Response
     {
         $form = $this->createForm(CompanyAssociateType::class, $companyAssociate);
+       
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

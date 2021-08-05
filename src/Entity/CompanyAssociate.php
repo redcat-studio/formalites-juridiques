@@ -83,9 +83,9 @@ class CompanyAssociate
     private $individual_did_contributed_cash;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="string",length=255, nullable=true)
      */
-    private $individual_did_contributed_in_kind = [];
+    private $individual_did_contributed_in_kind ;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -323,12 +323,12 @@ class CompanyAssociate
         return $this;
     }
 
-    public function getIndividualDidContributedInKind(): ?array
+    public function getIndividualDidContributedInKind(): ?string 
     {
         return $this->individual_did_contributed_in_kind;
     }
 
-    public function setIndividualDidContributedInKind(?array $individual_did_contributed_in_kind): self
+    public function setIndividualDidContributedInKind(?string  $individual_did_contributed_in_kind): self
     {
         $this->individual_did_contributed_in_kind = $individual_did_contributed_in_kind;
 
