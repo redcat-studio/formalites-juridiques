@@ -5,9 +5,9 @@
 // Skeleton
 @import "/node_modules/normalize-scss/sass/normalize/import-now"; // import normalize-scss
 @import '/node_modules/skeleton-sass-official/src/core/config';
-@import "/node_modules/skeleton-sass-official/src/themes/formalites-juridiques/vars";
-@import "/node_modules/skeleton-sass-official/src/themes/formalites-juridiques/include_components"; // theme base styles
-@import "/node_modules/skeleton-sass-official/src/themes/formalites-juridiques/grid"; // theme grid styles
+@import "skeleton-theme/vars";
+@import "skeleton-theme/include_components"; // theme base styles
+@import "skeleton-theme/grid"; // theme grid styles
 
 // Layout
 @import 'layout/navbar';
