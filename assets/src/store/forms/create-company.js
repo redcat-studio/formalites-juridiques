@@ -1,4 +1,5 @@
 import CreateCompanyFormIdentity from "../../components/CreateCompanyForm/CreateCompanyFormIdentity";
+import CreateCompanyFormStatus from "../../components/CreateCompanyForm/CreateCompanyFormStatus";
 
 export default {
   id: 0,
@@ -12,7 +13,7 @@ export default {
     {
       idx: 2,
       name: 'Éléments statutaires',
-      component: null
+      component: CreateCompanyFormStatus
     },
     {
       idx: 3,

@@ -8,12 +8,14 @@
           :steps="currentFormData.steps"
           :currentStep="currentForm.step">
       </FormWizardSteps>
+
       <div :is="currentStepComponent"></div>
-      <div style="margin-top: 3rem; display: flex; justify-content: center; align-items: center; column-gap: 1.5rem;">
-        <div @click="previousStep" class="button button-primary">
+
+      <div class="form-wizard__navigation" v-if="isFormLaunched">
+        <div @click="previousStep" class="button button-primary" v-if="currentForm.step - 1 > 0">
           Étape précédente
         </div>
-        <div @click="nextStep" class="button button-primary">
+        <div @click="nextStep" class="button button-primary" v-if="currentForm.step + 1 < currentFormData.steps.length">
           Étape suivante
         </div>
       </div>
@@ -29,19 +31,19 @@ import {mapGetters, mapActions} from 'vuex'
 import FormWizardLauncher from './FormWizardLauncher'
 import FormWizardSteps from './FormWizardSteps'
 import CreateCompanyFormIdentity from '../CreateCompanyForm/CreateCompanyFormIdentity'
-// import CreateCompanyFormAssociates from '../components/CreateCompanyForm/CreateCompanyFormAssociates'
-// import CreateCompanyFormExecutives from '../components/CreateCompanyForm/CreateCompanyFormExecutives'
-// import CreateCompanyFormStatus from '../components/CreateCompanyForm/CreateCompanyFormStatus'
+// import CreateCompanyFormAssociates from '../CreateCompanyForm/CreateCompanyFormAssociates'
+// import CreateCompanyFormExecutives from '../CreateCompanyForm/CreateCompanyFormExecutives'
+import CreateCompanyFormStatus from '../CreateCompanyForm/CreateCompanyFormStatus'
 
 export default {
   name: "FormWizard",
   components: {
     FormWizardLauncher,
     FormWizardSteps,
-    CreateCompanyFormIdentity
-    // CreateCompanyFormAssociates
-    // CreateCompanyFormExecutives
-    // CreateCompanyFormStatus
+    CreateCompanyFormIdentity,
+    // CreateCompanyFormAssociates,
+    // CreateCompanyFormExecutives,
+    CreateCompanyFormStatus
   },
   data() {
     return {

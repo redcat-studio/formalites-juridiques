@@ -29,4 +29,15 @@
       color: $beige;
     }
   }
+  &.button-beige {
+    background-color: $beige;
+    border-color: $deepblue;
+    color: $deepblue;
+    line-height: initial;
+
+    &:hover, &.active {
+      background-color: $primary-color;
+      color: $beige;
+    }
+  }
 }

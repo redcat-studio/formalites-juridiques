@@ -1,4 +1,63 @@
 .form-wizard {
   background: $beige;
   padding: 5vw;
+
+  &__group {
+    padding: 3rem;
+    background: #FDE1B3;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+
+    &-title, &-subtitle {
+      color: $deepblue;
+    }
+
+    &-title {
+      margin-bottom: 1rem;
+      font-size: 2.4rem;
+      font-weight: bold;
+    }
+
+    &-subtitle {
+      font-size: 1.6rem;
+    }
+
+    .button {
+      padding: 1.8rem;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
+    row-gap: 1.5rem;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  input, select, textarea {
+    height: auto;
+    padding: 1.8rem;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    background: $beige;
+    color: $deepblue;
+    border-color: $deepblue;
+    margin: .5rem 0;
+
+    &:focus {
+      border-color: $darkblue;
+    }
+  }
+
+  &__navigation {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.5rem;
+  }
 }
