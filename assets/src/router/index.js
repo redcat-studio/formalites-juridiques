@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from "vue-router"
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -12,12 +13,16 @@ const routes = [
     }
   },
   {
-    path: '/creer-mon-entreprise',
+    path: '/entreprise/creer',
     name: 'create-company',
     components: {
-      default: () => import(/* webpackChunkName: "create-company" */ '../views/CreateCompany.vue')
+      default: () => import(/* webpackChunkName: "form-wizard" */ '../views/FormWizardView.vue')
+    },
+    beforeEnter: (to, from, next) => {
+      store.dispatch('setCurrentFormByName', 'create-company').then(() => next())
     }
   }
+
 ]
 
 const router = new VueRouter({
@@ -25,7 +30,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
   scrollBehavior(to) {
-    if(to.hash) {
+    if (to.hash) {
       return {
         selector: to.hash,
         behavior: 'smooth'
@@ -35,13 +40,13 @@ const router = new VueRouter({
 })
 
 // router.beforeEach((to, from, next) => {
-  // const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-  // const isAuthenticated = firebase.auth().currentUser
-  // if (requiresAuth && !isAuthenticated) {
-  //   next('/login')
-  // } else {
-  //   next()
-  // }
+// const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+// const isAuthenticated = firebase.auth().currentUser
+// if (requiresAuth && !isAuthenticated) {
+//   next('/login')
+// } else {
+//   next()
+// }
 // })
 
 export default router;

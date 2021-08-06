@@ -5,6 +5,7 @@ import App from './src/App';
  * Import modules
  */
 import router from './src/router'
+import store from './src/store'
 
 /**
  * Import styles
@@ -17,5 +18,6 @@ import './css/app.scss';
 new Vue({
     el: '#app',
     router,
+    store,
     render: h => h(App)
 });

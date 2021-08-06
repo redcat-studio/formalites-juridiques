@@ -1,0 +1,41 @@
+.form-wizard-launcher {
+  &__title, &__subtitle {
+    text-align: center;
+    color: $deepblue;
+  }
+
+  &__title {
+    font-size: 4.2rem;
+    line-height: 130%;
+
+    span {
+      color: $orange;
+    }
+  }
+
+  &__subtitle {
+    margin: 2rem 0 3rem;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.5rem;
+  }
+
+  .button {
+    font-size: 1.8rem;
+  }
+
+  .button-with-icon svg {
+    fill: $beige;
+  }
+
+  @media screen and (min-width: $tablet-width) {
+    &__title {
+      max-width: 75rem;
+      margin: 0 auto;
+    }
+  }
+}

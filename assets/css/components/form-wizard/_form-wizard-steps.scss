@@ -1,0 +1,85 @@
+.form-wizard-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+
+  &__step {
+    position: relative;
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1rem;
+
+    &-number {
+      position: relative;
+      background: #5F5F69;
+      border-radius: 50%;
+      width: 6rem;
+      height: 6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $beige;
+      font-weight: bold;
+      font-size: 3.2rem;
+
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 150%;
+        height: 5px;
+        background: #5F5F69;
+      }
+
+      &::before {
+        right: 100%;
+      }
+
+      &::after {
+        left: 100%;
+      }
+
+      &-inner {
+        background: #5F5F69;
+        border-radius: 50%;
+        width: 4.5rem;
+        height: 4.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    &-name {
+      font-size: 1.8rem;
+      color: rgba($deepblue, 0.75);
+      text-align: center;
+    }
+
+    &.active &-number-inner {
+      background: $deepblue;
+    }
+
+    &.active &-number::before, &.active &-number::after {
+      background: $deepblue;
+    }
+
+    &:first-child &-number::before {
+      display: none;
+    }
+
+    &:last-child &-number::after {
+      display: none;
+    }
+
+    &.active &-name {
+      color: $deepblue;
+      font-weight: bold;
+    }
+  }
+}

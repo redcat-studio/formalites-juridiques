@@ -17,7 +17,9 @@
 @import 'buttons';
 @import 'components/home-hero';
 @import 'components/home-howworks';
-@import 'components/create-company-form';
+@import 'components/form-wizard/form-wizard';
+@import 'components/form-wizard/form-wizard-launcher';
+@import 'components/form-wizard/form-wizard-steps';
 
 // Views
-@import 'views/create-company';
+@import 'views/view-form-wizard';
