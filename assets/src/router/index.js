@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from "vue-router"
-import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -18,9 +17,13 @@ const routes = [
     components: {
       default: () => import(/* webpackChunkName: "form-wizard" */ '../views/FormWizardView.vue')
     },
-    beforeEnter: (to, from, next) => {
-      store.dispatch('setCurrentFormByName', 'create-company').then(() => next())
-    }
+  },
+  {
+    path: '/entreprise/modifier',
+    name: 'edit-company',
+    components: {
+      default: () => import(/* webpackChunkName: "form-wizard" */ '../views/FormWizardView.vue')
+    },
   }
 
 ]

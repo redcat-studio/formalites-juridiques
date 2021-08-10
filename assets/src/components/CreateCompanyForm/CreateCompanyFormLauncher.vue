@@ -21,7 +21,7 @@
 import {mapActions, mapGetters} from 'vuex';
 
 export default {
-  name: "FormWizardLauncher",
+  name: "CreateCompanyFormLauncher",
   data() {
     return {
       selectedCompanyType: null,
@@ -41,6 +41,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
