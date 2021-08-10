@@ -151,7 +151,20 @@ class CompanyStatus
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $business_sign;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $subject_to_what_income_tax;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $subject_to_what_real_tax;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $vat_system;
     public function getId(): ?int
     {
         return $this->id;
@@ -477,6 +490,42 @@ class CompanyStatus
     public function setBusinessSign(?string $business_sign): self
     {
         $this->business_sign = $business_sign;
+
+        return $this;
+    }
+
+    public function getSubjectToWhatIncomeTax(): ?string
+    {
+        return $this->subject_to_what_income_tax;
+    }
+
+    public function setSubjectToWhatIncomeTax(?string $subject_to_what_income_tax): self
+    {
+        $this->subject_to_what_income_tax = $subject_to_what_income_tax;
+
+        return $this;
+    }
+
+    public function getSubjectToWhatRealTax(): ?string
+    {
+        return $this->subject_to_what_real_tax;
+    }
+
+    public function setSubjectToWhatRealTax(?string $subject_to_what_real_tax): self
+    {
+        $this->subject_to_what_real_tax = $subject_to_what_real_tax;
+
+        return $this;
+    }
+
+    public function getVatSystem(): ?string
+    {
+        return $this->vat_system;
+    }
+
+    public function setVatSystem(?string $vat_system): self
+    {
+        $this->vat_system = $vat_system;
 
         return $this;
     }

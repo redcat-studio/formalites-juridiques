@@ -78,14 +78,14 @@ class CompanyAssociate
     private $individual_is_married_under_community_of_property;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $individual_did_contributed_cash;
+    private $associate_cash_contribution;
 
     /**
      * @ORM\Column(type="string",length=255, nullable=true)
      */
-    private $individual_did_contributed_in_kind ;
+    private $associate_contribution_in_kind;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -147,20 +147,7 @@ class CompanyAssociate
      */
     private $legal_representative_role;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $subject_to_what_income_tax;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $subject_to_what_real_tax;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $vat_system;
+  
 
     public function getId(): ?int
     {
@@ -311,26 +298,26 @@ class CompanyAssociate
         return $this;
     }
 
-    public function getIndividualDidContributedCash(): ?string
+    public function getAssociateCashContribution(): ?string
     {
-        return $this->individual_did_contributed_cash;
+        return $this->associate_cash_contribution;
     }
 
-    public function setIndividualDidContributedCash(?string $individual_did_contributed_cash): self
+    public function setAssociateCashContribution(?string $associate_cash_contribution ): self
     {
-        $this->individual_did_contributed_cash = $individual_did_contributed_cash;
+        $this->associate_cash_contribution  = $associate_cash_contribution ;
 
         return $this;
     }
 
-    public function getIndividualDidContributedInKind(): ?string 
+    public function getAssociateContributionInKind(): ?string 
     {
-        return $this->individual_did_contributed_in_kind;
+        return $this->associate_contribution_in_kind;
     }
 
-    public function setIndividualDidContributedInKind(?string  $individual_did_contributed_in_kind): self
+    public function setAssociateContributionInKind(?string  $associate_contribution_in_kind): self
     {
-        $this->individual_did_contributed_in_kind = $individual_did_contributed_in_kind;
+        $this->associate_contribution_in_kind = $associate_contribution_in_kind;
 
         return $this;
     }
@@ -479,39 +466,5 @@ class CompanyAssociate
         return $this;
     }
 
-    public function getSubjectToWhatIncomeTax(): ?string
-    {
-        return $this->subject_to_what_income_tax;
-    }
-
-    public function setSubjectToWhatIncomeTax(?string $subject_to_what_income_tax): self
-    {
-        $this->subject_to_what_income_tax = $subject_to_what_income_tax;
-
-        return $this;
-    }
-
-    public function getSubjectToWhatRealTax(): ?string
-    {
-        return $this->subject_to_what_real_tax;
-    }
-
-    public function setSubjectToWhatRealTax(?string $subject_to_what_real_tax): self
-    {
-        $this->subject_to_what_real_tax = $subject_to_what_real_tax;
-
-        return $this;
-    }
-
-    public function getVatSystem(): ?string
-    {
-        return $this->vat_system;
-    }
-
-    public function setVatSystem(?string $vat_system): self
-    {
-        $this->vat_system = $vat_system;
-
-        return $this;
-    }
+    
 }
