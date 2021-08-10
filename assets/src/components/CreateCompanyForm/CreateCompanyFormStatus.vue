@@ -144,6 +144,7 @@
         <input v-if="addBusinessSign" v-model="formData.business_sign" class="u-full-width" type="text"
                placeholder="Enseigne (de l'établissement principal)">
       </div>
+
     </div>
 
   </div>

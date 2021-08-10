@@ -20,6 +20,10 @@
 
     &-subtitle {
       font-size: 1.6rem;
+
+      &--big {
+        font-weight: bold;
+      }
     }
 
     &-inner-subtitle {
@@ -30,6 +34,11 @@
 
     .button {
       padding: 1.8rem;
+    }
+
+    .button.button-small {
+      padding: .9rem 1.8rem;
+      font-weight: normal;
     }
   }
 
@@ -63,6 +72,10 @@
     outline: none;
   }
 
+  &__inner-buttons {
+    margin-top: 1rem;
+  }
+
   &__navigation {
     margin-top: 3rem;
     display: flex;
@@ -90,6 +103,27 @@
         background: $primary-color;
       }
     }
+  }
 
+  .form-wizard__incremental &__group {
+    border-radius: 0 8px 8px;
+  }
+
+  &__incremental-nav {
+    display: flex;
+    column-gap: .5rem;
+
+    &-item {
+      padding: 1rem 2rem;
+      background: #FDE1B3;
+      border-radius: 12px 12px 0 0;
+      font-size: 1.8rem;
+      color: $primary-color;
+      cursor: pointer;
+
+      &.active {
+        font-weight: bold;
+      }
+    }
   }
 }
