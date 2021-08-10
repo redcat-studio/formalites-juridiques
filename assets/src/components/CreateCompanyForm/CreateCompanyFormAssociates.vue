@@ -198,14 +198,34 @@
       <h2 class="form-wizard__group-title">Choix fiscaux</h2>
       <p class="form-wizard__group-subtitle form-wizard__group-subtitle--big">La société est assujettie à :</p>
       <p class="form-wizard__group-inner-subtitle">L'impôt sur</p>
-      <div>
-        <div class="button button-beige button-small">Test</div>
-        <div class="button button-beige button-small">Test</div>
+      <div class="form-wizard__inner-buttons">
+        <div v-for="income_tax in income_taxes"
+             :class="{'button button-small': true,
+             'button-beige': formData.subject_to_what_income_tax !== income_tax.value,
+             'button-primary': formData.subject_to_what_income_tax === income_tax.value}"
+             @click="setIncomeTaxType(income_tax.value)">
+          {{ income_tax.value }}
+        </div>
       </div>
       <p class="form-wizard__group-inner-subtitle">L'impôt</p>
-      <div>
-        <div class="button button-beige button-small" @click="">Réel simplifié</div>
-        <div class="button button-beige button-small">Réel normal</div>
+      <div class="form-wizard__inner-buttons">
+        <div v-for="real_tax in real_taxes"
+             :class="{'button button-small': true,
+             'button-beige': formData.subject_to_what_real_tax !== real_tax.value,
+             'button-primary': formData.subject_to_what_real_tax === real_tax.value}"
+             @click="setRealTaxType(real_tax.value)">
+          {{ real_tax.value }}
+        </div>
+      </div>
+      <p class="form-wizard__group-inner-subtitle">Régime de la TVA</p>
+      <div class="form-wizard__inner-buttons">
+        <div v-for="vat in vat_systems"
+             :class="{'button button-small': true,
+             'button-beige': formData.vat_system !== vat.value,
+             'button-primary': formData.vat_system === vat.value}"
+             @click="setVatSystem(vat.value)">
+          {{ vat.value }}
+        </div>
       </div>
     </div>
 
@@ -213,6 +233,7 @@
 </template>
 
 <script>
+
 export default {
   name: "CreateCompanyFormAssociates",
   data() {
@@ -241,7 +262,10 @@ export default {
             executive_company_representative_name: '',
           }
         ],
-        associates: []
+        associates: [],
+        subject_to_what_income_tax: '',
+        subject_to_what_real_tax: '',
+        vat_system: ''
       },
       currAssociate: {
         associate_type: 'Physique',
@@ -274,13 +298,26 @@ export default {
         legal_representative_lastname: '',
         legal_representative_genre: 'Genre',
         legal_representative_role: '',
-        subject_to_what_income_tax: '',
-        subject_to_what_real_tax: '',
-        vat_system: ''
       },
       currExecutive: 0,
       cashContribution: false,
       kindContribution: false,
+      income_taxes: [
+        {id: 0, value: 'Les sociétés'},
+        {id: 1, value: 'Le revenu'}
+      ],
+      real_taxes: [
+        {id: 0, value: 'Réel simplifié'},
+        {id: 1, value: 'Réel normal'}
+      ],
+      vat_systems: [
+        {id: 0, value: 'Réel simplifié'},
+        {id: 1, value: 'Réel normal'},
+        {id: 2, value: 'Mini réel'},
+        {id: 3, value: 'Franchise en base'},
+        {id: 4, value: 'Déclaration trimestrielle si la TVA estimée < 4000€ / an (plafond)'},
+        {id: 5, value: 'Assujettissement à la TVA en cas d\'opération imposable sur option'},
+      ]
     }
   },
   methods: {
@@ -317,14 +354,24 @@ export default {
         executive_company_rcs: '',
         executive_company_representative_name: '',
       })
+      this.currExecutive = this.currExecutive + 1
     },
     setCurrExecutive(idx) {
       this.currExecutive = idx
     },
     removeCurrExecutive() {
       this.formData.executives.splice(this.currExecutive, 1)
-      this.currExecutive = 0
-    }
+      this.currExecutive = this.currExecutive - 1
+    },
+    setIncomeTaxType(incomeTaxType) {
+      this.formData.subject_to_what_income_tax = incomeTaxType
+    },
+    setRealTaxType(realTaxType) {
+      this.formData.subject_to_what_real_tax = realTaxType
+    },
+    setVatSystem(vatSystem) {
+      this.formData.vat_system = vatSystem
+    },
   }
 }
 </script>
