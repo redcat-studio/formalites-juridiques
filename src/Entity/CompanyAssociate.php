@@ -82,10 +82,10 @@ class CompanyAssociate
      */
     private $associate_cash_contribution;
 
-    /**
-     * @ORM\Column(type="string",length=255, nullable=true)
+   /**
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $associate_contribution_in_kind;
+    private $associate_contribution_in_kind = [];
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -310,12 +310,12 @@ class CompanyAssociate
         return $this;
     }
 
-    public function getAssociateContributionInKind(): ?string 
+    public function getAssociateContributionInKind(): ?array 
     {
         return $this->associate_contribution_in_kind;
     }
 
-    public function setAssociateContributionInKind(?string  $associate_contribution_in_kind): self
+    public function setAssociateContributionInKind(?array  $associate_contribution_in_kind): self
     {
         $this->associate_contribution_in_kind = $associate_contribution_in_kind;
 
