@@ -23,7 +23,7 @@ class CompanyStatus
     private $company_id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $head_office_type;
 
