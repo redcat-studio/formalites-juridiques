@@ -28,13 +28,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['companyTypes']),
+    ...mapGetters(['companyTypes', 'currentForm']),
   },
   methods: {
-    ...mapActions(['setCompanyType']),
+    ...mapActions(['setCompanyType', 'setCurrentFormStep']),
     saveTypeAndLaunch(companyTypeId) {
       let companyType = this.companyTypes.find(companyType => companyType.id === companyTypeId)
       this.setCompanyType(companyType)
+      this.setCurrentFormStep(this.currentForm.step + 1);
       this.$emit('launch-form')
     }
   }

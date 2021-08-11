@@ -144,15 +144,26 @@
         <input v-if="addBusinessSign" v-model="formData.business_sign" class="u-full-width" type="text"
                placeholder="Enseigne (de l'établissement principal)">
       </div>
-
     </div>
 
+    <div class="form-wizard__navigation" @click="validateData">
+      <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
+      <FormWizardNextStepButton></FormWizardNextStepButton>
+    </div>
   </div>
 </template>
 
 <script>
+import FormWizardNextStepButton from '../FormWizard/FormWizardNextStepButton'
+import FormWizardPreviousStepButton from '../FormWizard/FormWizardPreviousStepButton'
+import {mapActions} from "vuex";
+
 export default {
   name: "CreateCompanyFormStatus",
+  components: {
+    FormWizardNextStepButton,
+    FormWizardPreviousStepButton
+  },
   data() {
     return {
       formData: {
@@ -222,12 +233,17 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setCompanyStatus']),
     setHeadOfficeLocation(id) {
       this.formData.head_office_type = id
     },
     setCapitalDepositType(value) {
       this.formData.capital_deposit_type = value
     },
+    validateData() {
+      this.submitted = true
+      this.setCompanyStatus(this.formData)
+    }
   },
   computed: {
     normal_exercice_closure_dates: function () {

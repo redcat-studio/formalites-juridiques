@@ -1,11 +1,14 @@
 .navbar {
   background: $beige;
   padding: 2rem 0;
+  position: relative;
 
   .container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 3rem;
+    row-gap: 1rem;
 
     &::after {
       display: none;
@@ -16,16 +19,84 @@
     font-size: 2.4rem;
     font-weight: bold;
     color: $deepblue;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1rem;
+    align-items: center;
   }
 
   &-nav {
-    display: flex;
+    margin-top: 1rem;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    row-gap: 1rem;
     column-gap: 2rem;
+
+    &.active {
+      display: flex;
+    }
+
+    .button {
+      width: max-content;
+    }
   }
 
   &-link {
     color: $deepblue;
     text-decoration: none;
+    text-align: center;
+    position: relative;
+
+  }
+
+  &-toggler {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    row-gap: .5rem;
+    cursor: pointer;
+
+    > div {
+      width: 2.7rem;
+      height: .4rem;
+      background: $primary-color;
+      transition: 0.3s;
+
+      &:nth-child(2) {
+        width: 1.5rem;
+      }
+    }
+
+    &.active > div {
+      &:first-child {
+        transform: translateY(9px) rotate(45deg);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      &:last-child {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+    }
+  }
+
+  @media screen and (min-width: $tablet-width) {
+    .container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    &-link {
+      text-align: center;
+    }
+    &-toggler {
+      display: none;
+    }
   }
 }

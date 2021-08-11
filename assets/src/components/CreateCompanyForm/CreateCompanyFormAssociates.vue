@@ -164,7 +164,7 @@
               <input v-model="exec.executive_lastname" type="text" class="u-full-width" placeholder="Nom"/>
             </div>
             <div class="form-wizard__row">
-              <input v-model="exec.executive_birthdate" type="text" class="u-full-width"
+              <input v-model="exec.executive_birthdate" type="date" class="u-full-width"
                      placeholder="Date de naissance"/>
               <input v-model="exec.executive_birth_city" type="text" class="u-full-width"
                      placeholder="Ville de naissance"/>
@@ -229,13 +229,24 @@
       </div>
     </div>
 
+    <div class="form-wizard__navigation">
+      <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
+      <FormWizardNextStepButton></FormWizardNextStepButton>
+    </div>
+
   </div>
 </template>
 
 <script>
+import FormWizardNextStepButton from '../FormWizard/FormWizardNextStepButton'
+import FormWizardPreviousStepButton from '../FormWizard/FormWizardPreviousStepButton'
 
 export default {
   name: "CreateCompanyFormAssociates",
+  components: {
+    FormWizardNextStepButton,
+    FormWizardPreviousStepButton
+  },
   data() {
     return {
       formData: {
