@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement effectué avec succès{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+      <h1>Merci !</h1>
+      <p>Le paiement de votre commande d'un montant de {{ payer }} a été effectué avec succès.</p>
+      <p>Vous pouvez suivre le statut de votre commande sur votre <a href="{{ path('homepage') }}">Formalité-juridique</a></p>
+</div>
+{% endblock %}

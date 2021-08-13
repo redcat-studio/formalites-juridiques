@@ -16,11 +16,12 @@ use App\Entity\CompanyStatus;
 use App\Entity\CompanyAssociate;
 use Datetime;
 use App\Entity\CompanyExecutive;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class DefaultController extends  AbstractController
 { 
     /** 
     * @Route("/", name="homepage") 
-    * @Route("/{route}", name="vue_pages", requirements={"route"="^(?!.*api|login|register|logout).+"}) 
+    * @Route("/{route}", name="vue_pages", requirements={"route"="^(?!.*api|login|register|logout|checkout|payment).+"}) 
     * @Method("GET") 
     */
     public function indexAction(Request $request) { 
@@ -36,6 +37,15 @@ class DefaultController extends  AbstractController
         ]);
     }
     /**
+     * @Route("/payment")
+     */
+    public function payment() { 
+        
+        return $this->render('payment/index.html.twig', [
+            
+        ]);
+    }
+    /**
      * @Route("/api/colors", name="colors_route")
      */
     public function colorsAction()
@@ -47,9 +57,9 @@ class DefaultController extends  AbstractController
     /**
      * @Route("/api/company/add", methods={"POST"})
      */
-    public function addToBasket(Request $request): JsonResponse
+    public function addToBasket(Request $request,SessionInterface $session): JsonResponse
     { 
-       
+        $company = $session->get('company', []);
       $form = (json_decode($request->getContent(), true));
       $entityManager = $this->getDoctrine()->getManager();
         //Entreprise
@@ -62,7 +72,7 @@ class DefaultController extends  AbstractController
            $companyIdentity->setCity($form['identity']['city']);
            $companyIdentity->setRcsCity($form['identity']['rcs_city']);
            $companyIdentity->setHeadOfficeAddress($form['identity']['head_office_address']);
-          
+           $session->set('company', $companyIdentity);
         //Élement Statutaires
            $companyStatus = new CompanyStatus();
            $companyStatus->setCompanyId($companyIdentity);
@@ -72,7 +82,8 @@ class DefaultController extends  AbstractController
            $companyStatus->setCompanyPurpose($form['status']['company_purpose']);
            $companyStatus->setSocialCapitalType($form['status']['social_capital_type']);
            $companyStatus->setSocialCapitalAmount($form['status']['social_capital_amount']);
-           $companyStatus->setSocialCapitalMin($form['status']['social_capital_min']);
+           
+           $companyStatus->setSocialCapitalMin(intval($form['status']['social_capital_min']));
            $companyStatus->setSocialCapitalMax($form['status']['social_capital_max']);
            $companyStatus->setCapitalReleaseRate($form['status']['capital_release_rate']);
            $companyStatus->setCapitalReleasedAmount($form['status']['capital_released_amount']);
@@ -97,34 +108,37 @@ class DefaultController extends  AbstractController
            $companyStatus->setVatSystem($form['identity']['vat_system']);
 
         //Associer 
-
-           $companyAssociate = new CompanyAssociate();
-           $companyAssociate->setComponyId($companyIdentity);
-           $companyAssociate->setAssociateType($form['associates']['associate_type']);
-           $companyAssociate->setIndividualGenre($form['associates']['individual_genre']);
-           $companyAssociate->setIndividualFirstname($form['associates']['individual_firstname']);
-           $companyAssociate->setIndividualLastname($form['associates']['individual_lastname']);
-           $companyAssociate->setIndividualBirthdate(new Datetime());
-           $companyAssociate->setIndividualBirthCity($form['associates']['individual_birth_city']);
-           $companyAssociate->setIndividualNationality($form['associates']['individual_nationality']);
-           $companyAssociate->setIndividualAddress($form['associates']['individual_address']);
-           $companyAssociate->setIndividualZipcode($form['associates']['individual_zipcode']);
-           $companyAssociate->setIndividualCity($form['associates']['individual_city']);
-           $companyAssociate->setIndividualIsMarriedUnderCommunityOfProperty($form['associates']['individual_is_married_under_community_of_property']);
-           $companyAssociate->setAssociateCashContribution($form['associates']['associate_cash_contribution']);
-           $companyAssociate->setAssociateContributionInKind($form['associates']['associate_contribution_in_kind']);
-           $companyAssociate->setLegalCompanyName($form['associates']['legal_company_name']);
-           $companyAssociate->setLegalCompanyRcsNumber($form['associates']['legal_company_rcs_number']);
-           $companyAssociate->setLegalCompanyHeadquartersAddress($form['associates']['legal_company_headquarters_address']);
-           $companyAssociate->setLegalCompanyZipcode($form['associates']['legal_company_zipcode']);
-           $companyAssociate->setLegalCompanyCity($form['associates']['legal_company_city']);
-           $companyAssociate->setLegalCompanyCityOfRegistry($form['associates']['legal_company_city_of_registry']);
-           $companyAssociate->setLegalCompanySocialCapital($form['associates']['legal_company_social_capital']);
-           $companyAssociate->setLegalCompanySocialForm($form['associates']['legal_company_social_form']);
-           $companyAssociate->setLegalRepresentativeFirstname($form['associates']['legal_representative_firstname']);
-           $companyAssociate->setLegalRepresentativeLastname($form['associates']['legal_representative_lastname']);
-           $companyAssociate->setLegalRepresentativeGenre($form['associates']['legal_representative_genre']);
-           $companyAssociate->setLegalRepresentativeRole($form['associates']['legal_representative_role']);
+           for ($i=0; $i < count($form['associates']); $i++) { 
+            $companyAssociate = new CompanyAssociate();
+            $companyAssociate->setComponyId($companyIdentity);
+            $companyAssociate->setAssociateType($form['associates'][$i]['associate_type']);
+            $companyAssociate->setIndividualGenre($form['associates'][$i]['individual_genre']);
+            $companyAssociate->setIndividualFirstname($form['associates'][$i]['individual_firstname']);
+            $companyAssociate->setIndividualLastname($form['associates'][$i]['individual_lastname']);
+            $companyAssociate->setIndividualBirthdate(new Datetime());
+            $companyAssociate->setIndividualBirthCity($form['associates'][$i]['individual_birth_city']);
+            $companyAssociate->setIndividualNationality($form['associates'][$i]['individual_nationality']);
+            $companyAssociate->setIndividualAddress($form['associates'][$i]['individual_address']);
+            $companyAssociate->setIndividualZipcode($form['associates'][$i]['individual_zipcode']);
+            $companyAssociate->setIndividualCity($form['associates'][$i]['individual_city']);
+            $companyAssociate->setIndividualIsMarriedUnderCommunityOfProperty($form['associates'][$i]['individual_is_married_under_community_of_property']);
+            $companyAssociate->setAssociateCashContribution($form['associates'][$i]['associate_cash_contribution']);
+            $companyAssociate->setAssociateContributionInKind($form['associates'][$i]['associate_contribution_in_kind']);
+            $companyAssociate->setLegalCompanyName($form['associates'][$i]['legal_company_name']);
+            $companyAssociate->setLegalCompanyRcsNumber($form['associates'][$i]['legal_company_rcs_number']);
+            $companyAssociate->setLegalCompanyHeadquartersAddress($form['associates'][$i]['legal_company_headquarters_address']);
+            $companyAssociate->setLegalCompanyZipcode($form['associates'][$i]['legal_company_zipcode']);
+            $companyAssociate->setLegalCompanyCity($form['associates'][$i]['legal_company_city']);
+            $companyAssociate->setLegalCompanyCityOfRegistry($form['associates'][$i]['legal_company_city_of_registry']);
+            $companyAssociate->setLegalCompanySocialCapital($form['associates'][$i]['legal_company_social_capital']);
+            $companyAssociate->setLegalCompanySocialForm($form['associates'][$i]['legal_company_social_form']);
+            $companyAssociate->setLegalRepresentativeFirstname($form['associates'][$i]['legal_representative_firstname']);
+            $companyAssociate->setLegalRepresentativeLastname($form['associates'][$i]['legal_representative_lastname']);
+            $companyAssociate->setLegalRepresentativeGenre($form['associates'][$i]['legal_representative_genre']);
+            $companyAssociate->setLegalRepresentativeRole($form['associates'][$i]['legal_representative_role']);
+            $entityManager->persist($companyAssociate);
+           }
+          
            
            //dirigeant  
          for ($i=0; $i <count($form['executives']) ; $i++) { 
@@ -155,7 +169,6 @@ class DefaultController extends  AbstractController
         
         $entityManager->persist($companyIdentity);
         $entityManager->persist($companyStatus);
-        $entityManager->persist($companyAssociate);
         
         $entityManager->flush();
 
