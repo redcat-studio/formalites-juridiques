@@ -43,14 +43,14 @@
       </div>
 
       <div class="form-wizard__row" v-if="formData.social_capital_type === 'Capital variable'">
-        <input v-model="formData.social_capital_min" type="text" placeholder="Capital minimum">
-        <input v-model="formData.social_capital_max" type="text" placeholder="Capital maximum">
+        <input v-model="formData.social_capital_min" type="number" placeholder="Capital minimum">
+        <input v-model="formData.social_capital_max" type="number" placeholder="Capital maximum">
       </div>
 
       <div class="form-wizard__row" v-if="formData.social_capital_type === 'Capital partiellement libéré'">
-        <input v-model="formData.capital_release_rate" type="text"
+        <input v-model="formData.capital_release_rate" type="number"
                placeholder="Taux de libération du capital à la constitution">
-        <input v-model="formData.capital_released_amount" type="text" placeholder="Montant libéré à la constitution">
+        <input v-model="formData.capital_released_amount" type="number" placeholder="Montant libéré à la constitution">
       </div>
     </div>
 
@@ -95,11 +95,11 @@
       <div class="form-wizard__row">
         <select class="u-full-width" v-model="formData.normal_company_exercice_closure_date">
           <option value="" disabled>Date de clôture d’un exercice social normal</option>
-          <option v-for="date in normal_exercice_closure_dates" value="date.value">{{ date.text }}</option>
+          <option v-for="date in normal_exercice_closure_dates" :value="date.value">{{ date.text }}</option>
         </select>
-        <select class="u-full-width" v-model="formData.first_company_exercice_closure_date">
+        <select class="u-full-width" v-model="formData.first_company_exercice_closure_data">
           <option value="" disabled>Date de clôture du premier exercice social</option>
-          <option v-for="date in first_exercice_closure_dates" value="date.value">{{ date.text }}</option>
+          <option v-for="date in first_exercice_closure_dates" :value="date.value">{{ date.text }}</option>
         </select>
       </div>
     </div>
@@ -108,47 +108,52 @@
       <h2 class="form-wizard__group-title">Distinctions commerciales</h2>
       <div class="form-wizard__triggerable-field">
         <div class="form-wizard__triggerable-field-trigger">
-          <span @click="addAcronym = !addAcronym" :class="{'active': addAcronym === true}"></span>
+          <span @click="formOptions.addAcronym = !formOptions.addAcronym"
+                :class="{'active': formOptions.addAcronym === true}"></span>
           Ajouter un sigle ?
         </div>
-        <input v-if="addAcronym" v-model="formData.business_acronym" class="u-full-width" type="text"
+        <input v-if="formOptions.addAcronym" v-model="formData.business_acronym" class="u-full-width" type="text"
                placeholder="Sigle">
       </div>
       <div class="form-wizard__triggerable-field">
         <div class="form-wizard__triggerable-field-trigger">
-          <span @click="addCommercialName = !addCommercialName"
-                :class="{'active': addCommercialName === true}">
+          <span @click="formOptions.addCommercialName = !formOptions.addCommercialName"
+                :class="{'active': formOptions.addCommercialName === true}">
           </span>
           Ajouter un nom commercial ?
         </div>
         <input class="u-full-width" type="text" placeholder="Nom commercial"
-               v-if="addCommercialName"
+               v-if="formOptions.addCommercialName"
                v-model="formData.business_commercial_name"/>
       </div>
       <div class="form-wizard__triggerable-field">
         <div class="form-wizard__triggerable-field-trigger">
-          <span @click="addDomainName = !addDomainName"
-                :class="{'active': addDomainName === true}">
+          <span @click="formOptions.addDomainName = !formOptions.addDomainName"
+                :class="{'active': formOptions.addDomainName === true}">
           </span>
           Ajouter un nom de domaine ?
         </div>
         <input class="u-full-width" type="text" placeholder="Nom de domaine"
-               v-if="addDomainName"
+               v-if="formOptions.addDomainName"
                v-model="formData.business_domain_name">
       </div>
       <div class="form-wizard__triggerable-field">
         <div class="form-wizard__triggerable-field-trigger">
-          <span @click="addBusinessSign = !addBusinessSign" :class="{'active': addBusinessSign === true}"></span>
+          <span @click="formOptions.addBusinessSign = !formOptions.addBusinessSign"
+                :class="{'active': formOptions.addBusinessSign === true}"></span>
           Ajouter une enseigne ?
         </div>
-        <input v-if="addBusinessSign" v-model="formData.business_sign" class="u-full-width" type="text"
+        <input v-if="formOptions.addBusinessSign" v-model="formData.business_sign" class="u-full-width" type="text"
                placeholder="Enseigne (de l'établissement principal)">
       </div>
     </div>
 
     <div class="form-wizard__navigation" @click="validateData">
       <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
-      <FormWizardNextStepButton></FormWizardNextStepButton>
+      <div @click="validateData">
+        <FormWizardNextStepButton></FormWizardNextStepButton>
+      </div>
+      <FormWizardResetButton></FormWizardResetButton>
     </div>
   </div>
 </template>
@@ -156,18 +161,20 @@
 <script>
 import FormWizardNextStepButton from '../FormWizard/FormWizardNextStepButton'
 import FormWizardPreviousStepButton from '../FormWizard/FormWizardPreviousStepButton'
-import {mapActions} from "vuex";
+import FormWizardResetButton from '../FormWizard/FormWizardResetButton'
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "CreateCompanyFormStatus",
   components: {
     FormWizardNextStepButton,
-    FormWizardPreviousStepButton
+    FormWizardPreviousStepButton,
+    FormWizardResetButton,
   },
   data() {
     return {
       formData: {
-        head_office_type: '',
+        head_office_type: 0,
         domiciliation_company_name: '',
         domiciliation_company_siren: '',
         company_purpose: '',
@@ -188,11 +195,17 @@ export default {
         notary_study_zipcode: '',
         notary_study_city: '',
         normal_company_exercice_closure_date: '',
-        first_company_exercice_closure_date: '',
+        first_company_exercice_closure_data: '',
         business_acronym: '',
         business_commercial_name: '',
         business_domain_name: '',
         business_sign: '',
+      },
+      formOptions: {
+        addAcronym: false,
+        addCommercialName: false,
+        addDomainName: false,
+        addBusinessSign: false
       },
       capital_deposit_types: [
         {
@@ -226,14 +239,10 @@ export default {
           value: 'Au domicile du dirigeant'
         },
       ],
-      addAcronym: false,
-      addCommercialName: false,
-      addDomainName: false,
-      addBusinessSign: false
     }
   },
   methods: {
-    ...mapActions(['setCompanyStatus']),
+    ...mapActions(['setCompanyStatus', 'updateProgression']),
     setHeadOfficeLocation(id) {
       this.formData.head_office_type = id
     },
@@ -242,10 +251,19 @@ export default {
     },
     validateData() {
       this.submitted = true
-      this.setCompanyStatus(this.formData)
+      let data = this.formData;
+
+      data.social_capital_min = typeof data.social_capital_min === 'string' ? 0 : data.social_capital_min
+      data.social_capital_max = typeof data.social_capital_max === 'string' ? 0 : data.social_capital_max
+      data.capital_release_rate = typeof data.capital_release_rate === 'string' ? 0 : data.capital_release_rate
+      data.capital_released_amount = typeof data.capital_released_amount === 'string' ? 0 : data.capital_released_amount
+      data.deposit_bank_zipcode = typeof data.deposit_bank_zipcode === 'string' ? 0 : data.deposit_bank_zipcode
+
+      this.setCompanyStatus(data)
     }
   },
   computed: {
+    ...mapGetters(['companyStatus', 'formProgression', 'activeStepIndex']),
     normal_exercice_closure_dates: function () {
       let closureDates = []
 
@@ -268,18 +286,26 @@ export default {
       return [
         {
           text: 'En ' + currentYear + ' (exercice court)',
-          value: currentYear
+          value: currentYear.toString()
         },
         {
           text: 'En ' + precedentYear + ' (exercice long)',
-          value: precedentYear
+          value: precedentYear.toString()
         }
       ]
     },
+  },
+  updated() {
+    let progression = {options: this.formOptions, data: this.formData}
+    this.updateProgression(progression)
+  },
+  mounted() {
+    let progression = this.formProgression[this.activeStepIndex]
+
+    if (progression && progression.data != null && progression.options != null) {
+      this.formData = progression.data
+      this.formOptions = progression.options
+    }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

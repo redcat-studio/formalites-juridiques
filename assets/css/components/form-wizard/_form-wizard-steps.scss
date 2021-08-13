@@ -34,7 +34,7 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        width: 187%;
+        width: 188%;
         height: 8px;
         background: #5F5F69;
       }
@@ -70,6 +70,7 @@
 
     &.active &-number::before, &.active &-number::after {
       background: $deepblue;
+      z-index: 1;
     }
 
     &:first-child &-number::before {

@@ -129,14 +129,17 @@ export default {
       payload.type = state.company.identity.type
       state.company.identity = payload
     },
+    SET_COMPANY_STATUS(state, payload) {
+      state.company.status = payload
+    },
+    UPDATE_COMPANY_STATUS(state, payload) {
+      state.company.status = Object.assign(payload, state.company.status)
+    },
     SET_COMPANY_ASSOCIATES(state, payload) {
       state.company.associates = payload
     },
     SET_COMPANY_EXECUTIVES(state, payload) {
       state.company.executives = payload
-    },
-    SET_COMPANY_STATUS(state, payload) {
-      state.company.status = payload
     },
   },
   actions: {
@@ -149,14 +152,17 @@ export default {
     setCompanyIdentity(context, companyIdentity) {
       context.commit('SET_COMPANY_IDENTITY', companyIdentity)
     },
+    setCompanyStatus(context, companyStatus) {
+      context.commit('SET_COMPANY_STATUS', companyStatus)
+    },
+    updateCompanyStatus(context, companyStatus) {
+      context.commit('UPDATE_COMPANY_STATUS', companyStatus)
+    },
     setCompanyAssociates(context, companyAssociates) {
       context.commit('SET_COMPANY_ASSOCIATES', companyAssociates)
     },
     setCompanyExecutives(context, companyExecutives) {
       context.commit('SET_COMPANY_EXECUTIVES', companyExecutives)
-    },
-    setCompanyStatus(context, companyStatus) {
-      context.commit('SET_COMPANY_STATUS', companyStatus)
     },
   },
   getters: {

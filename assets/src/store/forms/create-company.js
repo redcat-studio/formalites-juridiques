@@ -2,10 +2,10 @@ import CreateCompanyFormLauncher from "../../components/CreateCompanyForm/Create
 import CreateCompanyFormIdentity from "../../components/CreateCompanyForm/CreateCompanyFormIdentity";
 import CreateCompanyFormStatus from "../../components/CreateCompanyForm/CreateCompanyFormStatus";
 import CreateCompanyFormAssociates from "../../components/CreateCompanyForm/CreateCompanyFormAssociates";
+import CreateCompanyFormEnd from "../../components/CreateCompanyForm/CreateCompanyFormEnd";
 
 export default {
-  id: 0,
-  name: 'create-company',
+  slug: 'create-company',
   launcher: CreateCompanyFormLauncher,
   steps: [
     {
@@ -22,6 +22,11 @@ export default {
       idx: 3,
       name: 'Associés',
       component: CreateCompanyFormAssociates
+    },
+    {
+      idx: 4,
+      name: 'Fin',
+      component: CreateCompanyFormEnd
     },
   ],
 }
