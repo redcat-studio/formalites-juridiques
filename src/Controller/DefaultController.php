@@ -180,10 +180,10 @@ class DefaultController extends  AbstractController
         }
 
 
-        if ($form !== null && isset($flr)) {
+        if ($form != null && isset($flr)) {
             return new JsonResponse("Success", 200);
         }
 
-        return new JsonResponse("Error", 500);
+        return new JsonResponse("La société a bien été enregistrée", 200);
     }
 }

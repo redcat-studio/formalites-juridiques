@@ -32,8 +32,12 @@ export default {
 
       console.log('dataToSend')
       console.log(this.company)
-      dataToSend.associates = dataToSend.associates.associates
-      dataToSend.executives = dataToSend.executives.executives
+      if(dataToSend.associates.associates != null) {
+        dataToSend.associates = dataToSend.associates.associates
+      }
+      if(dataToSend.executives.executives != null) {
+        dataToSend.executives = dataToSend.executives.executives
+      }
 
       this.$axios.post('/api/company/add', dataToSend).then((res) => {
         console.log(res)
