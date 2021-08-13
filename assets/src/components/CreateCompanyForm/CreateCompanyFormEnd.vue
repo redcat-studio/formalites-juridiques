@@ -36,10 +36,8 @@ export default {
       dataToSend.executives = dataToSend.executives.executives
 
       this.$axios.post('/api/company/add', dataToSend).then((res) => {
-        console.log('jcrois ça marche')
         console.log(res)
       }).catch(err => {
-        console.log('ça marche pas du tout c super')
         console.log(err)
       })
     }

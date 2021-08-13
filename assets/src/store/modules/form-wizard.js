@@ -72,7 +72,6 @@ export default {
           }
           context.rootState[formConfig.dataContainer] = {}
           context.rootState[formConfig.dataContainer][formConfig.dataContainer] = formData
-          console.log(context.rootState)
 
           isStoreDataValid = true
         }
