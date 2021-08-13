@@ -28,14 +28,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['companyTypes', 'currentForm']),
+    ...mapGetters(['companyTypes', 'activeStepIndex']),
   },
   methods: {
-    ...mapActions(['setCompanyType', 'setCurrentFormStep']),
+    ...mapActions(['setCompanyType', 'setActiveStep']),
     saveTypeAndLaunch(companyTypeId) {
       let companyType = this.companyTypes.find(companyType => companyType.id === companyTypeId)
-      this.setCompanyType(companyType)
-      this.setCurrentFormStep(this.currentForm.step + 1);
+
+      this.setCompanyType(companyType.name)
+      this.setActiveStep(this.activeStepIndex + 1);
+
       this.$emit('launch-form')
     }
   }

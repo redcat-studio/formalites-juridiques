@@ -1,12 +1,12 @@
 <template>
   <div class="form-wizard">
-    <div v-if="typeof currentForm !== 'undefined'">
-      <div :is="currentFormData.launcher" v-if="!isFormLaunched" @launch-form="launchForm"></div>
+    <div v-if="activeForm != null">
+      <div :is="activeFormConfig.launcher" v-if="!isFormLaunched" @launch-form="launchForm"></div>
 
       <FormWizardSteps
-          v-if="currentForm.step > 0 && currentForm.step <= currentFormData.steps.length"
-          :steps="currentFormData.steps"
-          :currentStep="currentForm.step">
+          v-if="activeStepIndex > 0 && activeStepIndex <= activeFormConfig.steps.length"
+          :steps="activeFormConfig.steps"
+          :activeStepIndex="activeStepIndex">
       </FormWizardSteps>
 
       <div :is="currentStepComponent"></div>
@@ -22,8 +22,8 @@ import {mapGetters, mapActions} from 'vuex'
 import FormWizardSteps from './FormWizardSteps'
 import CreateCompanyFormIdentity from '../CreateCompanyForm/CreateCompanyFormIdentity'
 import CreateCompanyFormAssociates from '../CreateCompanyForm/CreateCompanyFormAssociates'
-// import CreateCompanyFormExecutives from '../CreateCompanyForm/CreateCompanyFormExecutives'
 import CreateCompanyFormStatus from '../CreateCompanyForm/CreateCompanyFormStatus'
+import CreateCompanyFormEnd from '../CreateCompanyForm/CreateCompanyFormEnd'
 
 export default {
   name: "FormWizard",
@@ -31,8 +31,8 @@ export default {
     FormWizardSteps,
     CreateCompanyFormIdentity,
     CreateCompanyFormAssociates,
-    // CreateCompanyFormExecutives,
     CreateCompanyFormStatus,
+    CreateCompanyFormEnd
   },
   data() {
     return {
@@ -40,36 +40,47 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['currentForm', 'currentFormData', 'companyType', 'isFormLaunched', 'forms']),
+    ...mapGetters(['activeForm', 'activeStepIndex', 'activeFormConfig', 'forms', 'isFormLaunched']),
     currentStepComponent: function () {
       let step;
-      if(typeof this.currentFormData !== 'undefined') {
-        step = this.currentFormData.steps.find(step => step.idx === this.currentForm.step)
+      if (this.activeFormConfig.steps.length > 0) {
+        step = this.activeFormConfig.steps.find(step => step.idx === this.activeStepIndex)
       }
-      return typeof step !== 'undefined' ? step.component.name : undefined;
+      return step != null ? step.component.name : null;
     }
   },
   methods: {
-    ...mapActions(['setCurrentFormStep', 'setCompanyType', 'setIsFormLaunched', 'loadForm']),
+    ...mapActions(['setActiveStep', 'setIsLaunched', 'loadForm', 'storeForm']),
+
     launchForm() {
-      this.setIsFormLaunched(true);
+      this.setIsLaunched(true);
     },
+
     loadFormData() {
-      let formToLoad = this.forms.find(form => form.name === this.$route.name)
-      if(typeof formToLoad !== 'undefined') {
-        this.loadForm(formToLoad.name)
+      // Check if queried form exists in store
+      let formToLoad = this.forms.find(form => form.slug === this.$route.name)
+
+      // If it exists, we load it
+      if (formToLoad != null) {
+        this.loadForm(formToLoad.slug)
       } else {
-        console.log('Couldn\' load form')
+        console.log('Couldn\' load form : the form ' + this.$route.name + ' does not exist')
       }
-    }
+    },
   },
   created() {
+    // Load queried form data on component creation
     this.loadFormData()
+
+    // Before page refresh or browser close, store active form data
+    window.addEventListener('beforeunload', () => {
+      this.storeForm()
+    })
   },
   watch: {
-    $route: function() {
+    $route: function () {
       this.loadFormData()
     }
-  }
+  },
 }
 </script>

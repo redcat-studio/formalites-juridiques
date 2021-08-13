@@ -1,7 +1,7 @@
 <template>
   <div class="form-wizard-steps">
     <div class="form-wizard-steps__content">
-      <div :class="{'form-wizard-steps__step': true, active: currentStep >= step.idx}" v-for="step in steps">
+      <div v-for="step in steps" :class="{'form-wizard-steps__step': true, active: activeStepIndex >= step.idx}" >
         <div class="form-wizard-steps__step-number">
           <div class="form-wizard-steps__step-number-inner">
             {{ step.idx }}
@@ -19,11 +19,8 @@ export default {
   name: "FormWizardSteps",
   props: {
     steps: Array,
-    currentStep: Number
+    activeStepIndex: Number
   },
+
 }
 </script>
-
-<style scoped>
-
-</style>

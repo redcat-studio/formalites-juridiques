@@ -1,5 +1,5 @@
 <template>
-  <div @click="nextStep" class="button button-primary" v-if="currentForm.step < currentFormData.steps.length">
+  <div @click="nextStep" class="button button-primary" v-if="activeStepIndex < activeFormConfig.steps.length">
     Étape suivante
   </div>
 </template>
@@ -10,15 +10,16 @@ import {mapGetters, mapActions} from 'vuex'
 export default {
   name: "FormWizardNextStepButton",
   methods: {
-    ...mapActions(['setCurrentFormStep']),
+    ...mapActions(['setActiveStep']),
     nextStep() {
-      if (this.currentForm.step <= this.currentFormData.steps.length) {
-        this.setCurrentFormStep(this.currentForm.step + 1);
+      if (this.activeStepIndex <= this.activeFormConfig.steps.length) {
+        this.setActiveStep(this.activeStepIndex + 1);
+        this.$scrollToTop()
       }
     },
   },
   computed: {
-   ...mapGetters(['currentForm', 'currentFormData'])
+   ...mapGetters(['activeFormConfig', 'activeStepIndex'])
   },
 }
 </script>
