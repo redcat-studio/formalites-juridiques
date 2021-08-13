@@ -73,7 +73,7 @@ class DefaultController extends  AbstractController
            $companyIdentity->setRcsCity($form['identity']['rcs_city']);
            $companyIdentity->setHeadOfficeAddress($form['identity']['head_office_address']);
            $session->set('company', $companyIdentity);
-        //Élement Statutaires
+        //Élements Statutaires
            $companyStatus = new CompanyStatus();
            $companyStatus->setCompanyId($companyIdentity);
            $companyStatus->setHeadOfficeType($form['status']['head_office_type']);
@@ -103,9 +103,9 @@ class DefaultController extends  AbstractController
            $companyStatus->setBusinessCommercialName($form['status']['business_commercial_name']);
            $companyStatus->setBusinessDomainName($form['status']['business_domain_name']);
            $companyStatus->setBusinessSign($form['status']['business_sign']);
-           $companyStatus->setSubjectToWhatIncomeTax($form['identity']['subject_to_what_income_tax']);
-           $companyStatus->setSubjectToWhatRealTax($form['identity']['subject_to_what_real_tax']);
-           $companyStatus->setVatSystem($form['identity']['vat_system']);
+           $companyStatus->setSubjectToWhatIncomeTax($form['status']['subject_to_what_income_tax']);
+           $companyStatus->setSubjectToWhatRealTax($form['status']['subject_to_what_real_tax']);
+           $companyStatus->setVatSystem($form['status']['vat_system']);
 
         //Associer 
            for ($i=0; $i < count($form['associates']); $i++) { 
@@ -123,7 +123,7 @@ class DefaultController extends  AbstractController
             $companyAssociate->setIndividualCity($form['associates'][$i]['individual_city']);
             $companyAssociate->setIndividualIsMarriedUnderCommunityOfProperty($form['associates'][$i]['individual_is_married_under_community_of_property']);
             $companyAssociate->setAssociateCashContribution($form['associates'][$i]['associate_cash_contribution']);
-            $companyAssociate->setAssociateContributionInKind($form['associates'][$i]['associate_contribution_in_kind']);
+            $companyAssociate->setAssociateContributionInKind($form['associates'][$i]['kindContributions']);
             $companyAssociate->setLegalCompanyName($form['associates'][$i]['legal_company_name']);
             $companyAssociate->setLegalCompanyRcsNumber($form['associates'][$i]['legal_company_rcs_number']);
             $companyAssociate->setLegalCompanyHeadquartersAddress($form['associates'][$i]['legal_company_headquarters_address']);

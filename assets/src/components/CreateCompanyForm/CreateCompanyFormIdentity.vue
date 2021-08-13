@@ -69,7 +69,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['formProgression', 'activeStepIndex']),
+    ...mapGetters(['formProgression', 'activeStepIndex', 'companyType']),
   },
   methods: {
     ...mapActions(['setCompanyIdentity', 'updateProgression']),
@@ -77,6 +77,7 @@ export default {
       this.submitted = true
 
       let data = {
+        type: this.companyType,
         name: this.formData.name,
         head_office_address: this.formData.head_office_address,
         zipcode: this.formData.zipcode,
@@ -92,7 +93,7 @@ export default {
     },
   },
   updated() {
-    let progression = {options: {}, data: this.formData}
+    let progression = {options: {}, data: {type: this.companyType, ...this.formData}}
     this.updateProgression(progression)
   },
   mounted() {

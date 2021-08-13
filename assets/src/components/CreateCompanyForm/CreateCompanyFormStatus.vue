@@ -148,6 +148,41 @@
       </div>
     </div>
 
+    <div class="form-wizard__group">
+      <h2 class="form-wizard__group-title">Choix fiscaux</h2>
+      <p class="form-wizard__group-subtitle form-wizard__group-subtitle--big">La société est assujettie à :</p>
+      <p class="form-wizard__group-inner-subtitle">L'impôt sur</p>
+      <div class="form-wizard__inner-buttons">
+        <div v-for="income_tax in income_taxes"
+             :class="{'button button-small': true,
+             'button-beige': formData.subject_to_what_income_tax !== income_tax.value,
+             'button-primary': formData.subject_to_what_income_tax === income_tax.value}"
+             @click="setIncomeTaxType(income_tax.value)">
+          {{ income_tax.value }}
+        </div>
+      </div>
+      <p class="form-wizard__group-inner-subtitle">L'impôt</p>
+      <div class="form-wizard__inner-buttons">
+        <div v-for="real_tax in real_taxes"
+             :class="{'button button-small': true,
+             'button-beige': formData.subject_to_what_real_tax !== real_tax.value,
+             'button-primary': formData.subject_to_what_real_tax === real_tax.value}"
+             @click="setRealTaxType(real_tax.value)">
+          {{ real_tax.value }}
+        </div>
+      </div>
+      <p class="form-wizard__group-inner-subtitle">Régime de la TVA</p>
+      <div class="form-wizard__inner-buttons">
+        <div v-for="vat in vat_systems"
+             :class="{'button button-small': true,
+             'button-beige': formData.vat_system !== vat.value,
+             'button-primary': formData.vat_system === vat.value}"
+             @click="setVatSystem(vat.value)">
+          {{ vat.value }}
+        </div>
+      </div>
+    </div>
+
     <div class="form-wizard__navigation" @click="validateData">
       <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
       <div @click="validateData">
@@ -200,6 +235,9 @@ export default {
         business_commercial_name: '',
         business_domain_name: '',
         business_sign: '',
+        subject_to_what_income_tax: '',
+        subject_to_what_real_tax: '',
+        vat_system: ''
       },
       formOptions: {
         addAcronym: false,
@@ -239,6 +277,22 @@ export default {
           value: 'Au domicile du dirigeant'
         },
       ],
+      income_taxes: [
+        {id: 0, value: 'Les sociétés'},
+        {id: 1, value: 'Le revenu'}
+      ],
+      real_taxes: [
+        {id: 0, value: 'Réel simplifié'},
+        {id: 1, value: 'Réel normal'}
+      ],
+      vat_systems: [
+        {id: 0, value: 'Réel simplifié'},
+        {id: 1, value: 'Réel normal'},
+        {id: 2, value: 'Mini réel'},
+        {id: 3, value: 'Franchise en base'},
+        {id: 4, value: 'Déclaration trimestrielle si la TVA estimée < 4000€ / an (plafond)'},
+        {id: 5, value: 'Assujettissement à la TVA en cas d\'opération imposable sur option'},
+      ]
     }
   },
   methods: {
@@ -255,12 +309,22 @@ export default {
 
       data.social_capital_min = typeof data.social_capital_min === 'string' ? 0 : data.social_capital_min
       data.social_capital_max = typeof data.social_capital_max === 'string' ? 0 : data.social_capital_max
+      data.social_capital_amount = typeof data.social_capital_amount === 'string' ? 0 : data.social_capital_amount
       data.capital_release_rate = typeof data.capital_release_rate === 'string' ? 0 : data.capital_release_rate
       data.capital_released_amount = typeof data.capital_released_amount === 'string' ? 0 : data.capital_released_amount
       data.deposit_bank_zipcode = typeof data.deposit_bank_zipcode === 'string' ? 0 : data.deposit_bank_zipcode
 
       this.setCompanyStatus(data)
-    }
+    },
+    setIncomeTaxType(incomeTaxType) {
+      this.formData.subject_to_what_income_tax = incomeTaxType
+    },
+    setRealTaxType(realTaxType) {
+      this.formData.subject_to_what_real_tax = realTaxType
+    },
+    setVatSystem(vatSystem) {
+      this.formData.vat_system = vatSystem
+    },
   },
   computed: {
     ...mapGetters(['companyStatus', 'formProgression', 'activeStepIndex']),

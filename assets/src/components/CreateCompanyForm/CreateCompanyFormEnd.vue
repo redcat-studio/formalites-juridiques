@@ -25,14 +25,27 @@ export default {
   },
   methods: {
     sendData() {
-      this.$axios.post('/api/company/add', this.company).then((res) => {
+      let dataToSend = this.company
+
+      // dataToSend.executives = dataToSend.associates.executives
+      // dataToSend.associates.executives = undefined
+
+      console.log('dataToSend')
+      console.log(this.company)
+      dataToSend.associates = dataToSend.associates.associates
+      dataToSend.executives = dataToSend.executives.executives
+
+      this.$axios.post('/api/company/add', dataToSend).then((res) => {
         console.log('jcrois ça marche')
         console.log(res)
+      }).catch(err => {
+        console.log('ça marche pas du tout c super')
+        console.log(err)
       })
     }
   },
   computed: {
-    ...mapGetters(['company'])
+    ...mapGetters(['company', 'companyExecutives'])
   }
 }
 </script>

@@ -166,10 +166,10 @@ export default {
     },
   },
   getters: {
-    company(state) {
-      return state.company
+    company(state, getters, rootState) {
+      return rootState.company.company
     },
-    companyType(state) {
+    companyType(state, getters, rootState) {
       return state.company.identity.type
     },
     companyIdentity(state) {
@@ -178,8 +178,8 @@ export default {
     companyAssociates(state) {
       return state.company.associates
     },
-    companyExecutives(state) {
-      return state.company.executives
+    companyExecutives(state, getters, rootState) {
+      return rootState.company.company.executives
     },
     companyStatus(state) {
       return state.company.status

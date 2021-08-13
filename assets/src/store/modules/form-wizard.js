@@ -5,7 +5,6 @@ export default {
   state: {
     activeForm: {
       slug: null,
-      isLoaded: false,
       activeStepIndex: 0,
       isLaunched: false,
       progression: {},
@@ -13,7 +12,8 @@ export default {
     activeFormConfig: {
       slug: null,
       steps: [],
-      launcher: undefined
+      launcher: null,
+      dataContainer: null,
     },
     forms: [
       createCompany,
@@ -33,9 +33,6 @@ export default {
     SET_IS_LAUNCHED(state, payload) {
       state.activeForm.isLaunched = payload
     },
-    SET_IS_LOADED(state, payload) {
-      state.activeForm.isLoaded = payload
-    },
     SET_ACTIVE_STEP(state, payload) {
       state.activeForm.activeStepIndex = payload
     },
@@ -45,6 +42,14 @@ export default {
   },
   actions: {
     loadForm(context, slug) {
+
+      /*
+       Set form config and populate data container
+       */
+      let formConfig = context.state.forms.find(form => form.slug === slug)
+      if (formConfig != null) {
+        context.commit('SET_ACTIVE_FORM_CONFIG', formConfig)
+      }
 
       /*
         Get saved data from localStorage if it exists
@@ -58,6 +63,17 @@ export default {
         // If localStorage form is the form we want to load
         if (data.slug === slug) {
           context.commit('SET_ACTIVE_FORM', data)
+
+          let formData = {}
+          for (let i = 1; i < formConfig.steps.length; i++) {
+            if(data.progression[i] != null) {
+              formData[formConfig.steps[i - 1].slug] = data.progression[i].data
+            }
+          }
+          context.rootState[formConfig.dataContainer] = {}
+          context.rootState[formConfig.dataContainer][formConfig.dataContainer] = formData
+          console.log(context.rootState)
+
           isStoreDataValid = true
         }
       }
@@ -66,10 +82,6 @@ export default {
         context.commit('SET_ACTIVE_FORM_SLUG', slug)
       }
 
-      /*
-       Set form config
-       */
-      context.commit('SET_ACTIVE_FORM_CONFIG', context.state.forms.find(form => form.slug === slug))
     },
     storeForm(context) {
       localStorage.setItem('lastActiveForm', JSON.stringify(context.state.activeForm))
