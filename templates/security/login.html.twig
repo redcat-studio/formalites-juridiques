@@ -39,4 +39,150 @@
         Sign in
     </button>
 </form>
+
+<button id="addToBasket" class="btn" >Ajouter au panier</button>
+<script>
+const btn = document.querySelector('#addToBasket')
+btn.addEventListener('click', () => {
+           console.log('test');
+           let data =[]
+        data = { 
+            identity: {
+               type:'euro',
+              name: 'rougetttt',
+              head_office_address:  'SAIILL 123',
+              zipcode:  12345,
+              city: 'SALLLLL@GMAIILL.COM',
+              rcs_city: 'Lyon',
+              phone: '1111222333',
+              email:  'SALLLLL@GMAIILL.COM',
+              typecompany: 'erur',
+              subject_to_what_income_tax: 'teste',
+              subject_to_what_real_tax:'teste',
+              vat_system: ''
+            },
+            status: {
+                head_office_type: 1,
+                domiciliation_company_name: 'testes',
+                domiciliation_company_siren: 'testes',
+                company_purpose: 'testes',
+                social_capital_type: 'testes',
+                social_capital_amount: 0,
+                social_capital_min: "125",
+                social_capital_max: 0,
+                capital_release_rate: 0,
+                capital_released_amount: 0,
+                capital_deposit_date: 'testes',
+                capital_deposit_type: 'testes',
+                deposit_bank_name: 'testes',
+                deposit_bank_address: 'testes',
+                deposit_bank_zipcode: 'testes',
+                deposit_bank_city: 'testes',
+                notary_study_name: 'testes',
+                notary_study_address: 'testes',
+                notary_study_zipcode: 'testes',
+                notary_study_city: 'testes',
+                normal_company_exercice_closure_date: 'testes',
+                first_company_exercice_closure_data: 'testes',
+                business_acronym: 'testes',
+                business_commercial_name: 'testes',
+                business_domain_name: 'testes',
+                business_sign: 'testes',
+            },
+            executives: [
+                {
+                executive_title: 'teste',
+                executive_firstname: 'teste',
+                executive_lastname: 'teste',
+                executive_birthdate: 'teste',
+                executive_birth_city: 'teste',
+                executive_nationality: 'teste',
+                executive_address: 'teste',
+                executive_zipcode: 'teste',
+                executive_city: 'teste',
+                executive_mother_firstname_and_maiden_name: 'teste',
+                executive_father_name: 'teste',
+                executive_email: 'teste',
+                executive_company_name: 'teste',
+                executive_company_rcs_number: 'teste',
+                executive_company_headquarters_address: 'teste',
+                executive_company_zipcode: 12345,
+                executive_company_city: 'teste',
+                executive_company_rcs: 'teste',
+                executive_company_representative_name: 'teste',
+                },
+                {
+                executive_title: 'teste2',
+                executive_firstname: 'teste2',
+                executive_lastname: 'teste2',
+                executive_birthdate: 'teste2',
+                executive_birth_city: 'teste2',
+                executive_nationality: 'teste2',
+                executive_address: 'teste2',
+                executive_zipcode: 'teste2',
+                executive_city: 'teste2',
+                executive_mother_firstname_and_maiden_name: 'teste2',
+                executive_father_name: 'teste2',
+                executive_email: 'teste2',
+                executive_company_name: 'teste2',
+                executive_company_rcs_number: 'teste2',
+                executive_company_headquarters_address: 'teste2',
+                executive_company_zipcode: 12345,
+                executive_company_city: 'teste2',
+                executive_company_rcs: 'teste2',
+                executive_company_representative_name: 'teste2',
+                }],
+            associates: [
+                {
+                associate_type: 'teste',
+                individual_genre: 'teste',
+                individual_firstname: 'teste',
+                individual_lastname: 'teste',
+                individual_birthdate: 'teste',
+                individual_birth_city: 'teste',
+                individual_nationality: 'teste',
+                individual_address: 'teste',
+                individual_zipcode: 1245,
+                individual_city: 'teste',
+                individual_is_married_under_community_of_property: false,
+                associate_cash_contribution: false,
+                associate_contribution_in_kind: [
+                    true,
+                    ['teste', ''], // Nature puis montant de la contribution en nature
+                    ['teste', '']
+                ],
+                legal_company_name: 'teste',
+                legal_company_rcs_number: 0,
+                legal_company_headquarters_address: 'teste',
+                legal_company_zipcode: 0,
+                legal_company_city: 'teste',
+                legal_company_city_of_registry: 'teste',
+                legal_company_social_capital: 0,
+                legal_company_social_form: 'teste',
+                legal_representative_firstname: 'teste',
+                legal_representative_lastname: 'teste',
+                legal_representative_genre: 'teste',
+                legal_representative_role: 'teste',
+                
+                },
+             ]
+      };
+console.log(data)
+            fetch('/api/company/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+             body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                
+                })
+})
+
+</script>
+
+
 {% endblock %}
