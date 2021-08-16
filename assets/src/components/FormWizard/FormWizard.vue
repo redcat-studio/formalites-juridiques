@@ -22,6 +22,7 @@ import {mapGetters, mapActions} from 'vuex'
 import FormWizardSteps from './FormWizardSteps'
 import CreateCompanyFormIdentity from '../CreateCompanyForm/CreateCompanyFormIdentity'
 import CreateCompanyFormAssociates from '../CreateCompanyForm/CreateCompanyFormAssociates'
+import CreateCompanyFormExecutives from '../CreateCompanyForm/CreateCompanyFormExecutives'
 import CreateCompanyFormStatus from '../CreateCompanyForm/CreateCompanyFormStatus'
 import CreateCompanyFormEnd from '../CreateCompanyForm/CreateCompanyFormEnd'
 
@@ -31,6 +32,7 @@ export default {
     FormWizardSteps,
     CreateCompanyFormIdentity,
     CreateCompanyFormAssociates,
+    CreateCompanyFormExecutives,
     CreateCompanyFormStatus,
     CreateCompanyFormEnd
   },
@@ -78,6 +80,7 @@ export default {
     })
   },
   watch: {
+    // If route changes, load the form corresponding to the new route
     $route: function () {
       this.loadFormData()
     }
