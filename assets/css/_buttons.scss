@@ -1,7 +1,7 @@
 .button {
   height: auto;
   margin-bottom: 0;
-  border-radius: 8px;
+//   border-radius: 8px;
   font-size: 1.4rem;
   text-transform: none;
   padding: 1rem 1.4rem;
@@ -20,13 +20,13 @@
   }
 
   &.button-primary {
-    background-color: $primary-color;
-    color: $beige;
+    background-color: #D13A3A;
+    color: #F2F2F2;
     line-height: initial;
 
     &:hover {
-      background-color: $primary-color;
-      color: $beige;
+        background-color: #D13A3A;
+        color: #F2F2F2;
     }
   }
   &.button-beige {

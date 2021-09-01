@@ -52,7 +52,7 @@ class PaiementController extends AbstractController
                         'product_data' => [
                             'name' => 'Formalites-Juridique',
                         ],
-                        'unit_amount' => 99 * 100,
+                        'unit_amount' => 100 * 100,
                     ],
                     'quantity' => 1,
                 ]],
@@ -75,52 +75,42 @@ class PaiementController extends AbstractController
     public function success(Request $request)
     {
        //MailerService $mailerService,MessageService $messageService
-       $companyIdentity = new CompanyIdentity();
-       $companyIdentity = $this->session->get('company');
-       $payment = new Payment();
-       $payment->setStatus("payer");
-       $payment->setAmount("99.00");
-       $payment->setDateAt(new Datetime());
-       $payment->setNamecompany($companyIdentity->getName());
-       
-       $manager = $this->getDoctrine()->getManager();
-       
-       $manager->persist($payment);
-       $manager->flush();
-        // if ($this->session->get('status') == "payer") {
-        //     $this->session->set('status', "Not-payer");
-        //     $companyIdentity = new CompanyIdentity();
-        //     $companyIdentity = $this->session->get('company');
-        //     $payment = new Payment();
-        //     $payment->setStatus("payer");
-        //     $payment->setAmount("99.00");
-        //     $payment->setDateAt(new Datetime());
-        //     $payment->setCompany($companyIdentity);
-        //     $manager = $this->getDoctrine()->getManager();
+     
+        if ($this->session->get('status') == "payer") {
+            $this->session->set('status', "Not-payer");
+            $companyIdentity = new CompanyIdentity();
+            $companyIdentity = $this->session->get('company');
+            $payment = new Payment();
+            $payment->setStatus("payer");
+            $payment->setAmount("100.00");
+            $payment->setDateAt(new Datetime());
+            $payment->setNamecompany($companyIdentity->getName());
             
-        //     $manager->persist($payment);
-        //     $manager->flush();
-        //     // $mailerService->send(
-        //     //     "Numero de commande",
-        //     //     "contact@makeupbouquet.fr",
-        //     //     $this->getUser()->getEmail(),
-        //     //     'payment/_email.html.twig',
-        //     //     [
-        //     //         "firstname" =>$this->command->getFirstname(),
-        //     //         "lastname" => $this->command->getLastname(),
-        //     //         "code" => $this->command->getCommandNumber()
-        //     //     ]
-        //     // );
+            $manager = $this->getDoctrine()->getManager();
+            
+            $manager->persist($payment);
+            $manager->flush();
+            // $mailerService->send(
+            //     "Numero de commande",
+            //     "contact@makeupbouquet.fr",
+            //     $this->getUser()->getEmail(),
+            //     'payment/_email.html.twig',
+            //     [
+            //         "firstname" =>$this->command->getFirstname(),
+            //         "lastname" => $this->command->getLastname(),
+            //         "code" => $this->command->getCommandNumber()
+            //     ]
+            // );
           
             
-        //     // $messageService->addSuccess("Message bien envoyé");
+            // $messageService->addSuccess("Message bien envoyé");
 
-        //     // $this->session->set('command_payment', null);
+            // $this->session->set('command_payment', null);
 
-        //     return $this->render('payment/success.html.twig', [
-        //         'payer' => 'payer'
-        //     ]);
-        // } 
+            return $this->render('payment/success.html.twig', [
+                'payer' => 'payer'
+            ]);
+        } 
           
         return $this->redirectToRoute('home');
     }

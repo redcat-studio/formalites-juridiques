@@ -238,32 +238,7 @@ class CompanyAssociateType extends AbstractType
      'empty_data' => false,
             ])
 
-            ->add('subject_to_what_income_tax', TextType::class, [
-                'label' => 'La société est assujettie à L\'impôt sur :',
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'required' => false,
-     'empty_data' => false,
-            ])
-
-            ->add('subject_to_what_real_tax', TextType::class, [
-                'label' => 'La société est assujettie à L\'impôt',
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'required' => false,
-     'empty_data' => false,
-            ])
-
-            ->add('vat_system', TextType::class, [
-                'label' => 'Régime de TVA',
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'required' => false,
-     'empty_data' => false,
-            ])
+           
            
         ;
     }

@@ -1,7 +1,7 @@
 <template>
   <div>
     c'est bon j'ai fini<br/>
-    <button class="button button-primary" @click="sendData">Envoyer la sauce</button>
+    <button class="button button-primary" @click="sendData">Valide</button>
     <div class="form-wizard__navigation">
       <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
       <FormWizardNextStepButton></FormWizardNextStepButton>
@@ -41,6 +41,7 @@ export default {
 
       this.$axios.post('/api/company/add', dataToSend).then((res) => {
         console.log(res)
+         window.location.href ='http://127.0.0.1:8000/payment';
       }).catch(err => {
         console.log(err)
       })

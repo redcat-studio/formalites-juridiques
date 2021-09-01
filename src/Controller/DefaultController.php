@@ -36,13 +36,18 @@ class DefaultController extends  AbstractController
             'words' => $words
         ]);
     }
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
     /**
      * @Route("/payment")
      */
     public function payment() { 
-        
+        $companyIdentity = new CompanyIdentity();
+        $companyIdentity = $this->session->get('company');
         return $this->render('payment/index.html.twig', [
-            
+            "company" =>$companyIdentity->getName()
         ]);
     }
     /**
