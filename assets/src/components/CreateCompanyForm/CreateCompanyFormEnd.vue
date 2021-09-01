@@ -1,6 +1,6 @@
 <template>
   <div>
-    c'est bon j'ai fini<br/>
+    C'est terminé<br/>
     <button class="button button-primary" @click="sendData">Valide</button>
     <div class="form-wizard__navigation">
       <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
@@ -30,11 +30,10 @@ export default {
       // dataToSend.executives = dataToSend.associates.executives
       // dataToSend.associates.executives = undefined
 
-      console.log('dataToSend')
-      console.log(this.company)
       if(dataToSend.associates.associates != null) {
         dataToSend.associates = dataToSend.associates.associates
       }
+
       if(dataToSend.executives.executives != null) {
         dataToSend.executives = dataToSend.executives.executives
       }

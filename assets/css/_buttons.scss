@@ -20,13 +20,13 @@
   }
 
   &.button-primary {
-    background-color: #D13A3A;
-    color: #F2F2F2;
+    background-color: $primary-color;
+    color: $beige;
     line-height: initial;
 
     &:hover {
-        background-color: #D13A3A;
-        color: #F2F2F2;
+      background-color: $primary-color;
+      color: $beige;
     }
   }
   &.button-beige {
