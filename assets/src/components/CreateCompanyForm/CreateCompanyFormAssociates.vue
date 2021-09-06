@@ -135,10 +135,10 @@
                    placeholder="Montant de l'apport">
           </div>
           <div v-if="formOptions.kindContribution" class="form-wizard__inner-buttons">
-            <button class="button button-primary button-small" @click="addKindContribution">Ajouter un autre apport en
+            <button class="button button-primary button-primary--stroke button-small" @click="addKindContribution">Ajouter un autre apport en
               nature
             </button>
-            <button class="button button-primary button-small" @click="removeKindContribution"
+            <button class="button button-primary button-primary--stroke button-small" @click="removeKindContribution"
                     v-if="associate.kindContributions.length > 1">Supprimer le dernier apport
             </button>
           </div>

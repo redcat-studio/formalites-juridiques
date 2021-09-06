@@ -5,7 +5,7 @@
       <p class="form-wizard__group-subtitle">Le siège sera installé : </p>
       <div class="form-wizard__row">
         <div v-for="type in head_office_location_types"
-             :class="{'button button-beige':true, 'active': type.id===formData.head_office_type}"
+             :class="{'button button-primary button-primary--stroke':true, 'active': type.id===formData.head_office_type}"
              @click="setHeadOfficeLocation(type.id)">
           {{ type.value }}
         </div>
@@ -62,7 +62,7 @@
       <p class="form-wizard__group-inner-subtitle mt-5">Le siège sera installé : </p>
       <div class="form-wizard__row">
         <div v-for="type in capital_deposit_types"
-             :class="{'button button-beige':true, 'active': type.value === formData.capital_deposit_type}"
+             :class="{'button button-primary button-primary--stroke':true, 'active': type.value === formData.capital_deposit_type}"
              @click="setCapitalDepositType(type.value)">
           {{ type.value }}
         </div>
@@ -155,7 +155,7 @@
       <div class="form-wizard__inner-buttons">
         <div v-for="income_tax in income_taxes"
              :class="{'button button-small': true,
-             'button-beige': formData.subject_to_what_income_tax !== income_tax.value,
+             'button-primary button-primary--stroke': formData.subject_to_what_income_tax !== income_tax.value,
              'button-primary': formData.subject_to_what_income_tax === income_tax.value}"
              @click="setIncomeTaxType(income_tax.value)">
           {{ income_tax.value }}
@@ -165,7 +165,7 @@
       <div class="form-wizard__inner-buttons">
         <div v-for="real_tax in real_taxes"
              :class="{'button button-small': true,
-             'button-beige': formData.subject_to_what_real_tax !== real_tax.value,
+             'button-primary button-primary--stroke': formData.subject_to_what_real_tax !== real_tax.value,
              'button-primary': formData.subject_to_what_real_tax === real_tax.value}"
              @click="setRealTaxType(real_tax.value)">
           {{ real_tax.value }}
@@ -175,7 +175,7 @@
       <div class="form-wizard__inner-buttons">
         <div v-for="vat in vat_systems"
              :class="{'button button-small': true,
-             'button-beige': formData.vat_system !== vat.value,
+             'button-primary button-primary--stroke': formData.vat_system !== vat.value,
              'button-primary': formData.vat_system === vat.value}"
              @click="setVatSystem(vat.value)">
           {{ vat.value }}

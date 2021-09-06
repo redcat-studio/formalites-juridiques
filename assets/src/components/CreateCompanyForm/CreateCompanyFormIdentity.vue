@@ -29,7 +29,7 @@
       <div @click="validateData">
         <FormWizardNextStepButton></FormWizardNextStepButton>
       </div>
-<!--      <FormWizardResetButton></FormWizardResetButton>-->
+      <FormWizardResetButton></FormWizardResetButton>
     </div>
   </div>
 </template>

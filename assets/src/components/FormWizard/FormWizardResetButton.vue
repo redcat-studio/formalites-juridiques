@@ -1,5 +1,5 @@
 <template>
-  <div @click="resetCurrentForm" class="button button-primary">
+  <div @click="resetActiveForm" class="button button-primary">
     Réinitialiser le formulaire
   </div>
 </template>
@@ -10,7 +10,7 @@ import {mapActions} from 'vuex'
 export default {
   name: "FormWizardResetButton",
   methods: {
-    ...mapActions(['resetCurrentForm']),
+    ...mapActions(['resetActiveForm']),
   },
 }
 </script>

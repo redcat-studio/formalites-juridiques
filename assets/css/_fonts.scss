@@ -15,4 +15,23 @@
   font-weight: 900;
 }
 
-$font-family: "Poppins", Arial, sans-serif !default;
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("/assets/fonts/LibreBaskerville-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("/assets/fonts/LibreBaskerville-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("/assets/fonts/LibreBaskerville-Italic.ttf") format("truetype");
+  font-style: italic;
+}
+
+
+
+$font-family: "Libre Baskerville", Arial, serif !default;

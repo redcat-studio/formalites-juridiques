@@ -1,6 +1,6 @@
 .hero {
   padding: 15rem 0;
-  background: #F2F2F2;
+  background: $lightgray;
   text-align: center;
 
   &-content {
@@ -13,12 +13,6 @@
     line-height: 150%;
     margin: 0 auto;
     font-weight: bold;
-
-    color: $deepblue;
-
-    span {
-      color: $orange;
-    }
   }
 
   &-subtitle {

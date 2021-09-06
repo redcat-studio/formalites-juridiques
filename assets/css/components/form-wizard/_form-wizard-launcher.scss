@@ -1,16 +1,11 @@
 .form-wizard-launcher {
   &__title, &__subtitle {
     text-align: center;
-    color: $deepblue;
   }
 
   &__title {
     font-size: 4.2rem;
     line-height: 130%;
-
-    span {
-      color: $orange;
-    }
   }
 
   &__subtitle {
@@ -28,9 +23,9 @@
     font-size: 1.8rem;
   }
 
-  .button-with-icon svg {
-    fill: $beige;
-  }
+  //.button-with-icon svg {
+  //  fill: $white;
+  //}
 
   @media screen and (min-width: $tablet-width) {
     &__title {

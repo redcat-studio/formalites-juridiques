@@ -1,15 +1,15 @@
 .form-wizard {
-  background: $beige;
   padding: 5vw;
+  background: #FFF;
 
   &__group {
     padding: 3rem;
-    background: #FDE1B3;
+    background: $lightgray;
     border-radius: 8px;
     margin-bottom: 3rem;
 
     &-title, &-subtitle, &-inner-subtitle {
-      color: $deepblue;
+      color: $blue;
     }
 
     &-title {
@@ -64,13 +64,13 @@
     padding: 1.8rem;
     border-radius: 8px;
     font-size: 1.6rem;
-    background: $beige;
-    color: $deepblue;
-    border: 1px solid $deepblue;
+    background: $white;
+    color: $blue;
+    border: 1px solid $blue;
     margin: .5rem 0;
 
     &:focus {
-      border-color: $darkblue;
+      border-color: $blue;
     }
   }
 
@@ -125,10 +125,10 @@
 
     &-item {
       padding: 1rem 2rem;
-      background: #FDE1B3;
+      background: $lightgray;
       border-radius: 12px 12px 0 0;
       font-size: 1.8rem;
-      color: $primary-color;
+      color: $secondary-color;
       cursor: pointer;
 
       &.active {

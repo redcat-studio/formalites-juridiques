@@ -1,9 +1,9 @@
 .howItWorks {
   padding: 10rem 0;
-  background: $beige;
+  background: $lightgray;
 
   .section-title, .section-subtitle {
-    color: $primary-color;
+    //color: $blue;
     text-align: center;
   }
 
@@ -21,21 +21,20 @@
     flex-basis: 100%;
 
     &-number {
-      background: $deepblue;
       border-radius: 50%;
+      border: 2px solid $blue;
       width: 6rem;
       height: 6rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: $beige;
       font-weight: bold;
       font-size: 2.4rem;
     }
 
     &-text {
       text-align: center;
-      color: $deepblue;
+      color: $blue;
       font-size: 1.8rem;
     }
   }
