@@ -39,6 +39,9 @@ export default {
     UPDATE_PROGRESSION(state, payload) {
       state.activeForm.progression[state.activeForm.activeStepIndex] = payload
     },
+    SET_PROGRESSION(state, payload) {
+      state.activeForm.progression = payload
+    }
   },
   actions: {
     loadForm(context, slug) {
@@ -70,8 +73,11 @@ export default {
               formData[formConfig.steps[i - 1].slug] = data.progression[i].data
             }
           }
-          context.rootState[formConfig.dataContainer] = {}
-          context.rootState[formConfig.dataContainer][formConfig.dataContainer] = formData
+
+          if(Object.keys(formData).length !== 0) {
+            context.rootState[formConfig.dataContainer] = {}
+            context.rootState[formConfig.dataContainer][formConfig.dataContainer] = formData
+          }
 
           isStoreDataValid = true
         }
@@ -82,20 +88,28 @@ export default {
       }
 
     },
+
+    /*
+     * Store active form data in localStorage
+     */
     storeForm(context) {
       localStorage.setItem('lastActiveForm', JSON.stringify(context.state.activeForm))
     },
-    setActiveStep(context, currentFormStep) {
-      context.commit('SET_ACTIVE_STEP', currentFormStep)
+
+    setActiveStep(context, step) {
+      context.commit('SET_ACTIVE_STEP', step)
       context.dispatch('storeForm')
     },
+
     setIsLaunched(context, isFormLaunched) {
       context.commit('SET_IS_LAUNCHED', isFormLaunched)
       context.dispatch('storeForm')
     },
+
     resetActiveForm(context) {
       context.commit('SET_IS_LAUNCHED', false)
       context.commit('SET_ACTIVE_STEP', 0)
+      context.commit('SET_PROGRESSION', {})
     },
 
     updateProgression(context, progression) {

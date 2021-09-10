@@ -1,13 +1,18 @@
 <template>
-  <div>
-    C'est terminé<br/>
-    <button class="button button-primary" @click="sendData">Valide</button>
+  <div class="form-wizard-launcher">
+    <h1 class="h1 form-wizard-launcher__title">Vous avez terminé</h1>
+    <p class="form-wizard-launcher__subtitle">
+      Il ne reste plus qu’à envoyer le résultat. Nous vous recontacterons dans quelques heures pour faire un point avec
+      vous.
+    </p>
     <div class="form-wizard__navigation">
       <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
-      <FormWizardNextStepButton></FormWizardNextStepButton>
-      <FormWizardResetButton></FormWizardResetButton>
+      <div @click="sendData" class="button button-primary">
+        Envoyer les données
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -30,17 +35,17 @@ export default {
       // dataToSend.executives = dataToSend.associates.executives
       // dataToSend.associates.executives = undefined
 
-      if(dataToSend.associates.associates != null) {
+      if (dataToSend.associates.associates != null) {
         dataToSend.associates = dataToSend.associates.associates
       }
 
-      if(dataToSend.executives.executives != null) {
+      if (dataToSend.executives.executives != null) {
         dataToSend.executives = dataToSend.executives.executives
       }
 
       this.$axios.post('/api/company/add', dataToSend).then((res) => {
         console.log(res)
-         window.location.href ='http://127.0.0.1:8000/payment';
+        window.location.href = 'http://127.0.0.1:8000/payment';
       }).catch(err => {
         console.log(err)
       })

@@ -1,5 +1,5 @@
 <template>
-  <div @click="nextStep" class="button button-primary" v-if="activeStepIndex < activeFormConfig.steps.length">
+  <div class="button button-primary" v-if="activeStepIndex < activeFormConfig.steps.length">
     Étape suivante
   </div>
 </template>

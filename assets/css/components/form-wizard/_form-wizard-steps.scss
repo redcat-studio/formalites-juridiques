@@ -59,6 +59,19 @@
       &::after {
         left: 100%;
       }
+
+      &.clickable {
+        cursor: pointer;
+      }
+
+      &:hover.clickable {
+        background-color: $primary-color;
+      }
+
+      &:hover.clickable &-inner {
+        background-color: #FFF;
+        color: $primary-color;
+      }
     }
 
     &-name {

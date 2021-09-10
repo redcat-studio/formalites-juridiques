@@ -9,6 +9,24 @@ export default {
   slug: 'create-company',
   launcher: CreateCompanyFormLauncher,
   dataContainer: 'company',
+  companyTypes: [
+    {
+      id: 0,
+      name: 'EURL'
+    },
+    {
+      id: 1,
+      name: 'SARL'
+    },
+    {
+      id: 2,
+      name: 'SASU'
+    },
+    {
+      id: 3,
+      name: 'SAS'
+    },
+  ],
   steps: [
     {
       idx: 1,

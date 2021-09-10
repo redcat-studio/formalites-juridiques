@@ -4,7 +4,7 @@
       <div :is="activeFormConfig.launcher" v-if="!isFormLaunched" @launch-form="launchForm"></div>
 
       <FormWizardSteps
-          v-if="activeStepIndex > 0 && activeStepIndex <= activeFormConfig.steps.length"
+          v-if="activeStepIndex > 0 && activeStepIndex < activeFormConfig.steps.length"
           :steps="activeFormConfig.steps"
           :activeStepIndex="activeStepIndex">
       </FormWizardSteps>

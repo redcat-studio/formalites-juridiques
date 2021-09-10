@@ -5,7 +5,7 @@
   &__group {
     padding: 3rem;
     background: $lightgray;
-    border-radius: 8px;
+    border-radius: 3px;
     margin-bottom: 3rem;
 
     &-title, &-subtitle, &-inner-subtitle {
@@ -45,6 +45,10 @@
       padding: .9rem 1.8rem;
       font-weight: normal;
     }
+
+    &.hide {
+      display: none;
+    }
   }
 
   &__row {
@@ -60,17 +64,30 @@
   }
 
   input, select, textarea {
+    box-sizing: border-box;
     height: auto;
     padding: 1.8rem;
-    border-radius: 8px;
-    font-size: 1.6rem;
+    border-radius: 3px;
+    font-size: 1.5rem;
     background: $white;
     color: $blue;
     border: 1px solid $blue;
     margin: .5rem 0;
+    font-family: $font-family;
+    display: inline-block;
+    width: 100%;
 
     &:focus {
       border-color: $blue;
+    }
+  }
+
+  &__radio {
+    input[type="radio"] {
+      display: none;
+    }
+    label {
+
     }
   }
 
@@ -115,8 +132,12 @@
     }
   }
 
-  .form-wizard__incremental &__group {
+  &__incremental &__group {
     border-radius: 0 8px 8px;
+  }
+
+  &__incremental &__group-title {
+    margin-top: 3rem;
   }
 
   &__incremental-nav {
@@ -135,6 +156,11 @@
         font-weight: bold;
       }
     }
+  }
+
+  .error {
+    color: $blue;
+    margin-bottom: .5rem;
   }
 
   @media screen and (min-width: $tablet-width) {

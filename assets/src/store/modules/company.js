@@ -99,24 +99,6 @@ export default {
         }
       ]
     },
-    companyTypes: [
-      {
-        id: 0,
-        name: 'EURL'
-      },
-      {
-        id: 1,
-        name: 'SARL'
-      },
-      {
-        id: 2,
-        name: 'SASU'
-      },
-      {
-        id: 3,
-        name: 'SAS'
-      },
-    ],
   },
   mutations: {
     SET_COMPANY(state, payload) {
@@ -169,7 +151,7 @@ export default {
     company(state, getters, rootState) {
       return rootState.company.company
     },
-    companyType(state, getters, rootState) {
+    companyType(state) {
       return state.company.identity.type
     },
     companyIdentity(state) {
@@ -184,8 +166,8 @@ export default {
     companyStatus(state) {
       return state.company.status
     },
-    companyTypes(state) {
-      return state.companyTypes
+    companyTypes(state, getters, rootState) {
+      return rootState.formWizard.activeFormConfig.companyTypes
     },
   }
 }

@@ -7,13 +7,16 @@
           <div></div>
           <div></div>
           <div></div>
-        </div></div>
+        </div>
+      </div>
       <nav :class="{'navbar-nav': true, 'active': isNavOpen}">
         <router-link :to="{name: 'home'}" class="navbar-link">Accueil</router-link>
-        <router-link :to="{name: 'home'}" class="navbar-link">Services</router-link>
+        <router-link to="/#tarifs" class="navbar-link">Tarifs</router-link>
         <router-link :to="{name: 'home'}" class="navbar-link">Contact</router-link>
-<!--        <router-link :to="{name: 'edit-company'}" class="navbar-link">Modifier mon entreprise</router-link>-->
-        <router-link :to="{name: 'create-company'}" class="navbar-link button button-primary">Je crée mon entreprise</router-link>
+        <!--        <router-link :to="{name: 'edit-company'}" class="navbar-link">Modifier mon entreprise</router-link>-->
+        <router-link :to="{name: 'create-company'}" class="navbar-link button button-primary button-small">Je crée mon
+          entreprise
+        </router-link>
       </nav>
     </div>
   </header>
