@@ -12,21 +12,21 @@
       </div>
 
       <div v-for="asso in $v.formData.associates.$each.$iter">
-        <div
-          :class="{
-            'form-wizard__group': true,
-            'hide': formOptions.currAssociate !== $v.formData.associates.$model.indexOf(asso.$model)
-          }"
+        <FormWizardGroup
+            title="L'associé de la société"
+            subtitle="L'associé est une personne :"
+            :class="{
+             'form-wizard__group': true,
+             hide: formOptions.currAssociate !== $v.formData.associates.$model.indexOf(asso.$model)
+            }"
         >
-          <h2 class="form-wizard__group-title">L'associé de la société</h2>
-          <p class="form-wizard__group-subtitle">L'associé est une personne :</p>
-
-          <div class="form-wizard__form-control">
+          <FormWizardControl :showErrors="submitted" :v="asso.associate_type">
             <select v-model="asso.associate_type.$model">
               <option value="Physique">Physique</option>
               <option value="Morale">Morale</option>
             </select>
-          </div>
+          </FormWizardControl>
+
           <div v-if="asso.associate_type.$model === 'Physique'">
 
             <h2 class="form-wizard__group-title">Associé personne physique</h2>
@@ -34,238 +34,189 @@
 
             <div class="form-wizard__row">
 
-              <select v-model="asso.individual_genre.$model">
-                <option value="Genre" disabled>Genre</option>
-                <option value="Masculin">Masculin</option>
-                <option value="Féminin">Féminin</option>
-              </select>
+              <FormWizardControl :showErrors="submitted" :v="asso.individual_genre">
+                <select v-model="asso.individual_genre.$model">
+                  <option value="Genre" disabled>Genre</option>
+                  <option value="Masculin">Masculin</option>
+                  <option value="Féminin">Féminin</option>
+                </select>
+              </FormWizardControl>
 
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="asso.individual_firstname">
                 <input
                     v-model="asso.individual_firstname.$model"
                     type="text"
                     placeholder="Prénom"
                 >
-                <div class="error" v-if="submitted && !asso.individual_firstname.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
 
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="asso.individual_lastname">
                 <input
                     v-model="asso.individual_lastname.$model"
                     type="text"
                     placeholder="Nom"
                 >
-                <div class="error" v-if="submitted && !asso.individual_lastname.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
 
             <p class="form-wizard__group-inner-subtitle">Date de naissance de l'associé</p>
-            <div class="form-wizard__form-control">
+
+            <FormWizardControl :showErrors="submitted" :v="asso.individual_birthdate">
               <input
                   v-model="asso.individual_birthdate.$model"
                   type="date"
                   placeholder="Date de naissance"
               >
-              <div class="error" v-if="submitted && !asso.individual_birthdate.required">
-                Ce champ est obligatoire
-              </div>
+            </FormWizardControl>
 
-            </div>
             <p class="form-wizard__group-inner-subtitle">Informations complémentaires</p>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="asso.individual_birth_city">
                 <input
                     v-model="asso.individual_birth_city.$model"
                     type="text"
                     placeholder="Ville de naissance"
                 >
-                <div class="error" v-if="submitted && !asso.individual_birth_city.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="asso.individual_nationality">
                 <input
                     v-model="asso.individual_nationality.$model"
                     type="text"
                     placeholder="Nationalité"
                 >
-                <div class="error" v-if="submitted && !asso.individual_nationality.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
 
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="asso.individual_address">
                 <input
                     v-model="asso.individual_address.$model"
                     type="text"
                     placeholder="Adresse"
                 >
-                <div class="error" v-if="submitted && !asso.individual_address.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+
+              <FormWizardControl :showErrors="submitted" :v="asso.individual_zipcode">
                 <input
                     v-model="asso.individual_zipcode.$model"
                     type="text"
                     placeholder="Code postal"
                 >
-                <div class="error" v-if="submitted && !asso.individual_zipcode.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+
+              <FormWizardControl :showErrors="submitted" :v="asso.individual_city">
                 <input
                     v-model="asso.individual_city.$model"
                     type="text"
                     placeholder="Ville"
                 >
-                <div class="error" v-if="submitted && !asso.individual_city.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
+
             </div>
           </div>
 
           <div v-if="asso.associate_type.$model === 'Morale'">
             <h2 class="form-wizard__group-title">Associé personne morale</h2>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_company_name">
                 <input
                     v-model="asso.legal_company_name.$model"
                     type="text"
                     placeholder="Nom de la société"
                 >
-                <div class="error" v-if="submitted && !asso.legal_company_name.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_company_rcs_number">
                 <input
                     v-model="asso.legal_company_rcs_number.$model"
                     type="text"
                     placeholder="Numéro RCS"
                 >
-                <div class="error" v-if="submitted && !asso.legal_company_rcs_number.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
 
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_company_headquarters_address">
                 <input
                     v-model="asso.legal_company_headquarters_address.$model"
                     type="text"
                     placeholder="Adresse du siège social"
                 >
-                <div class="error" v-if="submitted && !asso.legal_company_headquarters_address.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
 
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_company_zipcode">
                 <input
                     v-model="asso.legal_company_zipcode.$model"
                     type="text"
                     placeholder="Code postal"
                 >
-                <div class="error" v-if="submitted && !asso.legal_company_zipcode.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_company_city">
                 <input
                     v-model="asso.legal_company_city.$model"
                     type="text"
                     placeholder="Ville"
                 >
-                <div class="error" v-if="submitted && !asso.legal_company_city.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_company_city_of_registry">
                 <input
                     v-model="asso.legal_company_city_of_registry.$model"
                     type="text"
                     placeholder="Ville du Greffe"
                 >
-                <div class="error" v-if="submitted && !asso.legal_company_city_of_registry.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
 
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_company_social_capital">
                 <input
                     v-model="asso.legal_company_social_capital.$model"
                     type="text"
                     placeholder="Capital social"
                 >
-                <div class="error" v-if="submitted && !asso.legal_company_social_capital.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_company_social_form">
                 <input
                     v-model="asso.legal_company_social_form.$model"
                     type="text"
                     placeholder="Forme sociale (ex : SARL, ...)"
                 >
-                <div class="error" v-if="submitted && !asso.legal_company_social_form.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
 
             <h2 class="form-wizard__group-title">Représentant de la société</h2>
 
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_representative_firstname">
                 <input
                     v-model="asso.legal_representative_firstname.$model"
                     type="text"
                     placeholder="Prénom"
                 >
-                <div class="error" v-if="submitted && !asso.legal_representative_firstname.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_representative_lastname">
                 <input
                     v-model="asso.legal_representative_lastname.$model"
                     type="text"
                     placeholder="Nom"
                 >
-                <div class="error" v-if="submitted && !asso.legal_representative_lastname.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <select v-model="asso.legal_representative_genre.$model">
-                <option value="Genre" disabled>Genre</option>
-                <option value="Masculin">Masculin</option>
-                <option value="Féminin">Féminin</option>
-              </select>
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="asso.legal_representative_genre">
+                <select v-model="asso.legal_representative_genre.$model">
+                  <option value="Genre" disabled>Genre</option>
+                  <option value="Masculin">Masculin</option>
+                  <option value="Féminin">Féminin</option>
+                </select>
+              </FormWizardControl>
             </div>
-            <div class="form-wizard__form-control">
+            <FormWizardControl :showErrors="submitted" :v="asso.legal_representative_role">
               <input
                   v-model="asso.legal_representative_role.$model"
                   type="text"
                   placeholder="Qualité (président, gérant...)"
               >
-              <div class="error" v-if="submitted && !asso.legal_representative_role.required">
-                Ce champ est obligatoire
-              </div>
-            </div>
+            </FormWizardControl>
           </div>
 
           <div class="form-wizard__triggerable-field" v-if="asso.associate_type.$model === 'Physique'">
@@ -331,7 +282,7 @@
             </div>
           </div>
 
-        </div>
+        </FormWizardGroup>
       </div>
     </div>
 
@@ -357,6 +308,8 @@
 import FormWizardNextStepButton from '../FormWizard/FormWizardNextStepButton'
 import FormWizardPreviousStepButton from '../FormWizard/FormWizardPreviousStepButton'
 import FormWizardResetButton from '../FormWizard/FormWizardResetButton'
+import FormWizardGroup from '../FormWizard/FormWizardGroup'
+import FormWizardControl from '../FormWizard/FormWizardControl'
 import {mapActions, mapGetters} from 'vuex'
 import {required, requiredIf} from 'vuelidate/lib/validators'
 
@@ -365,7 +318,9 @@ export default {
   components: {
     FormWizardNextStepButton,
     FormWizardPreviousStepButton,
-    FormWizardResetButton
+    FormWizardResetButton,
+    FormWizardGroup,
+    FormWizardControl
   },
   data() {
     return {
@@ -549,6 +504,14 @@ export default {
 
       if (!this.$v.$invalid) {
         let associates = this.formData.associates
+
+        associates.forEach(a => {
+          a.legal_company_rcs_number = typeof a.legal_company_rcs_number !== 'number' ? 0 : a.legal_company_rcs_number
+          a.legal_company_zipcode = typeof a.legal_company_zipcode !== 'number' ? 0 : a.legal_company_zipcode
+          a.legal_company_social_capital = typeof a.legal_company_social_capital !== 'number' ? 0 : a.legal_company_social_capital
+          a.individual_zipcode = typeof a.individual_zipcode !== 'number' ? 0 : a.individual_zipcode
+        })
+
         this.setCompanyAssociates(associates)
 
         if (this.$refs.nextStepButton) {

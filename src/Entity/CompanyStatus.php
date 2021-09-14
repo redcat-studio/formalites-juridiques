@@ -187,7 +187,7 @@ class CompanyStatus
         return $this->head_office_type;
     }
 
-    public function setHeadOfficeType(?int $head_office_type): self
+    public function setHeadOfficeType(?string $head_office_type): self
     {
         $this->head_office_type = $head_office_type;
 

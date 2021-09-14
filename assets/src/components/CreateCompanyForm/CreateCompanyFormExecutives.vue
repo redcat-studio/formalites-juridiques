@@ -12,7 +12,7 @@
         <div class="form-wizard__incremental-nav-item" @click="addExecutive">+</div>
       </div>
       <div v-for="exec in $v.formData.executives.$each.$iter">
-        <div
+        <FormWizardGroup
             :class="{
             'form-wizard__group': true,
             'hide': formOptions.currExecutive !== $v.formData.executives.$model.indexOf(exec.$model)
@@ -21,245 +21,176 @@
           <h2 class="form-wizard__group-title">Le dirigeant de la société</h2>
           <p class="form-wizard__group-subtitle">Le dirigeant est une personne :</p>
 
-          <div class="form-wizard__form-control">
+          <FormWizardControl :showErrors="submitted" :v="exec.executive_type">
             <select v-model="exec.executive_type.$model">
               <option value="Physique">Physique</option>
               <option value="Morale">Morale</option>
             </select>
-          </div>
+          </FormWizardControl>
           <div v-if="exec.executive_type.$model === 'Physique'">
             <div v-if="companyType === 'SASU' || companyType === 'SAS'">
               <p class="form-wizard__group-inner-subtitle">Titre du dirigeant</p>
               <div class="form-wizard__row">
-                <div class="form-wizard__radio form-wizard__form-control" v-for="title in executiveTitles">
-                  <input
-                      v-model="exec.executive_title.$model"
-                      :id="`exec-${$v.formData.executives.$model.indexOf(exec.$model)}-${title.id}`"
-                      name="executive_title"
-                      type="radio"
-                      :value="title.value"
-                  >
-                  <label
-                      :for="`exec-${$v.formData.executives.$model.indexOf(exec.$model)}-${title.id}`"
-                      :class="{
-                    'button button-primary button-primary--stroke':true,
-                    'active': title.value===exec.executive_title.$model
-                  }"
-                  >
-                    {{ title.value }}
-                  </label>
-                </div>
+                <FormWizardRadio
+                    :model="exec.executive_title.$model"
+                    @input="exec.executive_title.$model = $event"
+                    :items="executiveTitles"
+                    prefix="exec"
+                >
+                </FormWizardRadio>
               </div>
             </div>
 
             <p class="form-wizard__group-inner-subtitle">Identité du dirigeant</p>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_firstname">
                 <input
                     v-model="exec.executive_firstname.$model"
                     type="text"
                     placeholder="Prénom"
                 >
-                <div class="error" v-if="submitted && !exec.executive_firstname.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_lastname">
                 <input
                     v-model="exec.executive_lastname.$model"
                     type="text"
                     placeholder="Nom"
                 >
-                <div class="error" v-if="submitted && !exec.executive_lastname.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_birthdate">
                 <input
                     v-model="exec.executive_birthdate.$model"
                     type="date"
                     placeholder="Date de naissance"
                 >
-                <div class="error" v-if="submitted && !exec.executive_birthdate.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_birth_city">
                 <input
                     v-model="exec.executive_birth_city.$model"
                     type="text"
                     placeholder="Ville de naissance"
                 >
-                <div class="error" v-if="submitted && !exec.executive_birth_city.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_nationality">
                 <input
                     v-model="exec.executive_nationality.$model"
                     type="text"
                     placeholder="Nationalité"
                 >
-                <div class="error" v-if="submitted && !exec.executive_nationality.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
             <p class="form-wizard__group-inner-subtitle">Informations complémentaires</p>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_address">
                 <input
                     v-model="exec.executive_address.$model"
                     type="text"
                     placeholder="Adresse"
                 >
-                <div class="error" v-if="submitted && !exec.executive_address.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_zipcode">
                 <input
                     v-model="exec.executive_zipcode.$model"
                     type="text"
                     placeholder="Code postal"
                 >
-                <div class="error" v-if="submitted && !exec.executive_zipcode.required">
-                  Ce champ est obligatoire
-                </div>
-                <div class="error" v-if="submitted && !exec.executive_zipcode.integer">
-                  Ce champ ne peut contenir que des chiffres
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_city">
                 <input
                     v-model="exec.executive_city.$model"
                     type="text"
                     placeholder="Ville"
                 >
-                <div class="error" v-if="submitted && !exec.executive_city.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_mother_firstname_and_maiden_name">
                 <input
                     v-model="exec.executive_mother_firstname_and_maiden_name.$model"
                     type="text"
                     placeholder="Prénom et nom de jeune fille de la mère"
                 >
-                <div class="error" v-if="submitted && !exec.executive_mother_firstname_and_maiden_name.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_father_name">
                 <input
                     v-model="exec.executive_father_name.$model"
                     type="text"
                     placeholder="Prénom et nom du père"
                 >
-                <div class="error" v-if="submitted && !exec.executive_father_name.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_email">
                 <input
                     v-model="exec.executive_email.$model"
                     type="text"
                     placeholder="Adresse e-mail du gérant"
                 >
-                <div class="error" v-if="submitted && !exec.executive_email.required">
-                  Ce champ est obligatoire
-                </div>
-                <div class="error" v-if="submitted && !exec.executive_email.email">
-                  Cette adresse e-mail est invalide
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
           </div>
           <div v-else>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_company_name">
                 <input
                     v-model="exec.executive_company_name.$model"
                     type="text"
                     placeholder="Nom de la société"
                 >
-                <div class="error" v-if="submitted && !exec.executive_company_name.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_company_rcs_number">
                 <input
                     v-model="exec.executive_company_rcs_number.$model"
                     type="text"
                     placeholder="Numéro RCS"
                 >
-                <div class="error" v-if="submitted && !exec.executive_company_rcs_number.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_company_headquarters_address">
                 <input
                     v-model="exec.executive_company_headquarters_address.$model"
                     type="text"
                     placeholder="Adresse du siège social"
                 >
-                <div class="error" v-if="submitted && !exec.executive_company_headquarters_address.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
 
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_company_zipcode">
                 <input
                     v-model="exec.executive_company_zipcode.$model"
                     type="text"
                     placeholder="Code Postal"
                 >
-                <div class="error" v-if="submitted && !exec.executive_company_zipcode.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
-              <div class="form-wizard__form-control">
+              </FormWizardControl>
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_company_city">
                 <input
                     v-model="exec.executive_company_city.$model"
                     type="text"
                     placeholder="Ville"
                 >
-                <div class="error" v-if="submitted && !exec.executive_company_city.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_company_rcs">
                 <input
                     v-model="exec.executive_company_rcs.$model"
                     type="text"
                     placeholder="Immatriculée au Registre du Commerce et des Sociétés du"
                 >
-                <div class="error" v-if="submitted && !exec.executive_company_rcs.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
             <div class="form-wizard__row">
-              <div class="form-wizard__form-control">
+              <FormWizardControl :showErrors="submitted" :v="exec.executive_company_representative_name">
                 <input
                     v-model="exec.executive_company_representative_name.$model"
                     type="text"
                     placeholder="Représentant légal de la société"
                 >
-                <div class="error" v-if="submitted && !exec.executive_company_representative_name.required">
-                  Ce champ est obligatoire
-                </div>
-              </div>
+              </FormWizardControl>
             </div>
 
 
@@ -271,15 +202,13 @@
           >
             Supprimer ce dirigeant
           </button>
-        </div>
+        </FormWizardGroup>
       </div>
     </div>
 
     <div class="form-wizard__navigation">
       <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
-      <div @click="validateData">
-        <FormWizardNextStepButton ref="nextStepButton"></FormWizardNextStepButton>
-      </div>
+      <FormWizardNextStepButton @click.native="validateData" ref="nextStepButton"></FormWizardNextStepButton>
       <FormWizardResetButton></FormWizardResetButton>
     </div>
 
@@ -290,6 +219,9 @@
 import FormWizardNextStepButton from '../FormWizard/FormWizardNextStepButton'
 import FormWizardPreviousStepButton from '../FormWizard/FormWizardPreviousStepButton'
 import FormWizardResetButton from '../FormWizard/FormWizardResetButton'
+import FormWizardGroup from '../FormWizard/FormWizardGroup'
+import FormWizardControl from '../FormWizard/FormWizardControl'
+import FormWizardRadio from '../FormWizard/FormWizardRadio'
 import {mapGetters, mapActions} from 'vuex'
 import {required, email, integer, requiredIf} from 'vuelidate/lib/validators'
 
@@ -298,7 +230,10 @@ export default {
   components: {
     FormWizardNextStepButton,
     FormWizardPreviousStepButton,
-    FormWizardResetButton
+    FormWizardResetButton,
+    FormWizardGroup,
+    FormWizardControl,
+    FormWizardRadio
   },
   data() {
     return {
@@ -352,9 +287,7 @@ export default {
             required
           },
           executive_title: {
-            required: requiredIf(e => {
-              return e.executive_type === 'Physique'
-            })
+
           },
           executive_firstname: {
             required: requiredIf(e => {
@@ -459,15 +392,19 @@ export default {
       this.submitted = true
       this.$v.$touch()
 
-      console.log(this.$v.$invalid)
-      console.log(this.$v.formData.executives.$each)
-
       if (!this.$v.$invalid) {
         let executives = this.formData.executives
+
+        executives.forEach(e => {
+          e.legal_company_rcs_number = typeof e.legal_company_rcs_number !== 'number' ? 0 : e.legal_company_rcs_number
+          e.executive_company_rcs_number = typeof e.executive_company_rcs_number !== 'number' ? 0 : e.executive_company_rcs_number
+          e.executive_company_zipcode = typeof e.executive_company_zipcode !== 'number' ? 0 : e.executive_company_zipcode
+        })
+
         this.setCompanyExecutives(executives)
 
         if (this.$refs.nextStepButton) {
-          // this.$refs.nextStepButton.nextStep()
+          this.$refs.nextStepButton.nextStep()
         }
       }
     },

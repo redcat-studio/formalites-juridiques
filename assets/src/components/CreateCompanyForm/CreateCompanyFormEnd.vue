@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 import FormWizardNextStepButton from "../FormWizard/FormWizardNextStepButton";
 import FormWizardPreviousStepButton from "../FormWizard/FormWizardPreviousStepButton";
 import FormWizardResetButton from "../FormWizard/FormWizardResetButton";
@@ -29,6 +29,7 @@ export default {
     FormWizardResetButton
   },
   methods: {
+    ...mapActions(['resetActiveForm']),
     sendData() {
       let dataToSend = this.company
 
@@ -43,8 +44,8 @@ export default {
         dataToSend.executives = dataToSend.executives.executives
       }
 
-      this.$axios.post('/api/company/add', dataToSend).then((res) => {
-        console.log(res)
+      this.$axios.post('/api/company/add', dataToSend).then(res => {
+        // this.resetActiveForm()
         window.location.href = 'http://127.0.0.1:8000/payment';
       }).catch(err => {
         console.log(err)

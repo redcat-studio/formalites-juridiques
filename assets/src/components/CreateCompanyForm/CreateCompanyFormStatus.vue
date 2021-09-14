@@ -1,201 +1,217 @@
 <template>
   <div>
-    <div class="form-wizard__group">
-      <h2 class="form-wizard__group-title">Fixation du siège</h2>
-      <p class="form-wizard__group-subtitle">Le siège sera installé : </p>
+    <FormWizardGroup
+        title="Dénomination sociale"
+        subtitle="Le siège sera installé :"
+    >
       <div class="form-wizard__row">
-        <div v-for="type in head_office_location_types"
-             :class="{'button button-primary button-primary--stroke':true, 'active': type.id===formData.head_office_type}"
-             @click="setHeadOfficeLocation(type.id)">
-          {{ type.value }}
-        </div>
+        <FormWizardRadio
+            :model="$v.formData.head_office_type.$model"
+            @input="$v.formData.head_office_type.$model = $event"
+            :items="officeTypes"
+            prefix="type"
+        >
+        </FormWizardRadio>
       </div>
-    </div>
+    </FormWizardGroup>
 
-    <div v-if="formData.head_office_type === 1" class="form-wizard__group">
+    <FormWizardGroup v-if="formData.head_office_type === 'Dans une société de domiciliation'">
       <div class="form-wizard__row">
-        <div class="form-wizard__form-control">
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.domiciliation_company_name">
           <input
               v-model="$v.formData.domiciliation_company_name.$model"
               type="text"
               placeholder="Nom de la société de domiciliation"
           >
-        </div>
-        <div class="form-wizard__form-control">
+        </FormWizardControl>
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.domiciliation_company_siren">
           <input
               v-model="$v.formData.domiciliation_company_siren.$model"
               type="text"
               placeholder="Numéro SIREN de la société de domiciliation"
           >
-        </div>
+        </FormWizardControl>
       </div>
-    </div>
+    </FormWizardGroup>
 
-    <div class="form-wizard__group">
-      <h2 class="form-wizard__group-title">Objet social</h2>
-      <div class="form-wizard__form-control">
+    <FormWizardGroup title="Objet social">
+      <FormWizardControl :showErrors="submitted" :v="$v.formData.company_purpose">
         <textarea
             v-model="$v.formData.company_purpose.$model"
             placeholder="Veuillez décrire l’objet social de la société"
             rows="3">
         </textarea>
-        <div class="error" v-if="submitted && !$v.formData.company_purpose.required">
-          Ce champ est obligatoire
-        </div>
-      </div>
-    </div>
+      </FormWizardControl>
+    </FormWizardGroup>
 
-    <div class="form-wizard__group">
-      <h2 class="form-wizard__group-title">Capital social</h2>
+    <FormWizardGroup title="Capital social">
       <div class="form-wizard__row">
-        <select v-model="$v.formData.social_capital_type.$model">
-          <option value="" disabled>Capital fixe ou capital variable ?</option>
-          <option value="Capital fixe">Capital fixe</option>
-          <option value="Capital variable">Capital variable</option>
-          <option value="Capital partiellement libéré">Capital partiellement libéré</option>
-        </select>
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.social_capital_type">
+          <select v-model="$v.formData.social_capital_type.$model">
+            <option value="" disabled>Capital fixe ou capital variable ?</option>
+            <option value="Capital fixe">Capital fixe</option>
+            <option value="Capital variable">Capital variable</option>
+            <option value="Capital partiellement libéré">Capital partiellement libéré</option>
+          </select>
+        </FormWizardControl>
       </div>
 
       <div class="form-wizard__row" v-if="formData.social_capital_type === 'Capital fixe'">
-        <div class="form-wizard__form-control">
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.social_capital_amount">
           <input
               v-model="$v.formData.social_capital_amount.$model"
               type="text"
-              placeholder="Montant du capital social">
-        </div>
+              placeholder="Montant du capital social"
+          >
+        </FormWizardControl>
       </div>
 
       <div class="form-wizard__row" v-if="formData.social_capital_type === 'Capital variable'">
-        <div class="form-wizard__form-control">
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.social_capital_min">
           <input
               v-model="$v.formData.social_capital_min.$model"
               type="number"
-              placeholder="Capital minimum">
-        </div>
-        <div class="form-wizard__form-control">
+              placeholder="Capital minimum"
+          >
+        </FormWizardControl>
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.social_capital_max">
           <input
               v-model="$v.formData.social_capital_max.$model"
               type="number"
-              placeholder="Capital maximum">
-        </div>
+              placeholder="Capital maximum"
+          >
+        </FormWizardControl>
       </div>
 
       <div class="form-wizard__row" v-if="formData.social_capital_type === 'Capital partiellement libéré'">
-        <div class="form-wizard__form-control">
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.capital_release_rate">
           <input
               v-model="$v.formData.capital_release_rate.$model"
               type="number"
               placeholder="Taux de libération du capital à la constitution"
           >
-        </div>
-        <div class="form-wizard__form-control">
+        </FormWizardControl>
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.capital_released_amount">
           <input
               v-model="$v.formData.capital_released_amount.$model"
               type="number"
               placeholder="Montant libéré à la constitution">
-        </div>
+        </FormWizardControl>
       </div>
-    </div>
+    </FormWizardGroup>
 
-    <div class="form-wizard__group">
-      <h2 class="form-wizard__group-title">Dépôt du capital social</h2>
+    <FormWizardGroup title="Dépôt du capital social">
       <div class="form-wizard__row">
-        <div class="form-wizard__form-control">
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.capital_deposit_date">
           <input
               v-model="$v.formData.capital_deposit_date.$model"
               type="date"
               placeholder="Date de dépôt du capital social"
           >
-          <div class="error" v-if="submitted && !$v.formData.capital_deposit_date.required">Ce champ est obligatoire</div>
-        </div>
+        </FormWizardControl>
       </div>
-      <p class="form-wizard__group-inner-subtitle mt-5">Le capital social sera déposé : </p>
+
+      <p class="form-wizard__group-inner-subtitle">Le capital social sera déposé : </p>
+      <FormWizardRadio
+          :model="$v.formData.capital_deposit_type.$model"
+          @input="$v.formData.capital_deposit_type.$model = $event"
+          :items="capital_deposit_types"
+          prefix="deposit"
+      >
+      </FormWizardRadio>
+    </FormWizardGroup>
+
+    <FormWizardGroup
+        v-if="formData.capital_deposit_type === 'Dans une banque'"
+        title="Dépôt du capital social"
+    >
       <div class="form-wizard__row">
-        <div v-for="type in capital_deposit_types"
-             :class="{'button button-primary button-primary--stroke':true, 'active': type.value === formData.capital_deposit_type}"
-             @click="setCapitalDepositType(type.value)">
-          {{ type.value }}
-        </div>
-      </div>
-    </div>
-    <div class="form-wizard__group" v-if="formData.capital_deposit_type === 'Dans une banque'">
-      <div class="form-wizard__row">
-        <div class="form-wizard__form-control">
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.deposit_bank_name">
           <input
               v-model="$v.formData.deposit_bank_name.$model"
               type="text"
-              placeholder="Nom de la banque">
-        </div>
-        <div class="form-wizard__form-control">
+              placeholder="Nom de la banque"
+          >
+        </FormWizardControl>
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.deposit_bank_address">
           <input
               v-model="$v.formData.deposit_bank_address.$model"
               type="text"
-              placeholder="Adresse de la banque">
-        </div>
+              placeholder="Adresse de la banque"
+          >
+        </FormWizardControl>
       </div>
       <div class="form-wizard__row">
-        <div class="form-wizard__form-control">
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.deposit_bank_zipcode">
           <input
               v-model="$v.formData.deposit_bank_zipcode.$model"
               type="text"
-              placeholder="Code postal">
-        </div>
-        <div class="form-wizard__form-control">
+              placeholder="Code postal"
+          >
+        </FormWizardControl>
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.deposit_bank_city">
           <input
               v-model="$v.formData.deposit_bank_city.$model"
               type="text"
               placeholder="Ville">
-        </div>
+        </FormWizardControl>
       </div>
-    </div>
+    </FormWizardGroup>
 
-    <div class="form-wizard__group" v-if="formData.capital_deposit_type === 'Dans une étude notariale'">
+
+    <FormWizardGroup v-if="formData.capital_deposit_type === 'Dans une étude notariale'">
       <div class="form-wizard__row">
-        <div class="form-wizard__form-control">
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.notary_study_name">
           <input
               v-model="$v.formData.notary_study_name.$model"
               type="text"
-              placeholder="Nom de l’étude notariale">
-        </div>
-        <div class="form-wizard__form-control">
+              placeholder="Nom de l’étude notariale"
+          >
+        </FormWizardControl>
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.notary_study_address">
           <input
               v-model="$v.formData.notary_study_address.$model"
               type="text"
-              placeholder="Adresse de l’étude notariale">
-        </div>
+              placeholder="Adresse de l’étude notariale"
+          >
+        </FormWizardControl>
       </div>
       <div class="form-wizard__row">
-        <div class="form-wizard__form-control">
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.notary_study_zipcode">
           <input
               v-model="$v.formData.notary_study_zipcode.$model"
               type="text"
-              placeholder="Code postal">
-        </div>
-        <div class="form-wizard__form-control">
+              placeholder="Code postal"
+          >
+        </FormWizardControl>
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.notary_study_city">
           <input
               v-model="$v.formData.notary_study_city.$model"
               type="text"
-              placeholder="Ville">
-        </div>
+              placeholder="Ville"
+          >
+        </FormWizardControl>
       </div>
-    </div>
+    </FormWizardGroup>
 
-    <div class="form-wizard__group">
-      <h2 class="form-wizard__group-title">L'exercice social</h2>
+    <FormWizardGroup title="L'exercice social">
       <div class="form-wizard__row">
-        <select v-model="$v.formData.normal_company_exercice_closure_date.$model">
-          <option value="" disabled>Date de clôture d’un exercice social normal</option>
-          <option v-for="date in normal_exercice_closure_dates" :value="date.value">{{ date.text }}</option>
-        </select>
-        <select v-model="$v.formData.first_company_exercice_closure_data.$model">
-          <option value="" disabled>Date de clôture du premier exercice social</option>
-          <option v-for="date in first_exercice_closure_dates" :value="date.value">{{ date.text }}</option>
-        </select>
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.normal_company_exercice_closure_date">
+          <select v-model="$v.formData.normal_company_exercice_closure_date.$model">
+            <option value="" disabled>Date de clôture d’un exercice social normal</option>
+            <option v-for="date in normal_exercice_closure_dates" :value="date.value">{{ date.text }}</option>
+          </select>
+        </FormWizardControl>
+        <FormWizardControl :showErrors="submitted" :v="$v.formData.first_company_exercice_closure_data">
+          <select v-model="$v.formData.first_company_exercice_closure_data.$model">
+            <option value="" disabled>Date de clôture du premier exercice social</option>
+            <option v-for="date in first_exercice_closure_dates" :value="date.value">{{ date.text }}</option>
+          </select>
+        </FormWizardControl>
       </div>
-    </div>
+    </FormWizardGroup>
 
-    <div class="form-wizard__group">
-      <h2 class="form-wizard__group-title">Distinctions commerciales</h2>
+    <FormWizardGroup title="Distinctions commerciales">
       <div class="form-wizard__triggerable-field">
         <div class="form-wizard__triggerable-field-trigger">
           <span @click="formOptions.addAcronym = !formOptions.addAcronym"
@@ -236,11 +252,9 @@
         <input v-if="formOptions.addBusinessSign" v-model="$v.formData.business_sign.$model" type="text"
                placeholder="Enseigne (de l'établissement principal)">
       </div>
-    </div>
+    </FormWizardGroup>
 
-    <div class="form-wizard__group">
-      <h2 class="form-wizard__group-title">Choix fiscaux</h2>
-      <p class="form-wizard__group-subtitle form-wizard__group-subtitle--big">La société est assujettie à :</p>
+    <FormWizardGroup title="Choix fiscaux" subtitle="La société est assujettie à :">
       <p class="form-wizard__group-inner-subtitle">L'impôt sur</p>
       <div class="form-wizard__inner-buttons">
         <div v-for="income_tax in income_taxes"
@@ -271,7 +285,7 @@
           {{ vat.value }}
         </div>
       </div>
-    </div>
+    </FormWizardGroup>
 
     <div class="form-wizard__navigation" @click="validateData">
       <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
@@ -287,8 +301,11 @@
 import FormWizardNextStepButton from '../FormWizard/FormWizardNextStepButton'
 import FormWizardPreviousStepButton from '../FormWizard/FormWizardPreviousStepButton'
 import FormWizardResetButton from '../FormWizard/FormWizardResetButton'
+import FormWizardGroup from '../FormWizard/FormWizardGroup'
+import FormWizardControl from '../FormWizard/FormWizardControl'
+import FormWizardRadio from '../FormWizard/FormWizardRadio'
 import {mapActions, mapGetters} from "vuex";
-import {required, minLength, integer} from 'vuelidate/lib/validators'
+import {required, requiredIf, integer} from 'vuelidate/lib/validators'
 
 export default {
   name: "CreateCompanyFormStatus",
@@ -296,11 +313,14 @@ export default {
     FormWizardNextStepButton,
     FormWizardPreviousStepButton,
     FormWizardResetButton,
+    FormWizardGroup,
+    FormWizardControl,
+    FormWizardRadio,
   },
   data() {
     return {
       formData: {
-        head_office_type: 0,
+        head_office_type: '',
         domiciliation_company_name: '',
         domiciliation_company_siren: '',
         company_purpose: '',
@@ -338,36 +358,15 @@ export default {
         addBusinessSign: false
       },
       capital_deposit_types: [
-        {
-          id: 0,
-          value: 'Dans une banque'
-        },
-        {
-          id: 1,
-          value: 'À la Caisse des Dépôts et Consignation'
-        },
-        {
-          id: 2,
-          value: 'Dans une étude notariale'
-        },
-        {
-          id: 3,
-          value: 'Dans une banque partenaire'
-        },
+        {id: 0, value: 'Dans une banque'},
+        {id: 1, value: 'À la Caisse des Dépôts et Consignation'},
+        {id: 2, value: 'Dans une étude notariale'},
+        {id: 3, value: 'Dans une banque partenaire'},
       ],
-      head_office_location_types: [
-        {
-          id: 0,
-          value: 'Dans un local commercial'
-        },
-        {
-          id: 1,
-          value: 'Dans une société de domiciliation'
-        },
-        {
-          id: 2,
-          value: 'Au domicile du dirigeant'
-        },
+      officeTypes: [
+        {id: 0, value: 'Dans un local commercial'},
+        {id: 1, value: 'Dans une société de domiciliation'},
+        {id: 2, value: 'Au domicile du dirigeant'},
       ],
       income_taxes: [
         {id: 0, value: 'Les sociétés'},
@@ -388,7 +387,6 @@ export default {
       vatSystemSelected: false,
       incomeTaxSelected: false,
       realTaxesSelected: false,
-      headOfficeLocationTypeSelected: false,
       capitalDepositTypeSelected: false
     }
   },
@@ -396,16 +394,24 @@ export default {
     formData: {
       head_office_type: {
         required,
-        integer,
       },
-      domiciliation_company_name: {},
+      domiciliation_company_name: {
+        required: requiredIf(data => {
+          return data.head_office_type === 'Dans une société de domiciliation'
+        }),
+      },
       domiciliation_company_siren: {
+        required: requiredIf(data => {
+          return data.head_office_type === 'Dans une société de domiciliation'
+        }),
         integer
       },
       company_purpose: {
         required,
       },
-      social_capital_type: {required,},
+      social_capital_type: {
+        required
+      },
       social_capital_amount: {},
       social_capital_min: {},
       social_capital_max: {},
@@ -417,16 +423,52 @@ export default {
       capital_deposit_type: {
         required,
       },
-      deposit_bank_name: {},
-      deposit_bank_address: {},
-      deposit_bank_zipcode: {},
-      deposit_bank_city: {},
-      notary_study_name: {},
-      notary_study_address: {},
-      notary_study_zipcode: {},
-      notary_study_city: {},
-      normal_company_exercice_closure_date: {},
-      first_company_exercice_closure_data: {},
+      deposit_bank_name: {
+        required: requiredIf(data => {
+          return data.capital_deposit_type === 'Dans une banque'
+        })
+      },
+      deposit_bank_address: {
+        required: requiredIf(data => {
+          return data.capital_deposit_type === 'Dans une banque'
+        })
+      },
+      deposit_bank_zipcode: {
+        required: requiredIf(data => {
+          return data.capital_deposit_type === 'Dans une banque'
+        })
+      },
+      deposit_bank_city: {
+        required: requiredIf(data => {
+          return data.capital_deposit_type === 'Dans une banque'
+        })
+      },
+      notary_study_name: {
+        required: requiredIf(data => {
+          return data.capital_deposit_type === 'Dans une étude notariale'
+        })
+      },
+      notary_study_address: {
+        required: requiredIf(data => {
+          return data.capital_deposit_type === 'Dans une étude notariale'
+        })
+      },
+      notary_study_zipcode: {
+        required: requiredIf(data => {
+          return data.capital_deposit_type === 'Dans une étude notariale'
+        })
+      },
+      notary_study_city: {
+        required: requiredIf(data => {
+          return data.capital_deposit_type === 'Dans une étude notariale'
+        })
+      },
+      normal_company_exercice_closure_date: {
+        required
+      },
+      first_company_exercice_closure_data: {
+        required
+      },
       business_acronym: {},
       business_commercial_name: {},
       business_domain_name: {},
@@ -440,23 +482,21 @@ export default {
     ...mapActions(['setCompanyStatus', 'updateProgression']),
     validateData() {
       this.submitted = true
-
       this.$v.$touch();
-      // const invalidFields = Object.keys(this.$v['formData'])
-      //     .filter(fieldName => this.$v['formData'][fieldName].$invalid);
 
       if (!this.$v.$invalid) {
-        let data = this.formData;
+        let data = this.formData
 
-        // data.social_capital_min = typeof data.social_capital_min === 'string' ? 0 : data.social_capital_min
-        // data.social_capital_max = typeof data.social_capital_max === 'string' ? 0 : data.social_capital_max
-        // data.social_capital_amount = typeof data.social_capital_amount === 'string' ? 0 : data.social_capital_amount
-        // data.capital_release_rate = typeof data.capital_release_rate === 'string' ? 0 : data.capital_release_rate
-        // data.capital_released_amount = typeof data.capital_released_amount === 'string' ? 0 : data.capital_released_amount
-        // data.deposit_bank_zipcode = typeof data.deposit_bank_zipcode === 'string' ? 0 : data.deposit_bank_zipcode
+        data.social_capital_amount = typeof data.social_capital_amount !== 'number' ? 0 : data.social_capital_amount
+        data.social_capital_min = typeof data.social_capital_min !== 'number' ? 0 : data.social_capital_min
+        data.social_capital_max = typeof data.social_capital_max !== 'number' ? 0 : data.social_capital_max
+        data.capital_release_rate = typeof data.capital_release_rate !== 'number' ? 0 : data.capital_release_rate
+        data.capital_released_amount = typeof data.capital_released_amount !== 'number' ? 0 : data.capital_released_amount
+        data.deposit_bank_zipcode = typeof data.deposit_bank_zipcode !== 'number' ? 0 : data.deposit_bank_zipcode
+        data.notary_study_zipcode = typeof data.notary_study_zipcode !== 'number' ? 0 : data.notary_study_zipcode
 
         this.setCompanyStatus(data)
-        if(this.$refs.nextStepButton) {
+        if (this.$refs.nextStepButton) {
           this.$refs.nextStepButton.nextStep()
         }
       }
@@ -464,12 +504,6 @@ export default {
     },
     setIncomeTaxType(incomeTaxType) {
       this.formData.subject_to_what_income_tax = incomeTaxType
-    },
-    setHeadOfficeLocation(id) {
-      this.formData.head_office_type = id
-    },
-    setCapitalDepositType(value) {
-      this.formData.capital_deposit_type = value
     },
     setRealTaxType(realTaxType) {
       this.formData.subject_to_what_real_tax = realTaxType
