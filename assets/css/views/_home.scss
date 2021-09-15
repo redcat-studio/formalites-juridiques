@@ -1,5 +1,9 @@
 .home {
   .advantages {
+    .row {
+      margin-bottom: 0;
+    }
+
     .four.columns:not(:nth-child(-n+3)) {
       margin-top: 4rem;
     }
@@ -26,6 +30,10 @@
   }
 
   .howItWorks {
+    .section__header {
+      text-align: center;
+    }
+
     &__steps {
       display: grid;
       grid-template-columns: 1fr;
@@ -33,11 +41,16 @@
     }
 
     &__step {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+
       &-number {
         width: 3rem;
         height: 3rem;
         padding: 1rem;
-        margin-bottom: 1.5rem;
+        margin: 0 auto 1.5rem;
 
         display: flex;
         justify-content: center;
@@ -75,9 +88,27 @@
         grid-template-columns: repeat(3, 1fr)
       }
     }
+
     .howItWorks {
+      .section__header {
+        text-align: left;
+      }
       &__steps {
         grid-template-columns: repeat(3, 1fr);
+      }
+
+      &__step {
+        display: block;
+        text-align: left;
+
+        &-number {
+          margin: 0 0 1.5rem;
+        }
+      }
+    }
+    .advantages {
+      .row {
+        margin-bottom: 2rem;
       }
     }
   }

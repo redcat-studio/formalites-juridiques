@@ -1,5 +1,5 @@
 .advantage {
-  margin-top: 4rem;
+  margin-top: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,7 +19,7 @@
     text-align: center;
   }
 
-  &__subtitle {
-
+  @media screen and (min-width: $tablet-width) {
+    margin-top: 4rem;
   }
 }
