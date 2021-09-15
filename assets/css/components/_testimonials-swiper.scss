@@ -22,6 +22,10 @@
     }
   }
 
+  &__btn {
+    cursor: pointer;
+  }
+
   &__slide {
     padding: 5rem 8rem;
     background: $blue;
