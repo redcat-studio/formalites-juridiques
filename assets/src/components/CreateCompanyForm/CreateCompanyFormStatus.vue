@@ -258,8 +258,8 @@
       <p class="form-wizard__group-inner-subtitle">L'impôt sur</p>
       <div class="form-wizard__inner-buttons">
         <div v-for="income_tax in income_taxes"
-             :class="{'button button-small': true,
-             'button-primary button-primary--stroke': formData.subject_to_what_income_tax !== income_tax.value,
+             :class="{'button ': true,
+             'button-primary ': formData.subject_to_what_income_tax !== income_tax.value,
              'button-primary': formData.subject_to_what_income_tax === income_tax.value}"
              @click="setIncomeTaxType(income_tax.value)">
           {{ income_tax.value }}
@@ -268,8 +268,8 @@
       <p class="form-wizard__group-inner-subtitle">L'impôt</p>
       <div class="form-wizard__inner-buttons">
         <div v-for="real_tax in real_taxes"
-             :class="{'button button-small': true,
-             'button-primary button-primary--stroke': formData.subject_to_what_real_tax !== real_tax.value,
+             :class="{'button ': true,
+             'button-primary ': formData.subject_to_what_real_tax !== real_tax.value,
              'button-primary': formData.subject_to_what_real_tax === real_tax.value}"
              @click="setRealTaxType(real_tax.value)">
           {{ real_tax.value }}
@@ -278,8 +278,8 @@
       <p class="form-wizard__group-inner-subtitle">Régime de la TVA</p>
       <div class="form-wizard__inner-buttons">
         <div v-for="vat in vat_systems"
-             :class="{'button button-small': true,
-             'button-primary button-primary--stroke': formData.vat_system !== vat.value,
+             :class="{'button ': true,
+             'button-primary ': formData.vat_system !== vat.value,
              'button-primary': formData.vat_system === vat.value}"
              @click="setVatSystem(vat.value)">
           {{ vat.value }}

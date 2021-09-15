@@ -1,0 +1,25 @@
+.advantage {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+  border-radius: 6px;
+  border: 3px solid $blue;
+
+  &__icon {
+    margin-top: -6rem;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    line-height: 150%;
+    text-align: center;
+  }
+
+  &__subtitle {
+
+  }
+}

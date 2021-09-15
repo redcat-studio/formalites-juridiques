@@ -198,7 +198,7 @@
           <button
               v-if="formOptions.currExecutive !== 0"
               @click="removeCurrExecutive"
-              class="button button-primary button-small"
+              class="button button-primary "
           >
             Supprimer ce dirigeant
           </button>

@@ -269,12 +269,12 @@
             </div>
             <div v-if="formOptions.kindContribution" class="form-wizard__inner-buttons">
               <button
-                  class="button button-primary button-primary--stroke button-small"
+                  class="button button-primary  "
                   @click="addKindContribution">
                 Ajouter un autre apport en nature
               </button>
               <button
-                  class="button button-primary button-primary--stroke button-small"
+                  class="button button-primary  "
                   @click="removeKindContribution"
                   v-if="asso.kindContributions.$model.length > 1">
                 Supprimer le dernier apport
@@ -289,7 +289,7 @@
     <button
         v-if="formOptions.currAssociate !== 0"
         @click="removeCurrAssociate"
-        class="button button-primary button-small"
+        class="button button-primary "
     >
       Supprimer cet associé
     </button>

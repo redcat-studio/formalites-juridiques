@@ -1,0 +1,76 @@
+.home {
+  .advantages {
+    .four.columns:not(:nth-child(-n+3)) {
+      margin-top: 4rem;
+    }
+
+    &__footer {
+      margin-top: 5rem;
+    }
+
+    &__annotation {
+      text-align: center;
+      max-width: 80%;
+      margin: 0 auto;
+    }
+  }
+
+  .services {
+    background: $lightgray;
+
+    &__prices {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 3rem;
+    }
+  }
+
+  .howItWorks {
+    &__steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 2rem;
+    }
+
+    &__step {
+      &-number {
+        width: 3rem;
+        height: 3rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 50%;
+        border: 2px solid $blue;
+
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      &-text {
+        color: $blue;
+        font-size: 1.8rem;
+      }
+    }
+
+    .testimonials {
+      background: $lightgray;
+    }
+  }
+
+  @media screen and (min-width: $tablet-width) {
+    .services {
+      &__prices {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+    .howItWorks {
+      &__steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}

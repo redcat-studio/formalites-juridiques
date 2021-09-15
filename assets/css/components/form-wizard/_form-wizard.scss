@@ -32,19 +32,13 @@
       margin-bottom: 1rem;
     }
 
-    .button {
-      padding: 1.8rem;
-      white-space: normal;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: .5rem;
-    }
-
-    .button.button-small {
-      padding: .9rem 1.8rem;
-      font-weight: normal;
-    }
+    //.button {
+    //  white-space: normal;
+    //  display: flex;
+    //  justify-content: center;
+    //  align-items: center;
+    //  margin-bottom: .5rem;
+    //}
 
     &.hide {
       display: none;

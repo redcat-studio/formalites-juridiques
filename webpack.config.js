@@ -69,4 +69,14 @@ Encore
     //.autoProvidejQuery()
 ;
 
-module.exports = Encore.getWebpackConfig();
+let path = require('path');
+let config = Encore.getWebpackConfig();
+
+config.resolve.extensions = ['', '.js', '.vue']
+
+config.resolve.alias = {
+    '@': path.resolve(__dirname, './assets/src'),
+    '@img': path.resolve(__dirname, './assets/img')
+};
+
+module.exports = config;

@@ -6,7 +6,7 @@
       le faire pour vous en nous fournissant quelques informations !</p>
     <div class="form-wizard-launcher__buttons">
       <div v-for="companyType in companyTypes" @click="saveTypeAndLaunch(companyType.id)"
-           class="button button-small button-primary">
+           class="button  button-primary">
         {{ companyType.name }}
       </div>
     </div>

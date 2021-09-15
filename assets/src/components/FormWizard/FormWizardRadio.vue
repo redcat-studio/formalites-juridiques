@@ -10,7 +10,7 @@
       <label
           :for="`${prefix}-${item.id}`"
           :class="{
-          'button button-primary button-primary--stroke':true,
+          'button button-primary ':true,
           'active': item.value === inputValue
         }"
       >
