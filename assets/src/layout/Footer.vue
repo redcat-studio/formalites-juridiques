@@ -38,7 +38,7 @@
           </ul>
         </div>
         <div class="three columns">
-          <h3 class="footer__title">Informations</h3>
+          <h3 class="footer__title">Liens rapides</h3>
           <ul class="footer__list">
             <li>
               <router-link to="/">Accueil</router-link>
