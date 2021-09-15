@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      © 2021 Formalités Juridique | Redcat Studio
+      © 2021 Formalités Juridiques | Redcat Studio
     </div>
   </div>
 </template>
