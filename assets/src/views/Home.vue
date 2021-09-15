@@ -395,8 +395,6 @@
               <div class="testimonials-swiper__author-name">Marie T.</div>
             </div>
           </div>
-
-
         </VueTinySlider>
         <div class="testimonials-swiper__controls">
           <div class="testimonials-swiper__controls-inner">

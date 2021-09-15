@@ -1,0 +1,46 @@
+.footer {
+  background-color: $lightgray;
+
+  .container {
+    padding: 8rem 0 2rem;
+  }
+
+  &__logo {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 3rem;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  &__contact-item {
+    margin-bottom: 3rem;
+
+    strong {
+      display: block;
+      font-weight: bold;
+    }
+  }
+
+  &__list {
+    list-style: none;
+
+    li {
+      padding: 0;
+    }
+
+    a {
+      color: $blue;
+    }
+  }
+
+  &__bottom {
+    background-color: $blue;
+    color: $white;
+    text-align: center;
+  }
+}

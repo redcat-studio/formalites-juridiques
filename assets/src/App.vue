@@ -10,10 +10,12 @@
 
 <script>
 import Navbar from '@/layout/Navbar'
+import Footer from '@/layout/Footer'
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    Footer
   },
 };
 </script>
