@@ -54,6 +54,14 @@
         color: $blue;
         font-size: 1.8rem;
       }
+
+      &:hover &-number {
+        border-color: $primary-color;
+      }
+
+      &:hover &-text {
+        color: $primary-color;
+      }
     }
   }
 
