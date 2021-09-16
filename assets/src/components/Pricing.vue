@@ -9,7 +9,10 @@
       <div class="pricing__sidebar">
         <div class="pricing__secondary-title">{{ title }}</div>
         <div class="pricing__price">{{ price }}</div>
-        <router-link :to="{name: 'create-company'}" class="button button-primary">
+        <div class="pricing__price-annotation">
+          <slot name="price-annotation"></slot>
+        </div>
+        <router-link :to="{name: actionRouteName}" class="button button-primary">
           Commencer
         </router-link>
       </div>
@@ -22,8 +25,8 @@
         <p class="pricing__annotation">
           <slot name="annotation"></slot>
         </p>
-        <router-link :to="{name: 'create-company'}" class="button button-primary">
-          Je crée mon entreprise
+        <router-link :to="{name: actionRouteName}" class="button button-primary">
+          Commencer
         </router-link>
       </main>
     </div>
@@ -37,8 +40,11 @@ export default {
   props: {
     title: String,
     price: String,
+    actionRouteName: String,
     services: Array,
-    annotation: String,
+  },
+  mounted() {
+    window.scrollTo(0,0);
   }
 }
 </script>

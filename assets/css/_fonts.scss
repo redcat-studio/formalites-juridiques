@@ -1,21 +1,4 @@
 @font-face {
-  font-family: "Poppins";
-  src: url("/assets/fonts/Poppins-Regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("/assets/fonts/Poppins-Bold.ttf") format("truetype");
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("/assets/fonts/Poppins-Black.ttf") format("truetype");
-  font-weight: 900;
-}
-
-@font-face {
   font-family: "Libre Baskerville";
   src: url("/assets/fonts/LibreBaskerville-Regular.ttf") format("truetype");
 }
@@ -31,7 +14,5 @@
   src: url("/assets/fonts/LibreBaskerville-Italic.ttf") format("truetype");
   font-style: italic;
 }
-
-
 
 $font-family: "Libre Baskerville", Arial, serif !default;

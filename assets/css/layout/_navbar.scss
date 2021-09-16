@@ -2,10 +2,11 @@
   background: $lightgray;
   padding: 1rem;
   display: none;
+  position: relative;
 
   .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     //padding: 0 3rem;
   }
@@ -23,6 +24,21 @@
 
   @media screen and (min-width: $tablet-width) {
     display: block;
+  }
+
+  @media screen and (min-width: 1000px) {
+    .container {
+      justify-content: center;
+    }
+
+    &__phone {
+      position: absolute;
+      right: 0;
+    }
+
+    &__text {
+      text-align: center;
+    }
   }
 }
 
@@ -58,7 +74,6 @@
 
   &__nav {
     display: none;
-    margin-top: 1rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -68,29 +83,76 @@
     &.active {
       display: flex;
     }
-
-    .button {
-      width: max-content;
-      color: $white !important;
-
-      &:hover {
-        color: $primary-color !important;
-      }
-    }
   }
 
   &__link {
-    color: $blue !important;
     position: relative;
     padding: .5rem 1rem;
     text-decoration: none;
     cursor: pointer;
+    color: $blue !important;
+  }
 
-    &:not(.button):hover {
-      color: $white !important;
+  &__dropdown {
+    display: flex;
+    flex-direction: column;
+    column-gap: .5rem;
+    position: relative;
+    text-align: center;
+    padding: 0.5rem 1rem;
+
+    span {
+      display: none;
     }
 
-    &:not(.button)::after {
+    &:hover {
+      color: $blue !important;
+    }
+
+    &::after {
+      display: none;
+    }
+
+    svg {
+      display: none;
+      fill: $blue;
+    }
+
+    &-content {
+      color: $red;
+      position: relative;
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 1rem;
+
+      a {
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: .8rem;
+        color: $blue;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+  }
+
+  &__dropdown:hover svg {
+    fill: $white;
+  }
+
+  &__link, &__dropdown {
+    position: relative;
+
+    &::after {
       content: '';
       position: absolute;
       display: block;
@@ -104,63 +166,16 @@
       transition: height .05s;
     }
 
-    &:not(.button):hover {
-      color: $white;
-    }
-
-    &:not(.button):hover::after {
-      bottom: 0;
-      width: 100%;
-      height: 107%;
-      transform: translateX(-50%);
-    }
-
-    &.dropdown {
-      display: flex;
-      flex-direction: column;
-      column-gap: .5rem;
-      position: relative;
-      text-align: center;
-
-      span {
-        display: none;
-      }
-
-      &:hover {
-        color: $blue !important;
-      }
+    &:hover {
+      color: $white !important;
 
       &::after {
-        display: none;
+        bottom: 0;
+        width: 100%;
+        height: 107%;
+        transform: translateX(-50%);
       }
 
-      svg {
-        display: none;
-        fill: $blue;
-      }
-
-      .dropdown__content {
-        color: $blue;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-top: 1rem;
-
-        a {
-          text-decoration: none;
-          display: inline-block;
-          margin-bottom: .8rem;
-          color: $blue;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
-
-    &.dropdown:hover svg {
-      fill: #FFF;
     }
   }
 
@@ -212,44 +227,40 @@
 
     &__link {
       text-align: center;
+    }
 
-      &.dropdown {
-        flex-direction: row;
-        align-items: center;
-        text-align: left;
+    &__dropdown {
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
 
-        span {
-          display: inline;
-        }
-
-        &:hover {
-          color: $white !important;
-        }
-
-        svg {
-          display: block;
-        }
-
-        &::after {
-          display: block;
-        }
-
-        .dropdown__content {
-          display: none;
-          position: absolute;
-          left: 0;
-          top: 100%;
-          text-align: left;
-
-          margin: 0;
-          padding: 1rem;
-          background: #FFF;
-          border-radius: 0 0 3px 3px;
-          min-width: 200px;
-        }
+      span {
+        display: inline;
       }
 
-      &:hover .dropdown__content {
+      svg {
+        display: block;
+      }
+
+      &::after {
+        display: block;
+      }
+
+      &-content {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        text-align: left;
+
+        margin: 0;
+        padding: 1rem;
+        background: #FFF;
+        border-radius: 0 0 3px 3px;
+        min-width: 200px;
+      }
+
+      &:hover &-content {
         display: block;
       }
     }

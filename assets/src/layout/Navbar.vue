@@ -2,8 +2,9 @@
   <header>
     <div class="topbar">
       <div class="container">
-        <div class="topbar__text">7h-20h du Lundi au Samedi. Créez votre société en ligne ou par téléphone en 5 minutes
-          !
+        <div class="topbar__text">
+          7h-20h du Lundi au Samedi.<br/>
+          Créez votre société en ligne ou par téléphone en 5 minutes !
         </div>
         <div class="topbar__phone">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +26,7 @@
     <div class="navbar">
       <div class="container">
         <div class="navbar__brand">
-          <img class="navbar__logo" src="../../img/logo-black.png" alt="Logo"/>
+          <img class="navbar__logo" :src="require('@img/logo-red-test.png')" alt="Logo"/>
           <div :class="{'navbar__toggler': true, 'active': isNavOpen}" @click="isNavOpen = !isNavOpen">
             <div></div>
             <div></div>
@@ -34,20 +35,20 @@
         </div>
         <nav :class="{'navbar__nav': true, 'active': isNavOpen}">
           <router-link :to="{name: 'home'}" class="navbar__link">Accueil</router-link>
-          <div class="navbar__link dropdown">
+          <div class="navbar__dropdown">
             <span>Services</span>
             <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                   d="M3.64645 4.35355C3.84171 4.54882 4.15829 4.54882 4.35355 4.35355L7.53553 1.17157C7.7308 0.976311 7.7308 0.659728 7.53553 0.464466C7.34027 0.269204 7.02369 0.269204 6.82843 0.464466L4 3.29289L1.17157 0.464466C0.976311 0.269204 0.659728 0.269204 0.464466 0.464466C0.269204 0.659728 0.269204 0.976311 0.464466 1.17157L3.64645 4.35355ZM3.5 3V4H4.5V3H3.5Z"/>
             </svg>
-            <div class="dropdown__content">
-              <router-link to="/">Création d'entreprise</router-link>
-              <router-link to="/">Modification d'entreprise</router-link>
-              <router-link to="/">Cession d'entreprise</router-link>
+            <div class="navbar__dropdown-content">
+              <router-link :to="{name: 'pricing-create-company'}">Création d'entreprise</router-link>
+              <router-link :to="{name: 'pricing-edit-company'}">Modification d'entreprise</router-link>
+              <router-link :to="{name: 'pricing-transfer-company'}">Cession d'entreprise</router-link>
             </div>
           </div>
           <router-link :to="{name: 'home'}" class="navbar__link">Contact</router-link>
-          <router-link :to="{name: 'home', hash: '#tarifs'}" class="navbar__link button button-primary">Nos Tarifs</router-link>
+          <router-link :to="{name: 'home', hash: '#tarifs'}" class=" button button-primary">Nos Tarifs</router-link>
         </nav>
       </div>
     </div>

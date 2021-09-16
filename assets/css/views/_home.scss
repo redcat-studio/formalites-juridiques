@@ -57,7 +57,8 @@
         align-items: center;
 
         border-radius: 50%;
-        border: 2px solid $blue;
+        background: $primary-color;
+        color: $white;
 
         font-size: 2rem;
         font-weight: bold;
@@ -68,13 +69,6 @@
         font-size: 1.8rem;
       }
 
-      &:hover &-number {
-        border-color: $primary-color;
-      }
-
-      &:hover &-text {
-        color: $primary-color;
-      }
     }
   }
 

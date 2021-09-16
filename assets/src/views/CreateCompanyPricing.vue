@@ -3,6 +3,7 @@
       title="Créez votre société"
       price="199€ H.T"
       :services="services"
+      actionRouteName="create-company"
   >
     <template v-slot:annotation>
       *Auprès de nos partenaires si vous le souhaitez. (Domiciliation de votre entreprise, création site internet)<br/>

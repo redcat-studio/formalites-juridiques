@@ -2,23 +2,22 @@
   <main class="page home">
     <section class="hero">
       <div class="hero__content">
-        <h1 class="hero__title"> Votre cabinet de formalités juridiques qui facilite les
-          <span>formalités juridiques</span> de tous les entrepreneurs</h1>
+        <h1 class="hero__title">Le cabinet qui facilite les <span>formalités juridiques</span> de tous les entrepreneurs</h1>
         <p class="hero__subtitle">
           Plutôt que de passer des heures à remplir des documents CERFA, laissez-nous le faire pour vous en nous
           fournissant quelques informations !
         </p>
         <div class="hero__buttons">
-          <router-link :to="{name: 'create-company'}" class="button button-primary">Je crée mon entreprise</router-link>
-          <router-link :to="{name: 'edit-company'}" class="button button-primary">Je modifie mon entreprise</router-link>
-          <router-link :to="{name: 'edit-company'}" class="button button-primary">Je cède mon entreprise</router-link>
+          <router-link :to="{name: 'create-company'}" class="button button-primary">Je crée ma société</router-link>
+          <router-link :to="{name: 'edit-company'}" class="button button-primary">Je modifie ma société</router-link>
+          <router-link :to="{name: 'edit-company'}" class="button button-primary">Je cède ma société</router-link>
         </div>
       </div>
     </section>
 
     <section class="section advantages">
       <header class="section__header text-center">
-        <h2 class="section__title">Pourquoi nous choisir ?</h2>
+        <h2 class="section__title text-primary">Pourquoi nous choisir ?</h2>
         <p class="section__subtitle">Travailler avec nous, c’est l’assurance d’être pris en charge par des
           professionnels</p>
       </header>
@@ -221,7 +220,7 @@
     <section id="tarifs" class="section services">
       <header class="section__header text-center">
         <h2 class="section__title">Nos Services</h2>
-        <p class="section__subtitle">Formalités Juridiques s’occupe de toutes vos démarches</p>
+        <p class="section__subtitle"><span class="text-primary text-bold">Formalités Juridiques</span> s’occupe de toutes vos démarches</p>
       </header>
 
       <div class="services__prices">
@@ -260,7 +259,7 @@
             <li>Assistance par téléphone et par mail tout au long de la procédure</li>
           </ul>
           <p class="price-card__annotation">*Notre service s’occupe de tous les modifications de votre société</p>
-          <a href="#" class="button button-primary">En savoir plus</a>
+          <router-link :to="{name: 'pricing-edit-company'}" class="button button-primary">En savoir plus</router-link>
         </div>
         <div class="price-card">
           <h3 class="price-card__title">
@@ -280,7 +279,7 @@
             <li>Votre nouveau KBIS portant les mentions de radiation</li>
             <li>Et bien plus</li>
           </ul>
-          <a href="" class="button button-primary">En savoir plus</a>
+          <router-link :to="{name: 'pricing-transfer-company'}" class="button button-primary">En savoir plus</router-link>
         </div>
       </div>
     </section>
@@ -452,19 +451,5 @@ export default {
       }
     }
   },
-  mounted() {
-    this.$nextTick(function () {
-      if (this.hash) {
-        const refName = this.hash.replace('#', '')
-        this.scrollToAnchorPoint(refName)
-      }
-    })
-  },
-  methods: {
-    scrollToAnchorPoint(refName) {
-      const el = this.$refs[refName]
-      el.scrollIntoView({behavior: 'smooth'})
-    }
-  }
 }
 </script>

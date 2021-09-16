@@ -13,6 +13,9 @@ export default {
   name: "FormWizardView",
   components: {
     FormWizard
+  },
+  mounted() {
+    window.scrollTo(0,0);
   }
 }
 </script>
