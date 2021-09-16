@@ -47,8 +47,7 @@
             </div>
           </div>
           <router-link :to="{name: 'home'}" class="navbar__link">Contact</router-link>
-          <router-link :to="{name: 'create-company'}" class="navbar__link button button-primary ">Nos Tarifs
-          </router-link>
+          <router-link :to="{name: 'home', hash: '#tarifs'}" class="navbar__link button button-primary">Nos Tarifs</router-link>
         </nav>
       </div>
     </div>

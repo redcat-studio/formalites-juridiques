@@ -47,6 +47,8 @@
                     v-model="asso.individual_firstname.$model"
                     type="text"
                     placeholder="Prénom"
+                    title="Prénom de l'associé"
+                    aria-label="Prénom de l'associé"
                 >
               </FormWizardControl>
 
@@ -55,6 +57,8 @@
                     v-model="asso.individual_lastname.$model"
                     type="text"
                     placeholder="Nom"
+                    title="Nom de l'associé"
+                    aria-label="Nom de l'associé"
                 >
               </FormWizardControl>
             </div>
@@ -66,6 +70,8 @@
                   v-model="asso.individual_birthdate.$model"
                   type="date"
                   placeholder="Date de naissance"
+                  title="Date de naissance de l'associé"
+                  aria-label="Date de naissance de l'associé"
               >
             </FormWizardControl>
 
@@ -76,6 +82,8 @@
                     v-model="asso.individual_birth_city.$model"
                     type="text"
                     placeholder="Ville de naissance"
+                    title="Ville de naissance de l'associé"
+                    aria-label="Ville de naissance de l'associé"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="asso.individual_nationality">
@@ -83,6 +91,8 @@
                     v-model="asso.individual_nationality.$model"
                     type="text"
                     placeholder="Nationalité"
+                    title="Nationalité de l'associé"
+                    aria-label="Nationalité de l'associé"
                 >
               </FormWizardControl>
             </div>
@@ -93,6 +103,8 @@
                     v-model="asso.individual_address.$model"
                     type="text"
                     placeholder="Adresse"
+                    title="Adresse de l'associé"
+                    aria-label="Adresse de l'associé"
                 >
               </FormWizardControl>
 
@@ -101,6 +113,8 @@
                     v-model="asso.individual_zipcode.$model"
                     type="text"
                     placeholder="Code postal"
+                    title="Code postal de l'associé"
+                    aria-label="Code postal de l'associé"
                 >
               </FormWizardControl>
 
@@ -109,6 +123,8 @@
                     v-model="asso.individual_city.$model"
                     type="text"
                     placeholder="Ville"
+                    title="Ville de l'associé"
+                    aria-label="Ville de l'associé"
                 >
               </FormWizardControl>
 
@@ -123,6 +139,8 @@
                     v-model="asso.legal_company_name.$model"
                     type="text"
                     placeholder="Nom de la société"
+                    title="Nom de la société associée"
+                    aria-label="Nom de la société associée"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="asso.legal_company_rcs_number">
@@ -130,6 +148,8 @@
                     v-model="asso.legal_company_rcs_number.$model"
                     type="text"
                     placeholder="Numéro RCS"
+                    title="Numéro RCS de la société associée"
+                    aria-label="Numéro RCS de la société associée"
                 >
               </FormWizardControl>
             </div>
@@ -140,6 +160,8 @@
                     v-model="asso.legal_company_headquarters_address.$model"
                     type="text"
                     placeholder="Adresse du siège social"
+                    title="Adresse du siège social de la société associée"
+                    aria-label="Adresse du siège social de la société associée"
                 >
               </FormWizardControl>
             </div>
@@ -150,6 +172,8 @@
                     v-model="asso.legal_company_zipcode.$model"
                     type="text"
                     placeholder="Code postal"
+                    title="Code postal du siège social de la société associée"
+                    aria-label="Code postal du siège social de la société associée"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="asso.legal_company_city">
@@ -157,6 +181,8 @@
                     v-model="asso.legal_company_city.$model"
                     type="text"
                     placeholder="Ville"
+                    title="Ville du siège social de la société associée"
+                    aria-label="Ville du siège social de la société associée"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="asso.legal_company_city_of_registry">
@@ -164,6 +190,8 @@
                     v-model="asso.legal_company_city_of_registry.$model"
                     type="text"
                     placeholder="Ville du Greffe"
+                    title="Ville du Greffe de la société associée"
+                    aria-label="Ville du Greffe de la société associée"
                 >
               </FormWizardControl>
             </div>
@@ -174,6 +202,8 @@
                     v-model="asso.legal_company_social_capital.$model"
                     type="text"
                     placeholder="Capital social"
+                    title="Capital social de la société associée"
+                    aria-label="Capital social de la société associée"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="asso.legal_company_social_form">
@@ -181,6 +211,8 @@
                     v-model="asso.legal_company_social_form.$model"
                     type="text"
                     placeholder="Forme sociale (ex : SARL, ...)"
+                    title="Forme sociale de la société associée"
+                    aria-label="Forme sociale de la société associée"
                 >
               </FormWizardControl>
             </div>
@@ -193,6 +225,8 @@
                     v-model="asso.legal_representative_firstname.$model"
                     type="text"
                     placeholder="Prénom"
+                    title="Prénom du représentant de la société associée"
+                    aria-label="Prénom du représentant de la société associée"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="asso.legal_representative_lastname">
@@ -200,6 +234,8 @@
                     v-model="asso.legal_representative_lastname.$model"
                     type="text"
                     placeholder="Nom"
+                    title="Nom du représentant de la société associée"
+                    aria-label="Nom du représentant de la société associée"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="asso.legal_representative_genre">
@@ -215,6 +251,8 @@
                   v-model="asso.legal_representative_role.$model"
                   type="text"
                   placeholder="Qualité (président, gérant...)"
+                  title="Qualité du représentant de la société associée"
+                  aria-label="Qualité du représentant de la société associée"
               >
             </FormWizardControl>
           </div>
@@ -242,7 +280,8 @@
                 v-if="formOptions.cashContribution"
                 v-model="asso.associate_cash_contribution.$model"
                 type="text"
-                placeholder="Montant de l’apport effectué">
+                placeholder="Montant de l’apport effectué"
+            >
           </div>
           <div class="form-wizard__triggerable-field">
             <div class="form-wizard__triggerable-field-trigger">
@@ -260,16 +299,20 @@
                   v-model="c.nature.$model"
                   type="text"
                   placeholder="Nature de l'apport"
+                  title="Nature de l'apport en nature"
+                  aria-label="Nature de l'apport en nature"
               >
               <input
                   v-model="c.amount.$model"
                   type="text"
                   placeholder="Montant de l'apport"
+                  title="Montant de l'apport en nature"
+                  aria-label="Montant de l'apport en nature"
               >
             </div>
             <div v-if="formOptions.kindContribution" class="form-wizard__inner-buttons">
               <button
-                  class="button button-primary  "
+                  class="button button-primary"
                   @click="addKindContribution">
                 Ajouter un autre apport en nature
               </button>
@@ -296,9 +339,7 @@
 
     <div class="form-wizard__navigation">
       <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
-      <div @click="validateData">
-        <FormWizardNextStepButton ref="nextStepButton"></FormWizardNextStepButton>
-      </div>
+      <FormWizardNextStepButton @click.native="validateData" ref="nextStepButton"></FormWizardNextStepButton>
       <FormWizardResetButton></FormWizardResetButton>
     </div>
   </div>

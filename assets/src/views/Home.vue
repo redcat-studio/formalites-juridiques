@@ -8,7 +8,11 @@
           Plutôt que de passer des heures à remplir des documents CERFA, laissez-nous le faire pour vous en nous
           fournissant quelques informations !
         </p>
-        <router-link :to="{name: 'create-company'}" class="button button-primary">Je crée mon entreprise</router-link>
+        <div class="hero__buttons">
+          <router-link :to="{name: 'create-company'}" class="button button-primary">Je crée mon entreprise</router-link>
+          <router-link :to="{name: 'edit-company'}" class="button button-primary">Je modifie mon entreprise</router-link>
+          <router-link :to="{name: 'edit-company'}" class="button button-primary">Je cède mon entreprise</router-link>
+        </div>
       </div>
     </section>
 
@@ -214,7 +218,7 @@
       </footer>
     </section>
 
-    <section class="section services">
+    <section id="tarifs" class="section services">
       <header class="section__header text-center">
         <h2 class="section__title">Nos Services</h2>
         <p class="section__subtitle">Formalités Juridiques s’occupe de toutes vos démarches</p>
@@ -238,7 +242,7 @@
             <li>Lettre et attestation des commissaires aux comptes (obtention*)</li>
             <li>Et bien plus</li>
           </ul>
-          <a href="" class="button button-primary">En savoir plus</a>
+          <router-link :to="{name: 'pricing-create-company'}" class="button button-primary">En savoir plus</router-link>
         </div>
         <div class="price-card">
           <h3 class="price-card__title">
@@ -446,6 +450,20 @@ export default {
         prevButton: '.prevBtn',
         nextButton: '.nextBtn',
       }
+    }
+  },
+  mounted() {
+    this.$nextTick(function () {
+      if (this.hash) {
+        const refName = this.hash.replace('#', '')
+        this.scrollToAnchorPoint(refName)
+      }
+    })
+  },
+  methods: {
+    scrollToAnchorPoint(refName) {
+      const el = this.$refs[refName]
+      el.scrollIntoView({behavior: 'smooth'})
     }
   }
 }

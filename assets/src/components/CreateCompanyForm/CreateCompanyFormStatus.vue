@@ -22,6 +22,8 @@
               v-model="$v.formData.domiciliation_company_name.$model"
               type="text"
               placeholder="Nom de la société de domiciliation"
+              title="Nom de la société de domiciliation"
+              aria-label="Nom de la société de domiciliation"
           >
         </FormWizardControl>
         <FormWizardControl :showErrors="submitted" :v="$v.formData.domiciliation_company_siren">
@@ -29,6 +31,8 @@
               v-model="$v.formData.domiciliation_company_siren.$model"
               type="text"
               placeholder="Numéro SIREN de la société de domiciliation"
+              title="Numéro SIREN de la société de domiciliationn"
+              aria-label="Numéro SIREN de la société de domiciliation"
           >
         </FormWizardControl>
       </div>
@@ -39,6 +43,8 @@
         <textarea
             v-model="$v.formData.company_purpose.$model"
             placeholder="Veuillez décrire l’objet social de la société"
+            title="L'objet social de la société"
+            aria-label="L'objet social de la société"
             rows="3">
         </textarea>
       </FormWizardControl>
@@ -62,6 +68,8 @@
               v-model="$v.formData.social_capital_amount.$model"
               type="text"
               placeholder="Montant du capital social"
+              title="Le montant du capital social"
+              aria-label="Montant du capital social"
           >
         </FormWizardControl>
       </div>
@@ -72,6 +80,8 @@
               v-model="$v.formData.social_capital_min.$model"
               type="number"
               placeholder="Capital minimum"
+              title="Capital minimum"
+              aria-label="Capital minimum"
           >
         </FormWizardControl>
         <FormWizardControl :showErrors="submitted" :v="$v.formData.social_capital_max">
@@ -79,6 +89,8 @@
               v-model="$v.formData.social_capital_max.$model"
               type="number"
               placeholder="Capital maximum"
+              title="Capital maximum"
+              aria-label="Capital maximum"
           >
         </FormWizardControl>
       </div>
@@ -89,13 +101,18 @@
               v-model="$v.formData.capital_release_rate.$model"
               type="number"
               placeholder="Taux de libération du capital à la constitution"
+              title="Taux de libération du capital à la constitution"
+              aria-label="Taux de libération du capital à la constitution"
           >
         </FormWizardControl>
         <FormWizardControl :showErrors="submitted" :v="$v.formData.capital_released_amount">
           <input
               v-model="$v.formData.capital_released_amount.$model"
               type="number"
-              placeholder="Montant libéré à la constitution">
+              placeholder="Montant libéré à la constitution"
+              title="Montant libéré à la constitution"
+              aria-label="Montant libéré à la constitution"
+          >
         </FormWizardControl>
       </div>
     </FormWizardGroup>
@@ -107,6 +124,8 @@
               v-model="$v.formData.capital_deposit_date.$model"
               type="date"
               placeholder="Date de dépôt du capital social"
+              title="Date de dépôt du capital social"
+              aria-label="Date de dépôt du capital social"
           >
         </FormWizardControl>
       </div>
@@ -131,6 +150,8 @@
               v-model="$v.formData.deposit_bank_name.$model"
               type="text"
               placeholder="Nom de la banque"
+              title="Nom de la banque de dépôt"
+              aria-label="Nom de la banque de dépôt"
           >
         </FormWizardControl>
         <FormWizardControl :showErrors="submitted" :v="$v.formData.deposit_bank_address">
@@ -138,6 +159,8 @@
               v-model="$v.formData.deposit_bank_address.$model"
               type="text"
               placeholder="Adresse de la banque"
+              title="Adresse de la banque de dépôt"
+              aria-label="Adresse de la banque de dépôt"
           >
         </FormWizardControl>
       </div>
@@ -147,13 +170,18 @@
               v-model="$v.formData.deposit_bank_zipcode.$model"
               type="text"
               placeholder="Code postal"
+              title="Code postal de la banque de dépôt"
+              aria-label="Code postal de la banque de dépôt"
           >
         </FormWizardControl>
         <FormWizardControl :showErrors="submitted" :v="$v.formData.deposit_bank_city">
           <input
               v-model="$v.formData.deposit_bank_city.$model"
               type="text"
-              placeholder="Ville">
+              placeholder="Ville"
+              title="Ville de la banque de dépôt"
+              aria-label="Ville de la banque de dépôt"
+          >
         </FormWizardControl>
       </div>
     </FormWizardGroup>
@@ -166,6 +194,8 @@
               v-model="$v.formData.notary_study_name.$model"
               type="text"
               placeholder="Nom de l’étude notariale"
+              title="Nom de l’étude notariale"
+              aria-label="Nom de l’étude notariale"
           >
         </FormWizardControl>
         <FormWizardControl :showErrors="submitted" :v="$v.formData.notary_study_address">
@@ -173,6 +203,8 @@
               v-model="$v.formData.notary_study_address.$model"
               type="text"
               placeholder="Adresse de l’étude notariale"
+              title="Adresse de l’étude notariale"
+              aria-label="Adresse de l’étude notariale"
           >
         </FormWizardControl>
       </div>
@@ -182,6 +214,8 @@
               v-model="$v.formData.notary_study_zipcode.$model"
               type="text"
               placeholder="Code postal"
+              title="Code postal de l'étude notariale"
+              aria-label="Code postal de l'étude notariale"
           >
         </FormWizardControl>
         <FormWizardControl :showErrors="submitted" :v="$v.formData.notary_study_city">
@@ -189,6 +223,8 @@
               v-model="$v.formData.notary_study_city.$model"
               type="text"
               placeholder="Ville"
+              title="Ville de l'étude notariale"
+              aria-label="Ville de l'étude notariale"
           >
         </FormWizardControl>
       </div>
@@ -218,8 +254,14 @@
                 :class="{'active': formOptions.addAcronym === true}"></span>
           Ajouter un sigle ?
         </div>
-        <input v-if="formOptions.addAcronym" v-model="$v.formData.business_acronym.$model" type="text"
-               placeholder="Sigle">
+        <input
+            v-if="formOptions.addAcronym"
+            v-model="$v.formData.business_acronym.$model"
+            type="text"
+            placeholder="Sigle"
+            title="Sigle de l'entreprise"
+            aria-label="Sigle de l'entreprise"
+        >
       </div>
       <div class="form-wizard__triggerable-field">
         <div class="form-wizard__triggerable-field-trigger">
@@ -228,9 +270,14 @@
           </span>
           Ajouter un nom commercial ?
         </div>
-        <input type="text" placeholder="Nom commercial"
-               v-if="formOptions.addCommercialName"
-               v-model="$v.formData.business_commercial_name.$model"/>
+        <input
+            v-if="formOptions.addCommercialName"
+            v-model="$v.formData.business_commercial_name.$model"
+            type="text"
+            placeholder="Nom commercial"
+            title="Nom commercial de l'entreprise"
+            aria-label="Nom commercial de l'entreprise"
+        >
       </div>
       <div class="form-wizard__triggerable-field">
         <div class="form-wizard__triggerable-field-trigger">
@@ -239,9 +286,14 @@
           </span>
           Ajouter un nom de domaine ?
         </div>
-        <input type="text" placeholder="Nom de domaine"
-               v-if="formOptions.addDomainName"
-               v-model="$v.formData.business_domain_name.$model">
+        <input
+            v-if="formOptions.addDomainName"
+            v-model="$v.formData.business_domain_name.$model"
+            type="text"
+            placeholder="Nom de domaine"
+            title="Nom de domaine de l'entreprise"
+            aria-label="Nom de domaine de l'entreprise"
+        >
       </div>
       <div class="form-wizard__triggerable-field">
         <div class="form-wizard__triggerable-field-trigger">
@@ -249,8 +301,14 @@
                 :class="{'active': formOptions.addBusinessSign === true}"></span>
           Ajouter une enseigne ?
         </div>
-        <input v-if="formOptions.addBusinessSign" v-model="$v.formData.business_sign.$model" type="text"
-               placeholder="Enseigne (de l'établissement principal)">
+        <input
+            v-if="formOptions.addBusinessSign"
+            v-model="$v.formData.business_sign.$model"
+            type="text"
+            placeholder="Enseigne (de l'établissement principal)"
+            title="Enseigne (de l'établissement principal)"
+            aria-label="Enseigne (de l'établissement principal)"
+        >
       </div>
     </FormWizardGroup>
 
@@ -259,8 +317,8 @@
       <div class="form-wizard__inner-buttons">
         <div v-for="income_tax in income_taxes"
              :class="{'button ': true,
-             'button-primary ': formData.subject_to_what_income_tax !== income_tax.value,
-             'button-primary': formData.subject_to_what_income_tax === income_tax.value}"
+             'button-primary': formData.subject_to_what_income_tax !== income_tax.value,
+             'button-primary active': formData.subject_to_what_income_tax === income_tax.value}"
              @click="setIncomeTaxType(income_tax.value)">
           {{ income_tax.value }}
         </div>
@@ -269,8 +327,8 @@
       <div class="form-wizard__inner-buttons">
         <div v-for="real_tax in real_taxes"
              :class="{'button ': true,
-             'button-primary ': formData.subject_to_what_real_tax !== real_tax.value,
-             'button-primary': formData.subject_to_what_real_tax === real_tax.value}"
+             'button-primary': formData.subject_to_what_real_tax !== real_tax.value,
+             'button-primary active': formData.subject_to_what_real_tax === real_tax.value}"
              @click="setRealTaxType(real_tax.value)">
           {{ real_tax.value }}
         </div>
@@ -279,8 +337,8 @@
       <div class="form-wizard__inner-buttons">
         <div v-for="vat in vat_systems"
              :class="{'button ': true,
-             'button-primary ': formData.vat_system !== vat.value,
-             'button-primary': formData.vat_system === vat.value}"
+             'button-primary': formData.vat_system !== vat.value,
+             'button-primary active': formData.vat_system === vat.value}"
              @click="setVatSystem(vat.value)">
           {{ vat.value }}
         </div>
@@ -289,8 +347,8 @@
 
     <div class="form-wizard__navigation" @click="validateData">
       <FormWizardPreviousStepButton></FormWizardPreviousStepButton>
-      <div @click="validateData">
-        <FormWizardNextStepButton ref="nextStepButton"></FormWizardNextStepButton>
+      <div>
+        <FormWizardNextStepButton  @click.native="validateData" ref="nextStepButton"></FormWizardNextStepButton>
       </div>
       <FormWizardResetButton></FormWizardResetButton>
     </div>

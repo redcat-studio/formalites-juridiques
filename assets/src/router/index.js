@@ -9,7 +9,7 @@ const routes = [
     name: 'home',
     components: {
       default: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
-    }
+    },
   },
   {
     path: '/entreprise/creer',
@@ -24,8 +24,14 @@ const routes = [
     components: {
       default: () => import(/* webpackChunkName: "form-wizard" */ '../views/FormWizardView.vue')
     },
-  }
-
+  },
+  {
+    path: '/tarifs/creer',
+    name: 'pricing-create-company',
+    components: {
+      default: () => import(/* webpackChunkName: "pricing-create-company" */ '../views/CreateCompanyPricing')
+    },
+  },
 ]
 
 const router = new VueRouter({

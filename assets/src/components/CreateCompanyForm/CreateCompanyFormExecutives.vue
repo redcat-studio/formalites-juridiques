@@ -48,6 +48,8 @@
                     v-model="exec.executive_firstname.$model"
                     type="text"
                     placeholder="Prénom"
+                    title="Prénom du dirigeant"
+                    aria-label="Prénom du dirigeant"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="exec.executive_lastname">
@@ -55,6 +57,8 @@
                     v-model="exec.executive_lastname.$model"
                     type="text"
                     placeholder="Nom"
+                    title="Nom du dirigeant"
+                    aria-label="Nom du dirigeant"
                 >
               </FormWizardControl>
             </div>
@@ -64,6 +68,8 @@
                     v-model="exec.executive_birthdate.$model"
                     type="date"
                     placeholder="Date de naissance"
+                    title="Date de naissance du dirigeant"
+                    aria-label="Date de naissance du dirigeant"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="exec.executive_birth_city">
@@ -71,6 +77,8 @@
                     v-model="exec.executive_birth_city.$model"
                     type="text"
                     placeholder="Ville de naissance"
+                    title="Ville de naissance du dirigeant"
+                    aria-label="Ville de naissance du dirigeant"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="exec.executive_nationality">
@@ -78,6 +86,8 @@
                     v-model="exec.executive_nationality.$model"
                     type="text"
                     placeholder="Nationalité"
+                    title="Nationalité du dirigeant"
+                    aria-label="Nationalité du dirigeant"
                 >
               </FormWizardControl>
             </div>
@@ -88,6 +98,8 @@
                     v-model="exec.executive_address.$model"
                     type="text"
                     placeholder="Adresse"
+                    title="Adresse du dirigeant"
+                    aria-label="Adresse du dirigeant"
                 >
               </FormWizardControl>
 
@@ -96,6 +108,8 @@
                     v-model="exec.executive_zipcode.$model"
                     type="text"
                     placeholder="Code postal"
+                    title="Code postal du dirigeant"
+                    aria-label="Code postal du dirigeant"
                 >
               </FormWizardControl>
 
@@ -104,6 +118,8 @@
                     v-model="exec.executive_city.$model"
                     type="text"
                     placeholder="Ville"
+                    title="Ville du dirigeant"
+                    aria-label="Ville du dirigeant"
                 >
               </FormWizardControl>
             </div>
@@ -113,6 +129,8 @@
                     v-model="exec.executive_mother_firstname_and_maiden_name.$model"
                     type="text"
                     placeholder="Prénom et nom de jeune fille de la mère"
+                    title="Prénom et nom de jeune fille de la mère du dirigeant"
+                    aria-label="Prénom et nom de jeune fille de la mère du dirigeant"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="exec.executive_father_name">
@@ -120,6 +138,8 @@
                     v-model="exec.executive_father_name.$model"
                     type="text"
                     placeholder="Prénom et nom du père"
+                    title="Prénom et nom du père du dirigeant"
+                    aria-label="Prénom et nom du père du dirigeant"
                 >
               </FormWizardControl>
             </div>
@@ -129,6 +149,8 @@
                     v-model="exec.executive_email.$model"
                     type="text"
                     placeholder="Adresse e-mail du gérant"
+                    title="Adresse e-mail du gérant"
+                    aria-label="Adresse e-mail du gérant"
                 >
               </FormWizardControl>
             </div>
@@ -140,6 +162,8 @@
                     v-model="exec.executive_company_name.$model"
                     type="text"
                     placeholder="Nom de la société"
+                    title="Nom de la société dirigeante"
+                    aria-label="Nom de la société dirigeante"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="exec.executive_company_rcs_number">
@@ -147,6 +171,8 @@
                     v-model="exec.executive_company_rcs_number.$model"
                     type="text"
                     placeholder="Numéro RCS"
+                    title="Numéro RCS de la société dirigeante"
+                    aria-label="Numéro RCS de la société dirigeante"
                 >
               </FormWizardControl>
             </div>
@@ -156,6 +182,8 @@
                     v-model="exec.executive_company_headquarters_address.$model"
                     type="text"
                     placeholder="Adresse du siège social"
+                    title="Adresse du siège social de la société dirigeante"
+                    aria-label="Adresse du siège social de la société dirigeante"
                 >
 
               </FormWizardControl>
@@ -163,7 +191,9 @@
                 <input
                     v-model="exec.executive_company_zipcode.$model"
                     type="text"
-                    placeholder="Code Postal"
+                    placeholder="Code postal"
+                    title="Code postal de la société dirigeante"
+                    aria-label="Code postal de la société dirigeante"
                 >
               </FormWizardControl>
               <FormWizardControl :showErrors="submitted" :v="exec.executive_company_city">
@@ -171,6 +201,8 @@
                     v-model="exec.executive_company_city.$model"
                     type="text"
                     placeholder="Ville"
+                    title="Ville de la société dirigeante"
+                    aria-label="Ville de la société dirigeante"
                 >
               </FormWizardControl>
             </div>
@@ -180,6 +212,8 @@
                     v-model="exec.executive_company_rcs.$model"
                     type="text"
                     placeholder="Immatriculée au Registre du Commerce et des Sociétés du"
+                    title="Ville du Registre du Commerce et des Sociétés où la société dirigeante est immatriculée"
+                    aria-label="Ville du Registre du Commerce et des Sociétés où la société dirigeante est immatriculée"
                 >
               </FormWizardControl>
             </div>
@@ -189,6 +223,8 @@
                     v-model="exec.executive_company_representative_name.$model"
                     type="text"
                     placeholder="Représentant légal de la société"
+                    title="Représentant légal de la société dirigeante"
+                    aria-label="Représentant légal de la société dirigeante"
                 >
               </FormWizardControl>
             </div>
@@ -286,9 +322,7 @@ export default {
           executive_type: {
             required
           },
-          executive_title: {
-
-          },
+          executive_title: {},
           executive_firstname: {
             required: requiredIf(e => {
               return e.executive_type === 'Physique'

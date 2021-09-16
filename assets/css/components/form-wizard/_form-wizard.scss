@@ -155,7 +155,7 @@
   }
 
   @media screen and (min-width: $tablet-width) {
-    &__row, &__radio {
+    &__row{
       > * {
         flex: 1;
         width: auto;
