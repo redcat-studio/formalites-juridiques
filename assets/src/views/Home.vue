@@ -220,7 +220,7 @@
     <section id="tarifs" class="section services">
       <header class="section__header text-center">
         <h2 class="section__title">Nos Services</h2>
-        <p class="section__subtitle"><span class="text-primary text-bold">Formalités Juridiques</span> s’occupe de toutes vos démarches</p>
+        <p class="section__subtitle text-bold"><span class="text-primary">Formalités Juridiques</span> s’occupe de toutes vos démarches</p>
       </header>
 
       <div class="services__prices">

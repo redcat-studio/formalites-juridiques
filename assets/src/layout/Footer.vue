@@ -4,7 +4,7 @@
       <div class="row">
         <div class="three columns">
           <div class="footer__brand">
-            <img class="footer__logo" :src="require('@img/logo-black.png')" alt="Logo de Formalités Juridiques">
+            <img class="footer__logo" :src="require('@img/logo-red-test.png')" alt="Logo de Formalités Juridiques">
             <p>
               <strong>7h-20h du lundi au samedi</strong><br/>
               Créez votre société en ligne ou par téléphone en 5 minutes !
